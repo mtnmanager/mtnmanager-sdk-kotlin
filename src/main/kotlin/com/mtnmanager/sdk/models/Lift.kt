@@ -27,8 +27,9 @@ import com.mtnmanager.sdk.models.EntityImage
 import com.mtnmanager.sdk.models.LiftStatus
 import com.mtnmanager.sdk.models.LiftType
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Contextual
 
 /**
  * Represents a single lift at the resort with its current operational status,  type, and optional wait time information.
@@ -56,96 +57,96 @@ import com.squareup.moshi.JsonClass
  * @param areaDisplayOrder Display order of the area this lift belongs to, if assigned, for sorting purposes.
  * @param images Images attached to this lift, ordered for display. Each includes a  ThumbHash for rendering a blurred placeholder while the image loads.
  */
-
+@Serializable
 
 data class Lift (
 
     /* Unique identifier for the lift. */
-    @Json(name = "uuid")
+    @SerialName(value = "uuid")
     val uuid: kotlin.String,
 
     /* Display name of the lift. */
-    @Json(name = "name")
+    @SerialName(value = "name")
     val name: kotlin.String,
 
     /* URL-friendly name of the lift. */
-    @Json(name = "slug")
+    @SerialName(value = "slug")
     val slug: kotlin.String,
 
     /* Type of lift (e.g. gondola, quad). */
-    @Json(name = "lift_type")
+    @Contextual @SerialName(value = "lift_type")
     val liftType: LiftType,
 
     /* Whether this is a high-speed/detachable lift. */
-    @Json(name = "high_speed")
+    @SerialName(value = "high_speed")
     val highSpeed: kotlin.Boolean,
 
     /* Whether the lift has a bubble/cover for weather protection. */
-    @Json(name = "bubble")
+    @SerialName(value = "bubble")
     val bubble: kotlin.Boolean,
 
     /* Whether the lift has heated seats. */
-    @Json(name = "heated")
+    @SerialName(value = "heated")
     val heated: kotlin.Boolean,
 
     /* Current operational status (open, closed, on_hold, or unknown). */
-    @Json(name = "status")
+    @Contextual @SerialName(value = "status")
     val status: LiftStatus,
 
     /* When this lift's information was last updated. */
-    @Json(name = "updated_at")
+    @Contextual @SerialName(value = "updated_at")
     val updatedAt: java.time.OffsetDateTime,
 
     /* Optional lift number. */
-    @Json(name = "number")
+    @SerialName(value = "number")
     val number: kotlin.Int? = null,
 
     /* Estimated travel time in minutes. */
-    @Json(name = "travel_time")
+    @SerialName(value = "travel_time")
     val travelTime: kotlin.Double? = null,
 
     /* Length of the lift in feet. */
-    @Json(name = "length_ft")
+    @SerialName(value = "length_ft")
     val lengthFt: kotlin.Int? = null,
 
     /* Length of the lift in meters. */
-    @Json(name = "length_m")
+    @SerialName(value = "length_m")
     val lengthM: kotlin.Int? = null,
 
     /* Vertical rise of the lift in feet. */
-    @Json(name = "vertical_rise_ft")
+    @SerialName(value = "vertical_rise_ft")
     val verticalRiseFt: kotlin.Int? = null,
 
     /* Vertical rise of the lift in meters. */
-    @Json(name = "vertical_rise_m")
+    @SerialName(value = "vertical_rise_m")
     val verticalRiseM: kotlin.Int? = null,
 
     /* Current estimated wait time in minutes, if available. */
-    @Json(name = "wait_time_minutes")
+    @SerialName(value = "wait_time_minutes")
     val waitTimeMinutes: kotlin.Long? = null,
 
     /* Today's scheduled opening time in 24-hour format (HH:MM), in resort's local timezone.  `null` if the lift has no scheduled hours for today. */
-    @Json(name = "opens_at")
+    @SerialName(value = "opens_at")
     val opensAt: kotlin.String? = null,
 
     /* Today's scheduled closing time in 24-hour format (HH:MM), in resort's local timezone.  `null` if the lift has no scheduled hours for today. */
-    @Json(name = "closes_at")
+    @SerialName(value = "closes_at")
     val closesAt: kotlin.String? = null,
 
     /* UUID of the area this lift belongs to, if assigned. */
-    @Json(name = "area_uuid")
+    @SerialName(value = "area_uuid")
     val areaUuid: kotlin.String? = null,
 
     /* Name of the area this lift belongs to, if assigned. */
-    @Json(name = "area_name")
+    @SerialName(value = "area_name")
     val areaName: kotlin.String? = null,
 
     /* Display order of the area this lift belongs to, if assigned, for sorting purposes. */
-    @Json(name = "area_display_order")
+    @SerialName(value = "area_display_order")
     val areaDisplayOrder: kotlin.Int? = null,
 
     /* Images attached to this lift, ordered for display. Each includes a  ThumbHash for rendering a blurred placeholder while the image loads. */
-    @Json(name = "images")
+    @SerialName(value = "images")
     val images: kotlin.collections.List<EntityImage>? = null
 
 ) {

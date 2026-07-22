@@ -24,28 +24,28 @@
 package com.mtnmanager.sdk.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
+
 
 /**
  * Reason for unexpected closure
  *
  * Values: extreme_cold,high_winds,snow_conditions,mechanical_issues
  */
-
-@JsonClass(generateAdapter = false)
+@Serializable
 enum class ClosureReason(val value: kotlin.String) {
 
-    @Json(name = "extreme_cold")
+    @SerialName(value = "extreme_cold")
     extreme_cold("extreme_cold"),
 
-    @Json(name = "high_winds")
+    @SerialName(value = "high_winds")
     high_winds("high_winds"),
 
-    @Json(name = "snow_conditions")
+    @SerialName(value = "snow_conditions")
     snow_conditions("snow_conditions"),
 
-    @Json(name = "mechanical_issues")
+    @SerialName(value = "mechanical_issues")
     mechanical_issues("mechanical_issues");
 
     /**
@@ -74,4 +74,5 @@ enum class ClosureReason(val value: kotlin.String) {
         }
     }
 }
+
 

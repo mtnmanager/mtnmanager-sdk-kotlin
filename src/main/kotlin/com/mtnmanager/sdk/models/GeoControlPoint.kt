@@ -24,8 +24,9 @@
 package com.mtnmanager.sdk.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Contextual
 
 /**
  * 
@@ -35,20 +36,20 @@ import com.squareup.moshi.JsonClass
  * @param lat 
  * @param lng 
  */
-
+@Serializable
 
 data class GeoControlPoint (
 
-    @Json(name = "pixel_x")
+    @SerialName(value = "pixel_x")
     val pixelX: kotlin.Double,
 
-    @Json(name = "pixel_y")
+    @SerialName(value = "pixel_y")
     val pixelY: kotlin.Double,
 
-    @Json(name = "lat")
+    @SerialName(value = "lat")
     val lat: kotlin.Double,
 
-    @Json(name = "lng")
+    @SerialName(value = "lng")
     val lng: kotlin.Double
 
 ) {

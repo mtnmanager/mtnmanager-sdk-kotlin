@@ -24,61 +24,61 @@
 package com.mtnmanager.sdk.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
+
 
 /**
  * Industry-standard letter codes describing snow surface conditions.
  *
  * Values: BS,CO,FG,HP,IP,IS,LG,MG,P,PP,SC,TC,V,WG,WP
  */
-
-@JsonClass(generateAdapter = false)
+@Serializable
 enum class SurfaceCondition(val value: kotlin.String) {
 
-    @Json(name = "BS")
+    @SerialName(value = "BS")
     BS("BS"),
 
-    @Json(name = "CO")
+    @SerialName(value = "CO")
     CO("CO"),
 
-    @Json(name = "FG")
+    @SerialName(value = "FG")
     FG("FG"),
 
-    @Json(name = "HP")
+    @SerialName(value = "HP")
     HP("HP"),
 
-    @Json(name = "IP")
+    @SerialName(value = "IP")
     IP("IP"),
 
-    @Json(name = "IS")
+    @SerialName(value = "IS")
     IS("IS"),
 
-    @Json(name = "LG")
+    @SerialName(value = "LG")
     LG("LG"),
 
-    @Json(name = "MG")
+    @SerialName(value = "MG")
     MG("MG"),
 
-    @Json(name = "P")
+    @SerialName(value = "P")
     P("P"),
 
-    @Json(name = "PP")
+    @SerialName(value = "PP")
     PP("PP"),
 
-    @Json(name = "SC")
+    @SerialName(value = "SC")
     SC("SC"),
 
-    @Json(name = "TC")
+    @SerialName(value = "TC")
     TC("TC"),
 
-    @Json(name = "V")
+    @SerialName(value = "V")
     V("V"),
 
-    @Json(name = "WG")
+    @SerialName(value = "WG")
     WG("WG"),
 
-    @Json(name = "WP")
+    @SerialName(value = "WP")
     WP("WP");
 
     /**
@@ -107,4 +107,5 @@ enum class SurfaceCondition(val value: kotlin.String) {
         }
     }
 }
+
 

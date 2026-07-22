@@ -24,28 +24,28 @@
 package com.mtnmanager.sdk.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
+
 
 /**
  * Size rating of terrain park feature.
  *
  * Values: s,m,l,xl
  */
-
-@JsonClass(generateAdapter = false)
+@Serializable
 enum class FeatureSize(val value: kotlin.String) {
 
-    @Json(name = "s")
+    @SerialName(value = "s")
     s("s"),
 
-    @Json(name = "m")
+    @SerialName(value = "m")
     m("m"),
 
-    @Json(name = "l")
+    @SerialName(value = "l")
     l("l"),
 
-    @Json(name = "xl")
+    @SerialName(value = "xl")
     xl("xl");
 
     /**
@@ -74,4 +74,5 @@ enum class FeatureSize(val value: kotlin.String) {
         }
     }
 }
+
 

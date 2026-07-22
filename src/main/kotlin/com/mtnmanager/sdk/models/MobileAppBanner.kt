@@ -24,8 +24,9 @@
 package com.mtnmanager.sdk.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Contextual
 
 /**
  * A banner shown in the mobile app.
@@ -37,29 +38,29 @@ import com.squareup.moshi.JsonClass
  * @param url Destination URL opened when the banner is tapped.
  * @param thumbHash Base64-encoded ThumbHash of the banner image, for rendering a blurred  placeholder while the full image loads.
  */
-
+@Serializable
 
 data class MobileAppBanner (
 
-    @Json(name = "title")
+    @SerialName(value = "title")
     val title: kotlin.String,
 
-    @Json(name = "uuid")
+    @SerialName(value = "uuid")
     val uuid: kotlin.String,
 
-    @Json(name = "subtitle")
+    @SerialName(value = "subtitle")
     val subtitle: kotlin.String,
 
     /* Full public URL of the banner image. */
-    @Json(name = "image_url")
+    @SerialName(value = "image_url")
     val imageUrl: kotlin.String,
 
     /* Destination URL opened when the banner is tapped. */
-    @Json(name = "url")
+    @SerialName(value = "url")
     val url: kotlin.String,
 
     /* Base64-encoded ThumbHash of the banner image, for rendering a blurred  placeholder while the full image loads. */
-    @Json(name = "thumb_hash")
+    @SerialName(value = "thumb_hash")
     val thumbHash: kotlin.String
 
 ) {

@@ -24,8 +24,9 @@
 package com.mtnmanager.sdk.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Contextual
 
 /**
  * 
@@ -33,14 +34,14 @@ import com.squareup.moshi.JsonClass
  * @param x 
  * @param y 
  */
-
+@Serializable
 
 data class LabelOffset (
 
-    @Json(name = "x")
+    @SerialName(value = "x")
     val x: kotlin.Double,
 
-    @Json(name = "y")
+    @SerialName(value = "y")
     val y: kotlin.Double
 
 ) {

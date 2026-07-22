@@ -31,8 +31,9 @@ import com.mtnmanager.sdk.models.OverviewTerrainParks
 import com.mtnmanager.sdk.models.ResortStatus
 import com.mtnmanager.sdk.models.SeasonType
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Contextual
 
 /**
  * Provides a snapshot of the resort's current operational state including  today's scheduled hours (calculated from operating hour rules), run/lift  overview counts, the current season, and written news.
@@ -47,44 +48,44 @@ import com.squareup.moshi.JsonClass
  * @param opensAt Today's scheduled opening time in 24-hour format (HH:MM).  `null` if the resort is not scheduled to open today.
  * @param closesAt Today's scheduled closing time in 24-hour format (HH:MM).  `null` if the resort is not scheduled to open today.
  */
-
+@Serializable
 
 data class Overview (
 
     /* Current operational status of the resort (open or closed).  This is calculated based on the current time relative to today's scheduled hours. */
-    @Json(name = "status")
+    @Contextual @SerialName(value = "status")
     val status: ResortStatus,
 
     /* Current operating season (winter, summer, or closed/off-season). */
-    @Json(name = "season")
+    @Contextual @SerialName(value = "season")
     val season: SeasonType,
 
     /* Written news — daily update, announcements, etc. */
-    @Json(name = "news")
+    @SerialName(value = "news")
     val news: OverviewNews,
 
     /* Run statistics: counts, acres, and last-updated timestamp. */
-    @Json(name = "runs")
+    @SerialName(value = "runs")
     val runs: OverviewRuns,
 
     /* Lift statistics: counts and last-updated timestamp. */
-    @Json(name = "lifts")
+    @SerialName(value = "lifts")
     val lifts: OverviewLifts,
 
     /* Summer trail statistics: counts and last-updated timestamp. */
-    @Json(name = "summer_trails")
+    @SerialName(value = "summer_trails")
     val summerTrails: OverviewSummerTrails,
 
     /* Terrain park statistics: counts and last-updated timestamp. */
-    @Json(name = "terrain_parks")
+    @SerialName(value = "terrain_parks")
     val terrainParks: OverviewTerrainParks,
 
     /* Today's scheduled opening time in 24-hour format (HH:MM).  `null` if the resort is not scheduled to open today. */
-    @Json(name = "opens_at")
+    @SerialName(value = "opens_at")
     val opensAt: kotlin.String? = null,
 
     /* Today's scheduled closing time in 24-hour format (HH:MM).  `null` if the resort is not scheduled to open today. */
-    @Json(name = "closes_at")
+    @SerialName(value = "closes_at")
     val closesAt: kotlin.String? = null
 
 ) {

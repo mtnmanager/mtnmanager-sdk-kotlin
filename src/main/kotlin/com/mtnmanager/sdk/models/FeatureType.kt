@@ -24,28 +24,28 @@
 package com.mtnmanager.sdk.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
+
 
 /**
  * Type of terrain park feature.
  *
  * Values: jump,box,rail,other
  */
-
-@JsonClass(generateAdapter = false)
+@Serializable
 enum class FeatureType(val value: kotlin.String) {
 
-    @Json(name = "jump")
+    @SerialName(value = "jump")
     jump("jump"),
 
-    @Json(name = "box")
+    @SerialName(value = "box")
     box("box"),
 
-    @Json(name = "rail")
+    @SerialName(value = "rail")
     rail("rail"),
 
-    @Json(name = "other")
+    @SerialName(value = "other")
     other("other");
 
     /**
@@ -74,4 +74,5 @@ enum class FeatureType(val value: kotlin.String) {
         }
     }
 }
+
 

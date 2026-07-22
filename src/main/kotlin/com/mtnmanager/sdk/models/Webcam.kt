@@ -24,8 +24,9 @@
 package com.mtnmanager.sdk.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Contextual
 
 /**
  * A public webcam entry. Consumers pick `latest` (always the newest frame) or  `latest-daylight` (the last daylight frame, never a black night shot)  depending on whether they want the freshest or a guaranteed-lit image.
@@ -46,60 +47,60 @@ import com.squareup.moshi.JsonClass
  * @param elevationM 
  * @param lastFrameAt Time of the most recently published frame; omitted until the first frame.
  */
-
+@Serializable
 
 data class Webcam (
 
-    @Json(name = "uuid")
+    @SerialName(value = "uuid")
     val uuid: kotlin.String,
 
-    @Json(name = "name")
+    @SerialName(value = "name")
     val name: kotlin.String,
 
     /* URL of the newest frame (refreshes within ~60s via the edge cache). */
-    @Json(name = "latest_image_url")
+    @SerialName(value = "latest_image_url")
     val latestImageUrl: kotlin.String,
 
     /* URL of the last daylight frame. */
-    @Json(name = "latest_daylight_image_url")
+    @SerialName(value = "latest_daylight_image_url")
     val latestDaylightImageUrl: kotlin.String,
 
-    @Json(name = "latest_thumb_url")
+    @SerialName(value = "latest_thumb_url")
     val latestThumbUrl: kotlin.String,
 
-    @Json(name = "latest_daylight_thumb_url")
+    @SerialName(value = "latest_daylight_thumb_url")
     val latestDaylightThumbUrl: kotlin.String,
 
     /* ThumbHash of the `latest` frame (standard base64) — a compact blur  placeholder to render while the image loads. Empty string until the first  frame (or on cameras predating the feature). */
-    @Json(name = "latest_thumbhash")
+    @SerialName(value = "latest_thumbhash")
     val latestThumbhash: kotlin.String,
 
     /* ThumbHash of the `latest-daylight` frame (standard base64). Empty string  until the first daylight frame. */
-    @Json(name = "latest_daylight_thumbhash")
+    @SerialName(value = "latest_daylight_thumbhash")
     val latestDaylightThumbhash: kotlin.String,
 
     /* Whether this camera archives frames — i.e. whether its history endpoint  returns anything. When `false`, don't call the history API for it. */
-    @Json(name = "has_history")
+    @SerialName(value = "has_history")
     val hasHistory: kotlin.Boolean,
 
-    @Json(name = "area_uuid")
+    @SerialName(value = "area_uuid")
     val areaUuid: kotlin.String? = null,
 
-    @Json(name = "area_name")
+    @SerialName(value = "area_name")
     val areaName: kotlin.String? = null,
 
-    @Json(name = "area_display_order")
+    @SerialName(value = "area_display_order")
     val areaDisplayOrder: kotlin.Int? = null,
 
     /* Camera elevation in both units; omitted when unset. */
-    @Json(name = "elevation_ft")
+    @SerialName(value = "elevation_ft")
     val elevationFt: kotlin.Int? = null,
 
-    @Json(name = "elevation_m")
+    @SerialName(value = "elevation_m")
     val elevationM: kotlin.Int? = null,
 
     /* Time of the most recently published frame; omitted until the first frame. */
-    @Json(name = "last_frame_at")
+    @SerialName(value = "last_frame_at")
     val lastFrameAt: kotlin.String? = null
 
 ) {

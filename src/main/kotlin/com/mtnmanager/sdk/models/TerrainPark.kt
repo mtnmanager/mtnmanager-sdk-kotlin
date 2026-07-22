@@ -27,8 +27,9 @@ import com.mtnmanager.sdk.models.EntityImage
 import com.mtnmanager.sdk.models.TerrainParkFeature
 import com.mtnmanager.sdk.models.TerrainParkStatus
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Contextual
 
 /**
  * Represents a terrain park at the resort with its current status,  condition notes, and list of features (jumps, boxes, rails, etc.) within it.
@@ -46,56 +47,56 @@ import com.squareup.moshi.JsonClass
  * @param areaDisplayOrder Display order of the area this terrain park belongs to, if assigned, for sorting purposes.
  * @param images Images attached to this terrain park, ordered for display. Each includes  a ThumbHash for rendering a blurred placeholder while the image loads.
  */
-
+@Serializable
 
 data class TerrainPark (
 
     /* Unique identifier for the terrain park. */
-    @Json(name = "uuid")
+    @SerialName(value = "uuid")
     val uuid: kotlin.String,
 
     /* Display name of the terrain park. */
-    @Json(name = "name")
+    @SerialName(value = "name")
     val name: kotlin.String,
 
     /* URL-friendly name of the terrain park. */
-    @Json(name = "slug")
+    @SerialName(value = "slug")
     val slug: kotlin.String,
 
     /* Current operational status (open, closed, or unknown). */
-    @Json(name = "status")
+    @Contextual @SerialName(value = "status")
     val status: TerrainParkStatus,
 
     /* Notes about current conditions in this terrain park. */
-    @Json(name = "condition_notes")
+    @SerialName(value = "condition_notes")
     val conditionNotes: kotlin.String,
 
     /* Features within this terrain park (jumps, boxes, rails, etc.). */
-    @Json(name = "features")
+    @SerialName(value = "features")
     val features: kotlin.collections.List<TerrainParkFeature>,
 
     /* When this terrain park or any of its features was last updated. */
-    @Json(name = "updated_at")
+    @Contextual @SerialName(value = "updated_at")
     val updatedAt: java.time.OffsetDateTime,
 
     /* Optional terrain park number. */
-    @Json(name = "number")
+    @SerialName(value = "number")
     val number: kotlin.Int? = null,
 
     /* UUID of the area this terrain park belongs to, if assigned. */
-    @Json(name = "area_uuid")
+    @SerialName(value = "area_uuid")
     val areaUuid: kotlin.String? = null,
 
     /* Name of the area this terrain park belongs to, if assigned. */
-    @Json(name = "area_name")
+    @SerialName(value = "area_name")
     val areaName: kotlin.String? = null,
 
     /* Display order of the area this terrain park belongs to, if assigned, for sorting purposes. */
-    @Json(name = "area_display_order")
+    @SerialName(value = "area_display_order")
     val areaDisplayOrder: kotlin.Int? = null,
 
     /* Images attached to this terrain park, ordered for display. Each includes  a ThumbHash for rendering a blurred placeholder while the image loads. */
-    @Json(name = "images")
+    @SerialName(value = "images")
     val images: kotlin.collections.List<EntityImage>? = null
 
 ) {

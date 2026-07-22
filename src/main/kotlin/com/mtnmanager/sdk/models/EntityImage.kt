@@ -24,8 +24,9 @@
 package com.mtnmanager.sdk.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Contextual
 
 /**
  * A single image attached to a resort entity, with a client-supplied ThumbHash  for rendering a blurred placeholder while the full image loads.
@@ -33,16 +34,16 @@ import com.squareup.moshi.JsonClass
  * @param url Full public URL to the image.
  * @param thumbHash Base64-encoded ThumbHash for placeholder rendering.
  */
-
+@Serializable
 
 data class EntityImage (
 
     /* Full public URL to the image. */
-    @Json(name = "url")
+    @SerialName(value = "url")
     val url: kotlin.String,
 
     /* Base64-encoded ThumbHash for placeholder rendering. */
-    @Json(name = "thumb_hash")
+    @SerialName(value = "thumb_hash")
     val thumbHash: kotlin.String
 
 ) {

@@ -27,8 +27,9 @@ import com.mtnmanager.sdk.models.AmenitySchedule
 import com.mtnmanager.sdk.models.CalendarDay
 import com.mtnmanager.sdk.models.Schedule
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Contextual
 
 /**
  * Resort's operating hours, including the recurring schedule, and list of individual calendar days.
@@ -37,20 +38,20 @@ import com.squareup.moshi.JsonClass
  * @param calendarDays List of all days the resort is open (or a closure override).  Ordered chronologically, spanning from the earliest scheduled date  to the latest scheduled date in the currently defined operating hours.
  * @param amenitySchedules Per-amenity operating schedules. Only included when amenity hours are configured.
  */
-
+@Serializable
 
 data class OperatingHours (
 
     /* Recurring operating schedules currently in effect or upcoming.  Excludes single-day overrides and past schedules. */
-    @Json(name = "schedules")
+    @SerialName(value = "schedules")
     val schedules: kotlin.collections.List<Schedule>,
 
     /* List of all days the resort is open (or a closure override).  Ordered chronologically, spanning from the earliest scheduled date  to the latest scheduled date in the currently defined operating hours. */
-    @Json(name = "calendar_days")
+    @SerialName(value = "calendar_days")
     val calendarDays: kotlin.collections.List<CalendarDay>,
 
     /* Per-amenity operating schedules. Only included when amenity hours are configured. */
-    @Json(name = "amenity_schedules")
+    @SerialName(value = "amenity_schedules")
     val amenitySchedules: kotlin.collections.List<AmenitySchedule>? = null
 
 ) {

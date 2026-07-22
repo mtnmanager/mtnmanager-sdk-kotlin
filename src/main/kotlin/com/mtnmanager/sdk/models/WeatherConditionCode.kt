@@ -24,121 +24,121 @@
 package com.mtnmanager.sdk.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
+
 
 /**
  * Weather condition code
  *
  * Values: Clear,Cloudy,Foggy,Haze,MostlyClear,MostlyCloudy,PartlyCloudy,Smoky,BlowingDust,Breezy,Windy,Drizzle,HeavyRain,IsolatedThunderstorms,Rain,SunShowers,ScatteredThunderstorms,StrongStorms,Thunderstorms,Frigid,Hail,Hot,Flurries,Sleet,Snow,SunFlurries,WintryMix,Blizzard,BlowingSnow,FreezingDrizzle,FreezingRain,HeavySnow,Hurricane,TropicalStorm,Unknown
  */
-
-@JsonClass(generateAdapter = false)
+@Serializable
 enum class WeatherConditionCode(val value: kotlin.String) {
 
-    @Json(name = "Clear")
+    @SerialName(value = "Clear")
     Clear("Clear"),
 
-    @Json(name = "Cloudy")
+    @SerialName(value = "Cloudy")
     Cloudy("Cloudy"),
 
-    @Json(name = "Foggy")
+    @SerialName(value = "Foggy")
     Foggy("Foggy"),
 
-    @Json(name = "Haze")
+    @SerialName(value = "Haze")
     Haze("Haze"),
 
-    @Json(name = "MostlyClear")
+    @SerialName(value = "MostlyClear")
     MostlyClear("MostlyClear"),
 
-    @Json(name = "MostlyCloudy")
+    @SerialName(value = "MostlyCloudy")
     MostlyCloudy("MostlyCloudy"),
 
-    @Json(name = "PartlyCloudy")
+    @SerialName(value = "PartlyCloudy")
     PartlyCloudy("PartlyCloudy"),
 
-    @Json(name = "Smoky")
+    @SerialName(value = "Smoky")
     Smoky("Smoky"),
 
-    @Json(name = "BlowingDust")
+    @SerialName(value = "BlowingDust")
     BlowingDust("BlowingDust"),
 
-    @Json(name = "Breezy")
+    @SerialName(value = "Breezy")
     Breezy("Breezy"),
 
-    @Json(name = "Windy")
+    @SerialName(value = "Windy")
     Windy("Windy"),
 
-    @Json(name = "Drizzle")
+    @SerialName(value = "Drizzle")
     Drizzle("Drizzle"),
 
-    @Json(name = "HeavyRain")
+    @SerialName(value = "HeavyRain")
     HeavyRain("HeavyRain"),
 
-    @Json(name = "IsolatedThunderstorms")
+    @SerialName(value = "IsolatedThunderstorms")
     IsolatedThunderstorms("IsolatedThunderstorms"),
 
-    @Json(name = "Rain")
+    @SerialName(value = "Rain")
     Rain("Rain"),
 
-    @Json(name = "SunShowers")
+    @SerialName(value = "SunShowers")
     SunShowers("SunShowers"),
 
-    @Json(name = "ScatteredThunderstorms")
+    @SerialName(value = "ScatteredThunderstorms")
     ScatteredThunderstorms("ScatteredThunderstorms"),
 
-    @Json(name = "StrongStorms")
+    @SerialName(value = "StrongStorms")
     StrongStorms("StrongStorms"),
 
-    @Json(name = "Thunderstorms")
+    @SerialName(value = "Thunderstorms")
     Thunderstorms("Thunderstorms"),
 
-    @Json(name = "Frigid")
+    @SerialName(value = "Frigid")
     Frigid("Frigid"),
 
-    @Json(name = "Hail")
+    @SerialName(value = "Hail")
     Hail("Hail"),
 
-    @Json(name = "Hot")
+    @SerialName(value = "Hot")
     Hot("Hot"),
 
-    @Json(name = "Flurries")
+    @SerialName(value = "Flurries")
     Flurries("Flurries"),
 
-    @Json(name = "Sleet")
+    @SerialName(value = "Sleet")
     Sleet("Sleet"),
 
-    @Json(name = "Snow")
+    @SerialName(value = "Snow")
     Snow("Snow"),
 
-    @Json(name = "SunFlurries")
+    @SerialName(value = "SunFlurries")
     SunFlurries("SunFlurries"),
 
-    @Json(name = "WintryMix")
+    @SerialName(value = "WintryMix")
     WintryMix("WintryMix"),
 
-    @Json(name = "Blizzard")
+    @SerialName(value = "Blizzard")
     Blizzard("Blizzard"),
 
-    @Json(name = "BlowingSnow")
+    @SerialName(value = "BlowingSnow")
     BlowingSnow("BlowingSnow"),
 
-    @Json(name = "FreezingDrizzle")
+    @SerialName(value = "FreezingDrizzle")
     FreezingDrizzle("FreezingDrizzle"),
 
-    @Json(name = "FreezingRain")
+    @SerialName(value = "FreezingRain")
     FreezingRain("FreezingRain"),
 
-    @Json(name = "HeavySnow")
+    @SerialName(value = "HeavySnow")
     HeavySnow("HeavySnow"),
 
-    @Json(name = "Hurricane")
+    @SerialName(value = "Hurricane")
     Hurricane("Hurricane"),
 
-    @Json(name = "TropicalStorm")
+    @SerialName(value = "TropicalStorm")
     TropicalStorm("TropicalStorm"),
 
-    @Json(name = "Unknown")
+    @SerialName(value = "Unknown")
     Unknown("Unknown");
 
     /**
@@ -167,4 +167,5 @@ enum class WeatherConditionCode(val value: kotlin.String) {
         }
     }
 }
+
 

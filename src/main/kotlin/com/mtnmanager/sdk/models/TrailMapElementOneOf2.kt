@@ -26,8 +26,9 @@ package com.mtnmanager.sdk.models
 import com.mtnmanager.sdk.models.LabelOffset
 import com.mtnmanager.sdk.models.TerrainPark
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Contextual
 
 /**
  * 
@@ -39,26 +40,26 @@ import com.squareup.moshi.JsonClass
  * @param labelOffset 
  * @param terrainPark 
  */
-
+@Serializable
 
 data class TrailMapElementOneOf2 (
 
-    @Json(name = "type")
+    @SerialName(value = "type")
     val type: TrailMapElementOneOf2.Type,
 
-    @Json(name = "uuid")
+    @SerialName(value = "uuid")
     val uuid: kotlin.String,
 
-    @Json(name = "points")
+    @SerialName(value = "points")
     val points: kotlin.collections.List<kotlin.Double>,
 
-    @Json(name = "tension")
+    @SerialName(value = "tension")
     val tension: kotlin.Double? = null,
 
-    @Json(name = "label_offset")
+    @SerialName(value = "label_offset")
     val labelOffset: LabelOffset? = null,
 
-    @Json(name = "terrain_park")
+    @SerialName(value = "terrain_park")
     val terrainPark: TerrainPark? = null
 
 ) {
@@ -68,9 +69,9 @@ data class TrailMapElementOneOf2 (
      *
      * Values: terrain_park
      */
-    @JsonClass(generateAdapter = false)
+    @Serializable
     enum class Type(val value: kotlin.String) {
-        @Json(name = "terrain_park") terrain_park("terrain_park");
+        @SerialName(value = "terrain_park") terrain_park("terrain_park");
     }
 
 }

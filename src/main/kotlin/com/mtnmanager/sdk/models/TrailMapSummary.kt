@@ -26,8 +26,9 @@ package com.mtnmanager.sdk.models
 import com.mtnmanager.sdk.models.GeoBounds
 import com.mtnmanager.sdk.models.SeasonType
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Contextual
 
 /**
  * Summary metadata for a trail map.
@@ -41,35 +42,35 @@ import com.squareup.moshi.JsonClass
  * @param entityUuids Deduplicated UUIDs of every entity (lift, run, terrain park,  summer trail, amenity, parking lot) referenced by this map's elements.
  * @param geoBounds Lat/lng bounding box of this map's georeferenced area, plus the  centroid of its control points (used for tie-breaking when multiple  maps cover the same point). Omitted when the map has no georeferencing.
  */
-
+@Serializable
 
 data class TrailMapSummary (
 
-    @Json(name = "uuid")
+    @SerialName(value = "uuid")
     val uuid: kotlin.String,
 
-    @Json(name = "name")
+    @SerialName(value = "name")
     val name: kotlin.String,
 
-    @Json(name = "season")
+    @Contextual @SerialName(value = "season")
     val season: SeasonType,
 
-    @Json(name = "display_order")
+    @SerialName(value = "display_order")
     val displayOrder: kotlin.Long,
 
     /* Monotonically incremented on every update. Clients can compare this  against a cached value to decide whether to reload the trail map. */
-    @Json(name = "version")
+    @SerialName(value = "version")
     val version: kotlin.Long,
 
-    @Json(name = "hosted_url")
+    @SerialName(value = "hosted_url")
     val hostedUrl: kotlin.String,
 
     /* Deduplicated UUIDs of every entity (lift, run, terrain park,  summer trail, amenity, parking lot) referenced by this map's elements. */
-    @Json(name = "entity_uuids")
+    @SerialName(value = "entity_uuids")
     val entityUuids: kotlin.collections.List<kotlin.String>,
 
     /* Lat/lng bounding box of this map's georeferenced area, plus the  centroid of its control points (used for tie-breaking when multiple  maps cover the same point). Omitted when the map has no georeferencing. */
-    @Json(name = "geo_bounds")
+    @SerialName(value = "geo_bounds")
     val geoBounds: GeoBounds? = null
 
 ) {

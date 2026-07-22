@@ -26,8 +26,9 @@ package com.mtnmanager.sdk.models
 import com.mtnmanager.sdk.models.AmenityCategory
 import com.mtnmanager.sdk.models.Schedule
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Contextual
 
 /**
  * Amenity schedule for the OperatingHours response
@@ -37,24 +38,24 @@ import com.squareup.moshi.JsonClass
  * @param category Amenity category
  * @param schedules Operating schedules for this amenity
  */
-
+@Serializable
 
 data class AmenitySchedule (
 
     /* Amenity UUID */
-    @Json(name = "uuid")
+    @SerialName(value = "uuid")
     val uuid: kotlin.String,
 
     /* Amenity name */
-    @Json(name = "name")
+    @SerialName(value = "name")
     val name: kotlin.String,
 
     /* Amenity category */
-    @Json(name = "category")
+    @Contextual @SerialName(value = "category")
     val category: AmenityCategory,
 
     /* Operating schedules for this amenity */
-    @Json(name = "schedules")
+    @SerialName(value = "schedules")
     val schedules: kotlin.collections.List<Schedule>
 
 ) {

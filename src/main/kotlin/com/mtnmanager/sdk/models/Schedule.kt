@@ -25,8 +25,9 @@ package com.mtnmanager.sdk.models
 
 import com.mtnmanager.sdk.models.DayOfWeek
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Contextual
 
 /**
  * Recurring schedule pattern with human-readable and machine-readable formats.   Describes a regular operating schedule (e.g., \"Weekends 10am-4pm\") with  both formatted strings for display and structured data for programmatic use.
@@ -41,44 +42,44 @@ import com.squareup.moshi.JsonClass
  * @param effectiveFrom Start date of the effective period (YYYY-MM-DD).
  * @param effectiveTo End date of the effective period (YYYY-MM-DD).
  */
-
+@Serializable
 
 data class Schedule (
 
     /* Human-readable description of which days this schedule applies to.  Examples: \"Daily\", \"Saturday & Sunday\", \"Monday, Wednesday, and Friday\" */
-    @Json(name = "days_string")
+    @SerialName(value = "days_string")
     val daysString: kotlin.String,
 
     /* Array of days of the week this schedule applies to.  For programmatic use. */
-    @Json(name = "days_of_week")
-    val daysOfWeek: kotlin.collections.List<DayOfWeek>,
+    @SerialName(value = "days_of_week")
+    val daysOfWeek: kotlin.collections.List<@Contextual DayOfWeek>,
 
     /* Human-readable time range.  Example: \"9:00 AM to 4:00 PM\" */
-    @Json(name = "time_string")
+    @SerialName(value = "time_string")
     val timeString: kotlin.String,
 
     /* Opening time in 24-hour format (HH:MM), in resort's local timezone. */
-    @Json(name = "opens_at")
+    @SerialName(value = "opens_at")
     val opensAt: kotlin.String,
 
     /* Closing time in 24-hour format (HH:MM), in resort's local timezone. */
-    @Json(name = "closes_at")
+    @SerialName(value = "closes_at")
     val closesAt: kotlin.String,
 
     /* Whether this schedule is currently in effect.  `false` for upcoming schedules that haven't started yet. */
-    @Json(name = "in_effect")
+    @SerialName(value = "in_effect")
     val inEffect: kotlin.Boolean,
 
     /* Human-readable date range when this schedule is effective.  Example: \"November 1, 2024 to April 15, 2025\" */
-    @Json(name = "effective_string")
+    @SerialName(value = "effective_string")
     val effectiveString: kotlin.String,
 
     /* Start date of the effective period (YYYY-MM-DD). */
-    @Json(name = "effective_from")
+    @Contextual @SerialName(value = "effective_from")
     val effectiveFrom: java.time.LocalDate,
 
     /* End date of the effective period (YYYY-MM-DD). */
-    @Json(name = "effective_to")
+    @Contextual @SerialName(value = "effective_to")
     val effectiveTo: java.time.LocalDate
 
 ) {

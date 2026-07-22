@@ -27,8 +27,9 @@ import com.mtnmanager.sdk.models.EntityImage
 import com.mtnmanager.sdk.models.RunDifficulty
 import com.mtnmanager.sdk.models.RunStatus
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Contextual
 
 /**
  * Represents a single run at the resort with its current status,  grooming information, and difficulty rating.
@@ -50,72 +51,72 @@ import com.squareup.moshi.JsonClass
  * @param areaDisplayOrder Display order of the area this run belongs to, if assigned, for sorting purposes.
  * @param images Images attached to this run, ordered for display. Each includes a  ThumbHash for rendering a blurred placeholder while the image loads.
  */
-
+@Serializable
 
 data class Run (
 
     /* Unique identifier for the run. */
-    @Json(name = "uuid")
+    @SerialName(value = "uuid")
     val uuid: kotlin.String,
 
     /* Display name of the run. */
-    @Json(name = "name")
+    @SerialName(value = "name")
     val name: kotlin.String,
 
     /* URL-friendly name of the run. */
-    @Json(name = "slug")
+    @SerialName(value = "slug")
     val slug: kotlin.String,
 
     /* Difficulty rating of the run. */
-    @Json(name = "difficulty")
+    @Contextual @SerialName(value = "difficulty")
     val difficulty: RunDifficulty,
 
     /* Current operational status (open, closed, or unknown). */
-    @Json(name = "status")
+    @Contextual @SerialName(value = "status")
     val status: RunStatus,
 
     /* Whether the run was groomed within the last 24 hours. */
-    @Json(name = "groomed_today")
+    @SerialName(value = "groomed_today")
     val groomedToday: kotlin.Boolean,
 
     /* Whether the run has snowmaking capabilities. */
-    @Json(name = "snowmaking")
+    @SerialName(value = "snowmaking")
     val snowmaking: kotlin.Boolean,
 
     /* Whether the run is available for night skiing. */
-    @Json(name = "night_skiing")
+    @SerialName(value = "night_skiing")
     val nightSkiing: kotlin.Boolean,
 
     /* Notes about current conditions on this run. */
-    @Json(name = "condition_notes")
+    @SerialName(value = "condition_notes")
     val conditionNotes: kotlin.String,
 
     /* When this run's information was last updated. */
-    @Json(name = "updated_at")
+    @Contextual @SerialName(value = "updated_at")
     val updatedAt: java.time.OffsetDateTime,
 
     /* Optional run number. */
-    @Json(name = "number")
+    @SerialName(value = "number")
     val number: kotlin.Int? = null,
 
     /* When the run was last groomed.  `null` if never groomed, or if the runs grooming feature is disabled. */
-    @Json(name = "last_groomed")
+    @Contextual @SerialName(value = "last_groomed")
     val lastGroomed: java.time.OffsetDateTime? = null,
 
     /* UUID of the area this run belongs to, if assigned. */
-    @Json(name = "area_uuid")
+    @SerialName(value = "area_uuid")
     val areaUuid: kotlin.String? = null,
 
     /* Name of the area this run belongs to, if assigned. */
-    @Json(name = "area_name")
+    @SerialName(value = "area_name")
     val areaName: kotlin.String? = null,
 
     /* Display order of the area this run belongs to, if assigned, for sorting purposes. */
-    @Json(name = "area_display_order")
+    @SerialName(value = "area_display_order")
     val areaDisplayOrder: kotlin.Int? = null,
 
     /* Images attached to this run, ordered for display. Each includes a  ThumbHash for rendering a blurred placeholder while the image loads. */
-    @Json(name = "images")
+    @SerialName(value = "images")
     val images: kotlin.collections.List<EntityImage>? = null
 
 ) {

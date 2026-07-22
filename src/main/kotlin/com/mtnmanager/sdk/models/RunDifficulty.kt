@@ -24,31 +24,31 @@
 package com.mtnmanager.sdk.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
+
 
 /**
  * Difficulty rating for a ski run.
  *
  * Values: beginner,intermediate,advanced,expert,terrain_park
  */
-
-@JsonClass(generateAdapter = false)
+@Serializable
 enum class RunDifficulty(val value: kotlin.String) {
 
-    @Json(name = "beginner")
+    @SerialName(value = "beginner")
     beginner("beginner"),
 
-    @Json(name = "intermediate")
+    @SerialName(value = "intermediate")
     intermediate("intermediate"),
 
-    @Json(name = "advanced")
+    @SerialName(value = "advanced")
     advanced("advanced"),
 
-    @Json(name = "expert")
+    @SerialName(value = "expert")
     expert("expert"),
 
-    @Json(name = "terrain_park")
+    @SerialName(value = "terrain_park")
     terrain_park("terrain_park");
 
     /**
@@ -77,4 +77,5 @@ enum class RunDifficulty(val value: kotlin.String) {
         }
     }
 }
+
 

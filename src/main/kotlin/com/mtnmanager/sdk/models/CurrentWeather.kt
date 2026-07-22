@@ -27,8 +27,9 @@ import com.mtnmanager.sdk.models.CurrentWeatherImperial
 import com.mtnmanager.sdk.models.CurrentWeatherMetric
 import com.mtnmanager.sdk.models.WeatherConditionCode
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Contextual
 
 /**
  * Current weather conditions with both metric and imperial units
@@ -41,36 +42,36 @@ import com.squareup.moshi.JsonClass
  * @param windDirection Wind direction in degrees (0-360)
  * @param windDirectionCardinal Wind direction as cardinal direction (N, NE, E, SE, S, SW, W, NW)
  */
-
+@Serializable
 
 data class CurrentWeather (
 
     /* Measurements in imperial units */
-    @Json(name = "imperial")
+    @SerialName(value = "imperial")
     val imperial: CurrentWeatherImperial,
 
     /* Measurements in metric units */
-    @Json(name = "metric")
+    @SerialName(value = "metric")
     val metric: CurrentWeatherMetric,
 
     /* Human-readable weather condition */
-    @Json(name = "condition")
+    @SerialName(value = "condition")
     val condition: kotlin.String,
 
     /* Weather condition code */
-    @Json(name = "condition_code")
+    @Contextual @SerialName(value = "condition_code")
     val conditionCode: WeatherConditionCode,
 
     /* Timestamp of observation */
-    @Json(name = "timestamp")
+    @Contextual @SerialName(value = "timestamp")
     val timestamp: java.time.OffsetDateTime,
 
     /* Wind direction in degrees (0-360) */
-    @Json(name = "wind_direction")
+    @SerialName(value = "wind_direction")
     val windDirection: kotlin.Int? = null,
 
     /* Wind direction as cardinal direction (N, NE, E, SE, S, SW, W, NW) */
-    @Json(name = "wind_direction_cardinal")
+    @SerialName(value = "wind_direction_cardinal")
     val windDirectionCardinal: kotlin.String? = null
 
 ) {

@@ -24,8 +24,9 @@
 package com.mtnmanager.sdk.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Contextual
 
 /**
  * A single archived historical frame.
@@ -35,21 +36,21 @@ import com.squareup.moshi.JsonClass
  * @param thumbUrl 
  * @param thumbhash ThumbHash of the frame (standard base64), recovered from the thumb object's  key. Empty string for legacy frames archived without one.
  */
-
+@Serializable
 
 data class WebcamHistoryFrame (
 
-    @Json(name = "captured_at")
+    @SerialName(value = "captured_at")
     val capturedAt: kotlin.String,
 
-    @Json(name = "image_url")
+    @SerialName(value = "image_url")
     val imageUrl: kotlin.String,
 
-    @Json(name = "thumb_url")
+    @SerialName(value = "thumb_url")
     val thumbUrl: kotlin.String,
 
     /* ThumbHash of the frame (standard base64), recovered from the thumb object's  key. Empty string for legacy frames archived without one. */
-    @Json(name = "thumbhash")
+    @SerialName(value = "thumbhash")
     val thumbhash: kotlin.String
 
 ) {

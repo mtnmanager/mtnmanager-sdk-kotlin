@@ -25,8 +25,9 @@ package com.mtnmanager.sdk.models
 
 import com.mtnmanager.sdk.models.Run
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Contextual
 
 /**
  * 
@@ -37,23 +38,23 @@ import com.squareup.moshi.JsonClass
  * @param tension 
  * @param run 
  */
-
+@Serializable
 
 data class TrailMapElementOneOf1 (
 
-    @Json(name = "type")
+    @SerialName(value = "type")
     val type: TrailMapElementOneOf1.Type,
 
-    @Json(name = "uuid")
+    @SerialName(value = "uuid")
     val uuid: kotlin.String,
 
-    @Json(name = "points")
+    @SerialName(value = "points")
     val points: kotlin.collections.List<kotlin.Double>,
 
-    @Json(name = "tension")
+    @SerialName(value = "tension")
     val tension: kotlin.Double? = null,
 
-    @Json(name = "run")
+    @SerialName(value = "run")
     val run: Run? = null
 
 ) {
@@ -63,9 +64,9 @@ data class TrailMapElementOneOf1 (
      *
      * Values: run
      */
-    @JsonClass(generateAdapter = false)
+    @Serializable
     enum class Type(val value: kotlin.String) {
-        @Json(name = "run") run("run");
+        @SerialName(value = "run") run("run");
     }
 
 }

@@ -28,7 +28,8 @@ import java.time.OffsetDateTime
 import java.time.OffsetTime
 import java.util.Locale
 import java.util.regex.Pattern
-import com.squareup.moshi.adapter
+import kotlinx.serialization.decodeFromString
+import kotlinx.serialization.encodeToString
 
 val EMPTY_REQUEST: RequestBody = ByteArray(0).toRequestBody()
 
@@ -202,7 +203,9 @@ open class ApiClient(val baseUrl: String, val client: Call.Factory = defaultClie
         }
 
         return if (contentType?.contains("json") == true) {
-            Serializer.moshi.adapter(Any::class.java).toJson(obj)
+            // Note: Without a custom serializer, kotlinx.serialization cannot serialize Any?
+            // The custom serializer should be provided at PartConfig creation to capture type info
+            parameterToString(obj)
         } else {
             parameterToString(obj)
         }
@@ -269,7 +272,7 @@ open class ApiClient(val baseUrl: String, val client: Call.Factory = defaultClie
                 if (content == null) {
                     EMPTY_REQUEST
                 } else {
-                    Serializer.moshi.adapter(T::class.java).toJson(content)
+                    Serializer.kotlinxSerializationJson.encodeToString(content)
                         .toRequestBody((mediaType ?: JSON_MEDIA_TYPE).toMediaTypeOrNull())
                 }
             mediaType == XML_MEDIA_TYPE -> throw UnsupportedOperationException("xml not currently supported.")
@@ -286,7 +289,6 @@ open class ApiClient(val baseUrl: String, val client: Call.Factory = defaultClie
             else -> throw UnsupportedOperationException("requestBody currently only supports JSON body, text body, byte body and File body.")
         }
 
-    @OptIn(ExperimentalStdlibApi::class)
     protected inline fun <reified T: Any?> responseBody(response: Response, mediaType: String? = JSON_MEDIA_TYPE): T? {
         val body = response.body ?: return null
 
@@ -350,7 +352,7 @@ open class ApiClient(val baseUrl: String, val client: Call.Factory = defaultClie
                 if (bodyContent.isEmpty()) {
                     return null
                 }
-                Serializer.moshi.adapter<T>().fromJson(bodyContent)
+                Serializer.kotlinxSerializationJson.decodeFromString<T>(bodyContent)
             }
             mediaType == OCTET_MEDIA_TYPE -> body.bytes() as? T
             mediaType == TEXT_MEDIA_TYPE -> body.string() as? T
@@ -465,6 +467,6 @@ open class ApiClient(val baseUrl: String, val client: Call.Factory = defaultClie
         formatter. It also easily allows to provide a simple way to define a custom date format pattern
         inside a gson/moshi adapter.
         */
-        return Serializer.moshi.adapter(T::class.java).toJson(value).replace("\"", "")
+        return Serializer.kotlinxSerializationJson.encodeToString(value).replace("\"", "")
     }
 }

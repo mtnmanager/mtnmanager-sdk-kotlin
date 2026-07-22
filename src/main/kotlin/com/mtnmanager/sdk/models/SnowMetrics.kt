@@ -24,8 +24,9 @@
 package com.mtnmanager.sdk.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Contextual
 
 /**
  * Contains snowfall totals for various time periods. Values are provided  in the unit indicated by the parent field name (cm or inches).
@@ -36,28 +37,28 @@ import com.squareup.moshi.JsonClass
  * @param last7days Snowfall in the last 7 days.
  * @param seasonTotal Total snowfall for the current season.
  */
-
+@Serializable
 
 data class SnowMetrics (
 
     /* Snowfall during the overnight window (midnight to 9 AM local timezone). */
-    @Json(name = "overnight")
+    @SerialName(value = "overnight")
     val overnight: kotlin.Int,
 
     /* Snowfall in the last 24 hours. */
-    @Json(name = "last_24h")
+    @SerialName(value = "last_24h")
     val last24h: kotlin.Int,
 
     /* Snowfall in the last 48 hours. */
-    @Json(name = "last_48h")
+    @SerialName(value = "last_48h")
     val last48h: kotlin.Int,
 
     /* Snowfall in the last 7 days. */
-    @Json(name = "last_7days")
+    @SerialName(value = "last_7days")
     val last7days: kotlin.Int,
 
     /* Total snowfall for the current season. */
-    @Json(name = "season_total")
+    @SerialName(value = "season_total")
     val seasonTotal: kotlin.Int
 
 ) {

@@ -26,8 +26,9 @@ package com.mtnmanager.sdk.models
 import com.mtnmanager.sdk.models.Region
 import com.mtnmanager.sdk.models.UnitPreference
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Contextual
 
 /**
  * Contains general information about the ski resort and its MtnManager account.
@@ -40,36 +41,36 @@ import com.squareup.moshi.JsonClass
  * @param unitPreference Preferred unit system for measurements (metric or imperial).
  * @param logoUrl Full public URL to the resort's logo image. `null` if no logo is set.
  */
-
+@Serializable
 
 data class ResortInfo (
 
     /* Unique identifier for the resort. */
-    @Json(name = "uuid")
+    @SerialName(value = "uuid")
     val uuid: kotlin.String,
 
     /* Display name of the resort. */
-    @Json(name = "name")
+    @SerialName(value = "name")
     val name: kotlin.String,
 
     /* URL-friendly identifier for the resort, used in account subdomain. */
-    @Json(name = "slug")
+    @SerialName(value = "slug")
     val slug: kotlin.String,
 
     /* IANA timezone identifier for the resort's local time. */
-    @Json(name = "timezone")
+    @SerialName(value = "timezone")
     val timezone: kotlin.String,
 
     /* Region, affects difficulty icon style. */
-    @Json(name = "region")
+    @Contextual @SerialName(value = "region")
     val region: Region,
 
     /* Preferred unit system for measurements (metric or imperial). */
-    @Json(name = "unit_preference")
+    @Contextual @SerialName(value = "unit_preference")
     val unitPreference: UnitPreference,
 
     /* Full public URL to the resort's logo image. `null` if no logo is set. */
-    @Json(name = "logo_url")
+    @SerialName(value = "logo_url")
     val logoUrl: kotlin.String? = null
 
 ) {

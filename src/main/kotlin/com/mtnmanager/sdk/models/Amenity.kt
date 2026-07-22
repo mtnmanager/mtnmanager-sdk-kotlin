@@ -27,8 +27,9 @@ import com.mtnmanager.sdk.models.AmenityCategory
 import com.mtnmanager.sdk.models.EntityImage
 import com.mtnmanager.sdk.models.Schedule
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Contextual
 
 /**
  * Represents an amenity at the resort (e.g. lodge, restaurant, ski school)  with its category, description, website, and hours.
@@ -44,48 +45,48 @@ import com.squareup.moshi.JsonClass
  * @param closesAt Today's scheduled closing time in 24-hour format (HH:MM), in resort's local timezone.
  * @param images Images attached to this amenity, ordered for display. Each includes a  ThumbHash for rendering a blurred placeholder while the image loads.
  */
-
+@Serializable
 
 data class Amenity (
 
     /* Description of the amenity. */
-    @Json(name = "description")
+    @SerialName(value = "description")
     val description: kotlin.String,
 
     /* Unique identifier for the amenity. */
-    @Json(name = "uuid")
+    @SerialName(value = "uuid")
     val uuid: kotlin.String,
 
     /* Display name of the amenity. */
-    @Json(name = "name")
+    @SerialName(value = "name")
     val name: kotlin.String,
 
     /* Category classification (e.g. restaurant, lodge, ski_school). */
-    @Json(name = "category")
+    @Contextual @SerialName(value = "category")
     val category: AmenityCategory,
 
     /* Website URL for the amenity, if available. */
-    @Json(name = "website")
+    @SerialName(value = "website")
     val website: kotlin.String,
 
     /* Whether this amenity reports operating hours. When false, clients should  not expect `opens_at`, `closes_at`, or `schedules` to ever be populated. */
-    @Json(name = "has_operating_hours")
+    @SerialName(value = "has_operating_hours")
     val hasOperatingHours: kotlin.Boolean,
 
     /* Recurring operating schedules for this amenity (e.g. \"Saturday & Sunday,  9:00 a.m. to 4:00 p.m.\"), with both human-readable and structured fields. */
-    @Json(name = "schedules")
+    @SerialName(value = "schedules")
     val schedules: kotlin.collections.List<Schedule>,
 
     /* Today's scheduled opening time in 24-hour format (HH:MM), in resort's local timezone. */
-    @Json(name = "opens_at")
+    @SerialName(value = "opens_at")
     val opensAt: kotlin.String? = null,
 
     /* Today's scheduled closing time in 24-hour format (HH:MM), in resort's local timezone. */
-    @Json(name = "closes_at")
+    @SerialName(value = "closes_at")
     val closesAt: kotlin.String? = null,
 
     /* Images attached to this amenity, ordered for display. Each includes a  ThumbHash for rendering a blurred placeholder while the image loads. */
-    @Json(name = "images")
+    @SerialName(value = "images")
     val images: kotlin.collections.List<EntityImage>? = null
 
 ) {

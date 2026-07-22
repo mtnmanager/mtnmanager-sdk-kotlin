@@ -5,10 +5,10 @@ All URIs are relative to *https://your-resort.mtnmanager.com*
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
 | [**getAmenities**](MtnManagerApi.md#getAmenities) | **GET** /api/v1/report/amenities | Get amenities |
+| [**getAppReport**](MtnManagerApi.md#getAppReport) | **GET** /api/v1/report/app | Get app report |
 | [**getFullReport**](MtnManagerApi.md#getFullReport) | **GET** /api/v1/report | Get full report |
 | [**getHours**](MtnManagerApi.md#getHours) | **GET** /api/v1/report/hours | Get operating hours |
 | [**getLifts**](MtnManagerApi.md#getLifts) | **GET** /api/v1/report/lifts | Get lifts |
-| [**getMobileApp**](MtnManagerApi.md#getMobileApp) | **GET** /api/v1/report/mobile-app | Get mobile app data |
 | [**getOverview**](MtnManagerApi.md#getOverview) | **GET** /api/v1/report/overview | Get overview |
 | [**getParkingLots**](MtnManagerApi.md#getParkingLots) | **GET** /api/v1/report/parking-lots | Get parking lots |
 | [**getRuns**](MtnManagerApi.md#getRuns) | **GET** /api/v1/report/runs | Get runs |
@@ -56,6 +56,50 @@ try {
 ### Return type
 
 [**kotlin.collections.List&lt;Amenity&gt;**](Amenity.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+<a id="getAppReport"></a>
+# **getAppReport**
+> AppReport getAppReport(acceptLanguage)
+
+Get app report
+
+### Example
+```kotlin
+// Import classes:
+//import com.mtnmanager.sdk.infrastructure.*
+//import com.mtnmanager.sdk.models.*
+
+val apiInstance = MtnManagerApi()
+val acceptLanguage : kotlin.String = fr-CA // kotlin.String | Preferred language and optional region for human-readable strings in the response (e.g. operating hours summaries). Supports `en`, `fr`, `de`, `it`, and `es`, with optional region tags such as `fr-CA` or `de-CH`. Defaults to English when omitted or unsupported.
+try {
+    val result : AppReport = apiInstance.getAppReport(acceptLanguage)
+    println(result)
+} catch (e: ClientException) {
+    println("4xx response calling MtnManagerApi#getAppReport")
+    e.printStackTrace()
+} catch (e: ServerException) {
+    println("5xx response calling MtnManagerApi#getAppReport")
+    e.printStackTrace()
+}
+```
+
+### Parameters
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **acceptLanguage** | **kotlin.String**| Preferred language and optional region for human-readable strings in the response (e.g. operating hours summaries). Supports &#x60;en&#x60;, &#x60;fr&#x60;, &#x60;de&#x60;, &#x60;it&#x60;, and &#x60;es&#x60;, with optional region tags such as &#x60;fr-CA&#x60; or &#x60;de-CH&#x60;. Defaults to English when omitted or unsupported. | [optional] |
+
+### Return type
+
+[**AppReport**](AppReport.md)
 
 ### Authorization
 
@@ -188,50 +232,6 @@ try {
 ### Return type
 
 [**kotlin.collections.List&lt;Lift&gt;**](Lift.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-<a id="getMobileApp"></a>
-# **getMobileApp**
-> MobileAppResponse getMobileApp(acceptLanguage)
-
-Get mobile app data
-
-### Example
-```kotlin
-// Import classes:
-//import com.mtnmanager.sdk.infrastructure.*
-//import com.mtnmanager.sdk.models.*
-
-val apiInstance = MtnManagerApi()
-val acceptLanguage : kotlin.String = fr-CA // kotlin.String | Preferred language and optional region for human-readable strings in the response (e.g. operating hours summaries). Supports `en`, `fr`, `de`, `it`, and `es`, with optional region tags such as `fr-CA` or `de-CH`. Defaults to English when omitted or unsupported.
-try {
-    val result : MobileAppResponse = apiInstance.getMobileApp(acceptLanguage)
-    println(result)
-} catch (e: ClientException) {
-    println("4xx response calling MtnManagerApi#getMobileApp")
-    e.printStackTrace()
-} catch (e: ServerException) {
-    println("5xx response calling MtnManagerApi#getMobileApp")
-    e.printStackTrace()
-}
-```
-
-### Parameters
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **acceptLanguage** | **kotlin.String**| Preferred language and optional region for human-readable strings in the response (e.g. operating hours summaries). Supports &#x60;en&#x60;, &#x60;fr&#x60;, &#x60;de&#x60;, &#x60;it&#x60;, and &#x60;es&#x60;, with optional region tags such as &#x60;fr-CA&#x60; or &#x60;de-CH&#x60;. Defaults to English when omitted or unsupported. | [optional] |
-
-### Return type
-
-[**MobileAppResponse**](MobileAppResponse.md)
 
 ### Authorization
 

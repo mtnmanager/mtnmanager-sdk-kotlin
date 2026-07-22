@@ -25,8 +25,9 @@ package com.mtnmanager.sdk.models
 
 import com.mtnmanager.sdk.models.SummerTrail
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Contextual
 
 /**
  * 
@@ -37,23 +38,23 @@ import com.squareup.moshi.JsonClass
  * @param tension 
  * @param summerTrail 
  */
-
+@Serializable
 
 data class TrailMapElementOneOf3 (
 
-    @Json(name = "type")
+    @SerialName(value = "type")
     val type: TrailMapElementOneOf3.Type,
 
-    @Json(name = "uuid")
+    @SerialName(value = "uuid")
     val uuid: kotlin.String,
 
-    @Json(name = "points")
+    @SerialName(value = "points")
     val points: kotlin.collections.List<kotlin.Double>,
 
-    @Json(name = "tension")
+    @SerialName(value = "tension")
     val tension: kotlin.Double? = null,
 
-    @Json(name = "summer_trail")
+    @SerialName(value = "summer_trail")
     val summerTrail: SummerTrail? = null
 
 ) {
@@ -63,9 +64,9 @@ data class TrailMapElementOneOf3 (
      *
      * Values: summer_trail
      */
-    @JsonClass(generateAdapter = false)
+    @Serializable
     enum class Type(val value: kotlin.String) {
-        @Json(name = "summer_trail") summer_trail("summer_trail");
+        @SerialName(value = "summer_trail") summer_trail("summer_trail");
     }
 
 }

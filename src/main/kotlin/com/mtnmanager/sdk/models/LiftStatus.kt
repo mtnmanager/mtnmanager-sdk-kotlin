@@ -24,28 +24,28 @@
 package com.mtnmanager.sdk.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
+
 
 /**
  * Operational status of a ski lift.
  *
  * Values: `open`,closed,on_hold,unknown
  */
-
-@JsonClass(generateAdapter = false)
+@Serializable
 enum class LiftStatus(val value: kotlin.String) {
 
-    @Json(name = "open")
+    @SerialName(value = "open")
     `open`("open"),
 
-    @Json(name = "closed")
+    @SerialName(value = "closed")
     closed("closed"),
 
-    @Json(name = "on_hold")
+    @SerialName(value = "on_hold")
     on_hold("on_hold"),
 
-    @Json(name = "unknown")
+    @SerialName(value = "unknown")
     unknown("unknown");
 
     /**
@@ -74,4 +74,5 @@ enum class LiftStatus(val value: kotlin.String) {
         }
     }
 }
+
 

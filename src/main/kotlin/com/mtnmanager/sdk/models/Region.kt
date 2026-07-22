@@ -24,22 +24,22 @@
 package com.mtnmanager.sdk.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
+
 
 /**
  * Region for an account
  *
  * Values: na,eu
  */
-
-@JsonClass(generateAdapter = false)
+@Serializable
 enum class Region(val value: kotlin.String) {
 
-    @Json(name = "na")
+    @SerialName(value = "na")
     na("na"),
 
-    @Json(name = "eu")
+    @SerialName(value = "eu")
     eu("eu");
 
     /**
@@ -68,4 +68,5 @@ enum class Region(val value: kotlin.String) {
         }
     }
 }
+
 

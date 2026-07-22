@@ -27,8 +27,9 @@ import com.mtnmanager.sdk.models.HourlyForecastImperial
 import com.mtnmanager.sdk.models.HourlyForecastMetric
 import com.mtnmanager.sdk.models.WeatherConditionCode
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Contextual
 
 /**
  * Hourly weather forecast entry with both metric and imperial units
@@ -40,32 +41,32 @@ import com.squareup.moshi.JsonClass
  * @param conditionCode Weather condition code
  * @param precipitationProbability Probability of precipitation (0-100%)
  */
-
+@Serializable
 
 data class HourlyForecast (
 
     /* Forecast timestamp */
-    @Json(name = "timestamp")
+    @Contextual @SerialName(value = "timestamp")
     val timestamp: java.time.OffsetDateTime,
 
     /* Measurements in imperial units */
-    @Json(name = "imperial")
+    @SerialName(value = "imperial")
     val imperial: HourlyForecastImperial,
 
     /* Measurements in metric units */
-    @Json(name = "metric")
+    @SerialName(value = "metric")
     val metric: HourlyForecastMetric,
 
     /* Human-readable condition */
-    @Json(name = "condition")
+    @SerialName(value = "condition")
     val condition: kotlin.String,
 
     /* Weather condition code */
-    @Json(name = "condition_code")
+    @Contextual @SerialName(value = "condition_code")
     val conditionCode: WeatherConditionCode,
 
     /* Probability of precipitation (0-100%) */
-    @Json(name = "precipitation_probability")
+    @SerialName(value = "precipitation_probability")
     val precipitationProbability: kotlin.Int? = null
 
 ) {

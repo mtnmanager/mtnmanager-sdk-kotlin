@@ -41,111 +41,145 @@ import com.mtnmanager.sdk.models.TrailMapElementOneOf6
 import com.mtnmanager.sdk.models.TrailMapElementOneOf7
 import com.mtnmanager.sdk.models.Webcam
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.KSerializer
+import kotlinx.serialization.encoding.Decoder
+import kotlinx.serialization.encoding.Encoder
+import kotlinx.serialization.SerializationException
+import kotlinx.serialization.descriptors.SerialDescriptor
+import kotlinx.serialization.descriptors.buildClassSerialDescriptor
+import kotlinx.serialization.json.JsonDecoder
+import kotlinx.serialization.json.JsonElement
+import kotlinx.serialization.json.JsonEncoder
+import kotlinx.serialization.json.JsonPrimitive
+import kotlinx.serialization.json.JsonArray
+import kotlinx.serialization.json.decodeFromJsonElement
+import kotlinx.serialization.json.encodeToJsonElement
 
 /**
  * A trail map element with full entity data from existing public models.
  *
- * @param type 
- * @param uuid 
- * @param points 
- * @param x 
- * @param y 
- * @param label 
- * @param tension 
- * @param lift 
- * @param run 
- * @param labelOffset 
- * @param terrainPark 
- * @param summerTrail 
- * @param icon 
- * @param color 
- * @param amenity 
- * @param groupLabel 
- * @param parkingLot 
- * @param webcam 
- * @param searchable 
  */
+@Serializable(with = TrailMapElementSerializer::class)
+sealed interface TrailMapElement {
+    @JvmInline
+    value class TrailMapElementOneOfValue(val value: TrailMapElementOneOf) : TrailMapElement
 
+    @JvmInline
+    value class TrailMapElementOneOf1Value(val value: TrailMapElementOneOf1) : TrailMapElement
 
-data class TrailMapElement (
+    @JvmInline
+    value class TrailMapElementOneOf2Value(val value: TrailMapElementOneOf2) : TrailMapElement
 
-    @Json(name = "type")
-    val type: TrailMapElement.Type,
+    @JvmInline
+    value class TrailMapElementOneOf3Value(val value: TrailMapElementOneOf3) : TrailMapElement
 
-    @Json(name = "uuid")
-    val uuid: kotlin.String,
+    @JvmInline
+    value class TrailMapElementOneOf4Value(val value: TrailMapElementOneOf4) : TrailMapElement
 
-    @Json(name = "points")
-    val points: kotlin.collections.List<kotlin.Double>,
+    @JvmInline
+    value class TrailMapElementOneOf5Value(val value: TrailMapElementOneOf5) : TrailMapElement
 
-    @Json(name = "x")
-    val x: kotlin.Double,
+    @JvmInline
+    value class TrailMapElementOneOf6Value(val value: TrailMapElementOneOf6) : TrailMapElement
 
-    @Json(name = "y")
-    val y: kotlin.Double,
+    @JvmInline
+    value class TrailMapElementOneOf7Value(val value: TrailMapElementOneOf7) : TrailMapElement
 
-    @Json(name = "label")
-    val label: kotlin.String,
+}
 
-    @Json(name = "tension")
-    val tension: kotlin.Double? = null,
+object TrailMapElementSerializer : KSerializer<TrailMapElement> {
+    override val descriptor: SerialDescriptor = buildClassSerialDescriptor("TrailMapElement")
 
-    @Json(name = "lift")
-    val lift: Lift? = null,
+    override fun serialize(encoder: Encoder, value: TrailMapElement) {
+        val jsonEncoder = encoder as? JsonEncoder ?: throw SerializationException("TrailMapElement can only be serialized with Json")
 
-    @Json(name = "run")
-    val run: Run? = null,
-
-    @Json(name = "label_offset")
-    val labelOffset: LabelOffset? = null,
-
-    @Json(name = "terrain_park")
-    val terrainPark: TerrainPark? = null,
-
-    @Json(name = "summer_trail")
-    val summerTrail: SummerTrail? = null,
-
-    @Json(name = "icon")
-    val icon: MarkerIcon? = null,
-
-    @Json(name = "color")
-    val color: kotlin.String? = null,
-
-    @Json(name = "amenity")
-    val amenity: Amenity? = null,
-
-    @Json(name = "group_label")
-    val groupLabel: kotlin.String? = null,
-
-    @Json(name = "parking_lot")
-    val parkingLot: ParkingLot? = null,
-
-    @Json(name = "webcam")
-    val webcam: Webcam? = null,
-
-    @Json(name = "searchable")
-    val searchable: kotlin.Boolean? = null
-
-) {
-
-    /**
-     * 
-     *
-     * Values: lift,run,terrain_park,summer_trail,amenity_marker,parking_lot_marker,webcam_marker,generic_marker
-     */
-    @JsonClass(generateAdapter = false)
-    enum class Type(val value: kotlin.String) {
-        @Json(name = "lift") lift("lift"),
-        @Json(name = "run") run("run"),
-        @Json(name = "terrain_park") terrain_park("terrain_park"),
-        @Json(name = "summer_trail") summer_trail("summer_trail"),
-        @Json(name = "amenity_marker") amenity_marker("amenity_marker"),
-        @Json(name = "parking_lot_marker") parking_lot_marker("parking_lot_marker"),
-        @Json(name = "webcam_marker") webcam_marker("webcam_marker"),
-        @Json(name = "generic_marker") generic_marker("generic_marker");
+        when (value) {
+            is TrailMapElement.TrailMapElementOneOfValue -> jsonEncoder.encodeSerializableValue(TrailMapElementOneOf.serializer(), value.value)
+            is TrailMapElement.TrailMapElementOneOf1Value -> jsonEncoder.encodeSerializableValue(TrailMapElementOneOf1.serializer(), value.value)
+            is TrailMapElement.TrailMapElementOneOf2Value -> jsonEncoder.encodeSerializableValue(TrailMapElementOneOf2.serializer(), value.value)
+            is TrailMapElement.TrailMapElementOneOf3Value -> jsonEncoder.encodeSerializableValue(TrailMapElementOneOf3.serializer(), value.value)
+            is TrailMapElement.TrailMapElementOneOf4Value -> jsonEncoder.encodeSerializableValue(TrailMapElementOneOf4.serializer(), value.value)
+            is TrailMapElement.TrailMapElementOneOf5Value -> jsonEncoder.encodeSerializableValue(TrailMapElementOneOf5.serializer(), value.value)
+            is TrailMapElement.TrailMapElementOneOf6Value -> jsonEncoder.encodeSerializableValue(TrailMapElementOneOf6.serializer(), value.value)
+            is TrailMapElement.TrailMapElementOneOf7Value -> jsonEncoder.encodeSerializableValue(TrailMapElementOneOf7.serializer(), value.value)
+        }
     }
 
+    override fun deserialize(decoder: Decoder): TrailMapElement {
+        val jsonDecoder = decoder as? JsonDecoder ?: throw SerializationException("TrailMapElement can only be deserialized with Json")
+        val jsonElement = jsonDecoder.decodeJsonElement()
+
+        val errorMessages = mutableListOf<String>()
+
+        if (jsonElement !is JsonPrimitive) {
+            try {
+                val instance = jsonDecoder.json.decodeFromJsonElement<TrailMapElementOneOf>(jsonElement)
+                return TrailMapElement.TrailMapElementOneOfValue(instance)
+            } catch (e: Exception) {
+                errorMessages.add("Failed to deserialize as TrailMapElementOneOf: ${e.message}")
+            }
+        }
+        if (jsonElement !is JsonPrimitive) {
+            try {
+                val instance = jsonDecoder.json.decodeFromJsonElement<TrailMapElementOneOf1>(jsonElement)
+                return TrailMapElement.TrailMapElementOneOf1Value(instance)
+            } catch (e: Exception) {
+                errorMessages.add("Failed to deserialize as TrailMapElementOneOf1: ${e.message}")
+            }
+        }
+        if (jsonElement !is JsonPrimitive) {
+            try {
+                val instance = jsonDecoder.json.decodeFromJsonElement<TrailMapElementOneOf2>(jsonElement)
+                return TrailMapElement.TrailMapElementOneOf2Value(instance)
+            } catch (e: Exception) {
+                errorMessages.add("Failed to deserialize as TrailMapElementOneOf2: ${e.message}")
+            }
+        }
+        if (jsonElement !is JsonPrimitive) {
+            try {
+                val instance = jsonDecoder.json.decodeFromJsonElement<TrailMapElementOneOf3>(jsonElement)
+                return TrailMapElement.TrailMapElementOneOf3Value(instance)
+            } catch (e: Exception) {
+                errorMessages.add("Failed to deserialize as TrailMapElementOneOf3: ${e.message}")
+            }
+        }
+        if (jsonElement !is JsonPrimitive) {
+            try {
+                val instance = jsonDecoder.json.decodeFromJsonElement<TrailMapElementOneOf4>(jsonElement)
+                return TrailMapElement.TrailMapElementOneOf4Value(instance)
+            } catch (e: Exception) {
+                errorMessages.add("Failed to deserialize as TrailMapElementOneOf4: ${e.message}")
+            }
+        }
+        if (jsonElement !is JsonPrimitive) {
+            try {
+                val instance = jsonDecoder.json.decodeFromJsonElement<TrailMapElementOneOf5>(jsonElement)
+                return TrailMapElement.TrailMapElementOneOf5Value(instance)
+            } catch (e: Exception) {
+                errorMessages.add("Failed to deserialize as TrailMapElementOneOf5: ${e.message}")
+            }
+        }
+        if (jsonElement !is JsonPrimitive) {
+            try {
+                val instance = jsonDecoder.json.decodeFromJsonElement<TrailMapElementOneOf6>(jsonElement)
+                return TrailMapElement.TrailMapElementOneOf6Value(instance)
+            } catch (e: Exception) {
+                errorMessages.add("Failed to deserialize as TrailMapElementOneOf6: ${e.message}")
+            }
+        }
+        if (jsonElement !is JsonPrimitive) {
+            try {
+                val instance = jsonDecoder.json.decodeFromJsonElement<TrailMapElementOneOf7>(jsonElement)
+                return TrailMapElement.TrailMapElementOneOf7Value(instance)
+            } catch (e: Exception) {
+                errorMessages.add("Failed to deserialize as TrailMapElementOneOf7: ${e.message}")
+            }
+        }
+
+        throw SerializationException("Cannot deserialize TrailMapElement. Tried: ${errorMessages.joinToString(", ")}")
+    }
 }
 

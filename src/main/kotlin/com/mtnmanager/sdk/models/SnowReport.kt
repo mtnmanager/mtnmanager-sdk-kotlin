@@ -26,8 +26,9 @@ package com.mtnmanager.sdk.models
 import com.mtnmanager.sdk.models.SnowMetrics
 import com.mtnmanager.sdk.models.SurfaceCondition
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Contextual
 
 /**
  * Provides current snow conditions for a specific area or the entire resort,  including base depth, surface conditions, and snowfall totals in both  metric and imperial units.
@@ -45,56 +46,56 @@ import com.squareup.moshi.JsonClass
  * @param surfaceCondition Primary surface condition using industry standard codes.  Not included if the snow surface condition feature is disabled.   - BS (Bare Spots)  - CO (Corn Snow)  - FG (Frozen Granular)  - HP (Hard Pack)  - IP (Ice Patches)  - IS (Icy Surface)  - LG (Loose Granular)  - MG (Machine Groomed)  - P (Powder)  - PP (Packed Powder)  - SC (Spring Conditions)  - TC (Thin Cover)  - V (Variable)  - WG (Wet Granular)  - WP (Wet Powder)
  * @param secondarySurfaceCondition Secondary surface condition using industry standard codes.  Not included if the secondary snow surface condition feature is disabled.   - BS (Bare Spots)  - CO (Corn Snow)  - FG (Frozen Granular)  - HP (Hard Pack)  - IP (Ice Patches)  - IS (Icy Surface)  - LG (Loose Granular)  - MG (Machine Groomed)  - P (Powder)  - PP (Packed Powder)  - SC (Spring Conditions)  - TC (Thin Cover)  - V (Variable)  - WG (Wet Granular)  - WP (Wet Powder)
  */
-
+@Serializable
 
 data class SnowReport (
 
     /* Unique identifier for this snow report. */
-    @Json(name = "uuid")
+    @SerialName(value = "uuid")
     val uuid: kotlin.String,
 
     /* Additional notes about current snow conditions, e.g. groomer's notes */
-    @Json(name = "condition_notes")
+    @SerialName(value = "condition_notes")
     val conditionNotes: kotlin.String,
 
     /* Snowfall accumulation metrics in centimeters. */
-    @Json(name = "snowfall_cm")
+    @SerialName(value = "snowfall_cm")
     val snowfallCm: SnowMetrics,
 
     /* Snowfall accumulation metrics in inches. */
-    @Json(name = "snowfall_in")
+    @SerialName(value = "snowfall_in")
     val snowfallIn: SnowMetrics,
 
     /* When this snow report was last updated. */
-    @Json(name = "reported_at")
+    @Contextual @SerialName(value = "reported_at")
     val reportedAt: java.time.OffsetDateTime,
 
     /* UUID of the area this report covers, if area-specific.  `null` for resort-wide reports. */
-    @Json(name = "area_uuid")
+    @SerialName(value = "area_uuid")
     val areaUuid: kotlin.String? = null,
 
     /* Name of the area this report covers, if area-specific. */
-    @Json(name = "area_name")
+    @SerialName(value = "area_name")
     val areaName: kotlin.String? = null,
 
     /* Display order of the area this report covers, if area-specific, for sorting purposes. */
-    @Json(name = "area_display_order")
+    @SerialName(value = "area_display_order")
     val areaDisplayOrder: kotlin.Int? = null,
 
     /* Current base depth in centimeters.  Not included if the base depth feature is disabled. */
-    @Json(name = "base_depth_cm")
+    @SerialName(value = "base_depth_cm")
     val baseDepthCm: kotlin.Int? = null,
 
     /* Current base depth in inches.  Not included if the base depth feature is disabled. */
-    @Json(name = "base_depth_in")
+    @SerialName(value = "base_depth_in")
     val baseDepthIn: kotlin.Int? = null,
 
     /* Primary surface condition using industry standard codes.  Not included if the snow surface condition feature is disabled.   - BS (Bare Spots)  - CO (Corn Snow)  - FG (Frozen Granular)  - HP (Hard Pack)  - IP (Ice Patches)  - IS (Icy Surface)  - LG (Loose Granular)  - MG (Machine Groomed)  - P (Powder)  - PP (Packed Powder)  - SC (Spring Conditions)  - TC (Thin Cover)  - V (Variable)  - WG (Wet Granular)  - WP (Wet Powder) */
-    @Json(name = "surface_condition")
+    @Contextual @SerialName(value = "surface_condition")
     val surfaceCondition: SurfaceCondition? = null,
 
     /* Secondary surface condition using industry standard codes.  Not included if the secondary snow surface condition feature is disabled.   - BS (Bare Spots)  - CO (Corn Snow)  - FG (Frozen Granular)  - HP (Hard Pack)  - IP (Ice Patches)  - IS (Icy Surface)  - LG (Loose Granular)  - MG (Machine Groomed)  - P (Powder)  - PP (Packed Powder)  - SC (Spring Conditions)  - TC (Thin Cover)  - V (Variable)  - WG (Wet Granular)  - WP (Wet Powder) */
-    @Json(name = "secondary_surface_condition")
+    @Contextual @SerialName(value = "secondary_surface_condition")
     val secondarySurfaceCondition: SurfaceCondition? = null
 
 ) {

@@ -27,8 +27,9 @@ import com.mtnmanager.sdk.models.CurrentWeather
 import com.mtnmanager.sdk.models.DailyForecast
 import com.mtnmanager.sdk.models.HourlyForecast
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Contextual
 
 /**
  * Current and forecasted weather conditions for the resort's location.  Only included/available if the weather feature is enabled and GPS coordinates are configured.
@@ -42,40 +43,40 @@ import com.squareup.moshi.JsonClass
  * @param areaName The area's name, or omitted for resort-wide weather.
  * @param areaDisplayOrder The area's display order, or omitted for resort-wide weather.
  */
-
+@Serializable
 
 data class Weather (
 
     /* Current weather conditions */
-    @Json(name = "current")
+    @SerialName(value = "current")
     val current: CurrentWeather,
 
     /* Hourly forecast for next 24 hours (including current hour) */
-    @Json(name = "hourly_forecast")
+    @SerialName(value = "hourly_forecast")
     val hourlyForecast: kotlin.collections.List<HourlyForecast>,
 
     /* Daily forecast for next 7 days (including today) */
-    @Json(name = "daily_forecast")
+    @SerialName(value = "daily_forecast")
     val dailyForecast: kotlin.collections.List<DailyForecast>,
 
     /* Data source attribution */
-    @Json(name = "attribution")
+    @SerialName(value = "attribution")
     val attribution: kotlin.String,
 
     /* When this data was last updated */
-    @Json(name = "updated_at")
+    @Contextual @SerialName(value = "updated_at")
     val updatedAt: java.time.OffsetDateTime,
 
     /* The area this weather belongs to, or omitted for resort-wide weather. */
-    @Json(name = "area_uuid")
+    @SerialName(value = "area_uuid")
     val areaUuid: kotlin.String? = null,
 
     /* The area's name, or omitted for resort-wide weather. */
-    @Json(name = "area_name")
+    @SerialName(value = "area_name")
     val areaName: kotlin.String? = null,
 
     /* The area's display order, or omitted for resort-wide weather. */
-    @Json(name = "area_display_order")
+    @SerialName(value = "area_display_order")
     val areaDisplayOrder: kotlin.Int? = null
 
 ) {

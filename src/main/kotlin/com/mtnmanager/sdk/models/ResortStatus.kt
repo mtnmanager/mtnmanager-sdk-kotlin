@@ -24,22 +24,22 @@
 package com.mtnmanager.sdk.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
+
 
 /**
  * Current operational status of the resort.
  *
  * Values: `open`,closed
  */
-
-@JsonClass(generateAdapter = false)
+@Serializable
 enum class ResortStatus(val value: kotlin.String) {
 
-    @Json(name = "open")
+    @SerialName(value = "open")
     `open`("open"),
 
-    @Json(name = "closed")
+    @SerialName(value = "closed")
     closed("closed");
 
     /**
@@ -68,4 +68,5 @@ enum class ResortStatus(val value: kotlin.String) {
         }
     }
 }
+
 

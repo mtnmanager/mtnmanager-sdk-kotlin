@@ -23,7 +23,9 @@
 
 package com.mtnmanager.sdk.models
 
+import com.mtnmanager.sdk.models.Amenity
 import com.mtnmanager.sdk.models.Lift
+import com.mtnmanager.sdk.models.MobileAppBanner
 import com.mtnmanager.sdk.models.OperatingHours
 import com.mtnmanager.sdk.models.Overview
 import com.mtnmanager.sdk.models.ParkingLot
@@ -32,6 +34,7 @@ import com.mtnmanager.sdk.models.Run
 import com.mtnmanager.sdk.models.SnowReport
 import com.mtnmanager.sdk.models.SummerTrail
 import com.mtnmanager.sdk.models.TerrainPark
+import com.mtnmanager.sdk.models.TrailMapSummary
 import com.mtnmanager.sdk.models.Weather
 import com.mtnmanager.sdk.models.Webcam
 
@@ -40,7 +43,7 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Contextual
 
 /**
- * The all-in-one endpoint containing the full report — resort information, current status,  runs, lifts, snow, terrain parks, summer trails, hours, and weather.
+ * The aggregated report built for the mobile apps: every domain of the full  report inlined directly, plus the amenities list, trail-map summaries, and  mobile-app banners — all from a single request. Requires the `MobileApp`  entitlement; feature-gated sections (trail maps) come back empty rather than  erroring.
  *
  * @param resort 
  * @param status 
@@ -51,12 +54,15 @@ import kotlinx.serialization.Contextual
  * @param parkingLots List of all parking lots at the resort with their current status and amenities.
  * @param summerTrails List of all summer trails at the resort with their current status,  type (e.g. hiking, mountain biking), and optional difficulty rating.
  * @param hours 
+ * @param amenities All amenities at the resort — identical to `GET /api/v1/report/amenities`.
+ * @param appBanners Mobile-app banners, in display order.
  * @param weather Weather entries: the resort-wide entry first (current + forecast), then  any per-area current-conditions entries. Empty when weather is disabled  or unavailable.
  * @param webcams Enabled webcams with the URLs of their current and last-daylight frames  plus thumbnails. Empty when the resort does not have webcams.
+ * @param trailMaps Trail-map summaries — identical to `GET /api/v1/report/trail-maps`.  Empty when the `trail_maps` feature is not enabled for the resort.
  */
 @Serializable
 
-data class FullReport (
+data class AppReport (
 
     @SerialName(value = "resort")
     val resort: ResortInfo,
@@ -91,13 +97,25 @@ data class FullReport (
     @SerialName(value = "hours")
     val hours: OperatingHours,
 
+    /* All amenities at the resort — identical to `GET /api/v1/report/amenities`. */
+    @SerialName(value = "amenities")
+    val amenities: kotlin.collections.List<Amenity>,
+
+    /* Mobile-app banners, in display order. */
+    @SerialName(value = "app_banners")
+    val appBanners: kotlin.collections.List<MobileAppBanner>,
+
     /* Weather entries: the resort-wide entry first (current + forecast), then  any per-area current-conditions entries. Empty when weather is disabled  or unavailable. */
     @SerialName(value = "weather")
     val weather: kotlin.collections.List<Weather>? = null,
 
     /* Enabled webcams with the URLs of their current and last-daylight frames  plus thumbnails. Empty when the resort does not have webcams. */
     @SerialName(value = "webcams")
-    val webcams: kotlin.collections.List<Webcam>? = null
+    val webcams: kotlin.collections.List<Webcam>? = null,
+
+    /* Trail-map summaries — identical to `GET /api/v1/report/trail-maps`.  Empty when the `trail_maps` feature is not enabled for the resort. */
+    @SerialName(value = "trail_maps")
+    val trailMaps: kotlin.collections.List<TrailMapSummary>? = null
 
 ) {
 

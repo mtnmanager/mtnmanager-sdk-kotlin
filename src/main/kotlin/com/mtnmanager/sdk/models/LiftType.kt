@@ -24,55 +24,55 @@
 package com.mtnmanager.sdk.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
+
 
 /**
  * Type of ski lift
  *
  * Values: gondola,tram,eight_pack,six_pack,quad,triple,double,magic_carpet,t_bar,platter,rope_tow,funicular,other
  */
-
-@JsonClass(generateAdapter = false)
+@Serializable
 enum class LiftType(val value: kotlin.String) {
 
-    @Json(name = "gondola")
+    @SerialName(value = "gondola")
     gondola("gondola"),
 
-    @Json(name = "tram")
+    @SerialName(value = "tram")
     tram("tram"),
 
-    @Json(name = "eight_pack")
+    @SerialName(value = "eight_pack")
     eight_pack("eight_pack"),
 
-    @Json(name = "six_pack")
+    @SerialName(value = "six_pack")
     six_pack("six_pack"),
 
-    @Json(name = "quad")
+    @SerialName(value = "quad")
     quad("quad"),
 
-    @Json(name = "triple")
+    @SerialName(value = "triple")
     triple("triple"),
 
-    @Json(name = "double")
+    @SerialName(value = "double")
     double("double"),
 
-    @Json(name = "magic_carpet")
+    @SerialName(value = "magic_carpet")
     magic_carpet("magic_carpet"),
 
-    @Json(name = "t_bar")
+    @SerialName(value = "t_bar")
     t_bar("t_bar"),
 
-    @Json(name = "platter")
+    @SerialName(value = "platter")
     platter("platter"),
 
-    @Json(name = "rope_tow")
+    @SerialName(value = "rope_tow")
     rope_tow("rope_tow"),
 
-    @Json(name = "funicular")
+    @SerialName(value = "funicular")
     funicular("funicular"),
 
-    @Json(name = "other")
+    @SerialName(value = "other")
     other("other");
 
     /**
@@ -101,4 +101,5 @@ enum class LiftType(val value: kotlin.String) {
         }
     }
 }
+
 

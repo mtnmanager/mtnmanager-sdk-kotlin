@@ -24,8 +24,9 @@
 package com.mtnmanager.sdk.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Contextual
 
 /**
  * Run statistics: open/groomed/total counts, open/total acres, and last-updated timestamp.
@@ -37,32 +38,32 @@ import com.squareup.moshi.JsonClass
  * @param openAcres Total acres of open runs.  Not included if acres are not tracked or the runs status feature is disabled.
  * @param totalAcres Total acres of all runs.  Not included if acres are not tracked.
  */
-
+@Serializable
 
 data class OverviewRuns (
 
     /* Total number of runs at the resort. */
-    @Json(name = "total")
+    @SerialName(value = "total")
     val total: kotlin.Long,
 
     /* When the most recent update to run status was made. */
-    @Json(name = "updated_at")
+    @Contextual @SerialName(value = "updated_at")
     val updatedAt: java.time.OffsetDateTime,
 
     /* Number of runs currently open.  Not included if the runs status feature is disabled. */
-    @Json(name = "open")
+    @SerialName(value = "open")
     val `open`: kotlin.Long? = null,
 
     /* Number of runs groomed within the last 24 hours.  Not included if the runs grooming feature is disabled. */
-    @Json(name = "groomed")
+    @SerialName(value = "groomed")
     val groomed: kotlin.Long? = null,
 
     /* Total acres of open runs.  Not included if acres are not tracked or the runs status feature is disabled. */
-    @Json(name = "open_acres")
+    @SerialName(value = "open_acres")
     val openAcres: kotlin.Long? = null,
 
     /* Total acres of all runs.  Not included if acres are not tracked. */
-    @Json(name = "total_acres")
+    @SerialName(value = "total_acres")
     val totalAcres: kotlin.Long? = null
 
 ) {

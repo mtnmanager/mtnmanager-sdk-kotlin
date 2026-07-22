@@ -24,85 +24,85 @@
 package com.mtnmanager.sdk.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
+
 
 /**
  * 
  *
  * Values: restaurant,coffee,bar,water,ski_school,rental_shop,tubing,daycare,ticketing,lodge,hotel,restroom,lockers,first_aid,parking,bus,info,help,phone,retail,atm,star,webcam
  */
-
-@JsonClass(generateAdapter = false)
+@Serializable
 enum class MarkerIcon(val value: kotlin.String) {
 
-    @Json(name = "restaurant")
+    @SerialName(value = "restaurant")
     restaurant("restaurant"),
 
-    @Json(name = "coffee")
+    @SerialName(value = "coffee")
     coffee("coffee"),
 
-    @Json(name = "bar")
+    @SerialName(value = "bar")
     bar("bar"),
 
-    @Json(name = "water")
+    @SerialName(value = "water")
     water("water"),
 
-    @Json(name = "ski_school")
+    @SerialName(value = "ski_school")
     ski_school("ski_school"),
 
-    @Json(name = "rental_shop")
+    @SerialName(value = "rental_shop")
     rental_shop("rental_shop"),
 
-    @Json(name = "tubing")
+    @SerialName(value = "tubing")
     tubing("tubing"),
 
-    @Json(name = "daycare")
+    @SerialName(value = "daycare")
     daycare("daycare"),
 
-    @Json(name = "ticketing")
+    @SerialName(value = "ticketing")
     ticketing("ticketing"),
 
-    @Json(name = "lodge")
+    @SerialName(value = "lodge")
     lodge("lodge"),
 
-    @Json(name = "hotel")
+    @SerialName(value = "hotel")
     hotel("hotel"),
 
-    @Json(name = "restroom")
+    @SerialName(value = "restroom")
     restroom("restroom"),
 
-    @Json(name = "lockers")
+    @SerialName(value = "lockers")
     lockers("lockers"),
 
-    @Json(name = "first_aid")
+    @SerialName(value = "first_aid")
     first_aid("first_aid"),
 
-    @Json(name = "parking")
+    @SerialName(value = "parking")
     parking("parking"),
 
-    @Json(name = "bus")
+    @SerialName(value = "bus")
     bus("bus"),
 
-    @Json(name = "info")
+    @SerialName(value = "info")
     info("info"),
 
-    @Json(name = "help")
+    @SerialName(value = "help")
     help("help"),
 
-    @Json(name = "phone")
+    @SerialName(value = "phone")
     phone("phone"),
 
-    @Json(name = "retail")
+    @SerialName(value = "retail")
     retail("retail"),
 
-    @Json(name = "atm")
+    @SerialName(value = "atm")
     atm("atm"),
 
-    @Json(name = "star")
+    @SerialName(value = "star")
     star("star"),
 
-    @Json(name = "webcam")
+    @SerialName(value = "webcam")
     webcam("webcam");
 
     /**
@@ -131,4 +131,5 @@ enum class MarkerIcon(val value: kotlin.String) {
         }
     }
 }
+
 

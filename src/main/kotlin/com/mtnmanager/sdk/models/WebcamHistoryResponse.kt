@@ -25,8 +25,9 @@ package com.mtnmanager.sdk.models
 
 import com.mtnmanager.sdk.models.WebcamHistoryFrame
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Contextual
 
 /**
  * The historical frame listing for one camera over a time range.
@@ -34,15 +35,15 @@ import com.squareup.moshi.JsonClass
  * @param webcamUuid 
  * @param frames Newest first.
  */
-
+@Serializable
 
 data class WebcamHistoryResponse (
 
-    @Json(name = "webcam_uuid")
+    @SerialName(value = "webcam_uuid")
     val webcamUuid: kotlin.String,
 
     /* Newest first. */
-    @Json(name = "frames")
+    @SerialName(value = "frames")
     val frames: kotlin.collections.List<WebcamHistoryFrame>
 
 ) {

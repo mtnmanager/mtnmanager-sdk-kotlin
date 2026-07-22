@@ -26,8 +26,9 @@ package com.mtnmanager.sdk.models
 import com.mtnmanager.sdk.models.EntityImage
 import com.mtnmanager.sdk.models.ParkingLotStatus
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Contextual
 
 /**
  * Represents a parking lot at the resort with its current status and amenities.
@@ -43,48 +44,48 @@ import com.squareup.moshi.JsonClass
  * @param capacity Maximum vehicle capacity, if set.
  * @param images Images attached to this parking lot, ordered for display. Each includes a  ThumbHash for rendering a blurred placeholder while the image loads.
  */
-
+@Serializable
 
 data class ParkingLot (
 
     /* Unique identifier for the parking lot. */
-    @Json(name = "uuid")
+    @SerialName(value = "uuid")
     val uuid: kotlin.String,
 
     /* Display name of the parking lot. */
-    @Json(name = "name")
+    @SerialName(value = "name")
     val name: kotlin.String,
 
     /* URL-friendly name of the parking lot. */
-    @Json(name = "slug")
+    @SerialName(value = "slug")
     val slug: kotlin.String,
 
     /* Current status (open, closed, or full). */
-    @Json(name = "status")
+    @Contextual @SerialName(value = "status")
     val status: ParkingLotStatus,
 
     /* Whether shuttle service is available from this lot. */
-    @Json(name = "shuttle")
+    @SerialName(value = "shuttle")
     val shuttle: kotlin.Boolean,
 
     /* Whether parking is paid/requires payment. */
-    @Json(name = "paid")
+    @SerialName(value = "paid")
     val paid: kotlin.Boolean,
 
     /* Whether a reservation is required to park here. */
-    @Json(name = "reservation_required")
+    @SerialName(value = "reservation_required")
     val reservationRequired: kotlin.Boolean,
 
     /* When this parking lot's information was last updated. */
-    @Json(name = "updated_at")
+    @Contextual @SerialName(value = "updated_at")
     val updatedAt: java.time.OffsetDateTime,
 
     /* Maximum vehicle capacity, if set. */
-    @Json(name = "capacity")
+    @SerialName(value = "capacity")
     val capacity: kotlin.Int? = null,
 
     /* Images attached to this parking lot, ordered for display. Each includes a  ThumbHash for rendering a blurred placeholder while the image loads. */
-    @Json(name = "images")
+    @SerialName(value = "images")
     val images: kotlin.collections.List<EntityImage>? = null
 
 ) {

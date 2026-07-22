@@ -27,8 +27,9 @@ import com.mtnmanager.sdk.models.AmenityCalendarEntry
 import com.mtnmanager.sdk.models.ClosureReason
 import com.mtnmanager.sdk.models.DayOfWeek
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Contextual
 
 /**
  * Operating hours for a specific calendar date.   Represents the calculated open/close times for a single day, combining  information from recurring schedules and any single-day overrides.
@@ -42,40 +43,40 @@ import com.squareup.moshi.JsonClass
  * @param specialEvent Special event for this day.
  * @param amenities Per-amenity hours for this day. Only included when amenity hours are configured.
  */
-
+@Serializable
 
 data class CalendarDay (
 
     /* Calendar date (YYYY-MM-DD). */
-    @Json(name = "date")
+    @Contextual @SerialName(value = "date")
     val date: java.time.LocalDate,
 
     /* Day of the week. */
-    @Json(name = "day_of_week")
+    @Contextual @SerialName(value = "day_of_week")
     val dayOfWeek: DayOfWeek,
 
     /* Whether the resort is open on this day. */
-    @Json(name = "is_open")
+    @SerialName(value = "is_open")
     val isOpen: kotlin.Boolean,
 
     /* Opening time in 24-hour format (HH:MM), in resort's local timezone.  `null` if closed on this day. */
-    @Json(name = "opens_at")
+    @SerialName(value = "opens_at")
     val opensAt: kotlin.String? = null,
 
     /* Closing time in 24-hour format (HH:MM), in resort's local timezone.  `null` if closed on this day. */
-    @Json(name = "closes_at")
+    @SerialName(value = "closes_at")
     val closesAt: kotlin.String? = null,
 
     /* Optional reason code for closure. */
-    @Json(name = "closure_reason")
+    @Contextual @SerialName(value = "closure_reason")
     val closureReason: ClosureReason? = null,
 
     /* Special event for this day. */
-    @Json(name = "special_event")
+    @SerialName(value = "special_event")
     val specialEvent: kotlin.String? = null,
 
     /* Per-amenity hours for this day. Only included when amenity hours are configured. */
-    @Json(name = "amenities")
+    @SerialName(value = "amenities")
     val amenities: kotlin.collections.List<AmenityCalendarEntry>? = null
 
 ) {

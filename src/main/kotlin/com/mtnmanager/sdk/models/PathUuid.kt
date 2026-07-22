@@ -24,20 +24,21 @@
 package com.mtnmanager.sdk.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Contextual
 
 /**
  * 
  *
  * @param uuid Resource UUID
  */
-
+@Serializable
 
 data class PathUuid (
 
     /* Resource UUID */
-    @Json(name = "uuid")
+    @SerialName(value = "uuid")
     val uuid: kotlin.String
 
 ) {

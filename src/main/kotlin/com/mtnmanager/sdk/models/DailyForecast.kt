@@ -27,8 +27,9 @@ import com.mtnmanager.sdk.models.DailyForecastImperial
 import com.mtnmanager.sdk.models.DailyForecastMetric
 import com.mtnmanager.sdk.models.WeatherConditionCode
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Contextual
 
 /**
  * Daily weather summary with both unit systems
@@ -42,40 +43,40 @@ import com.squareup.moshi.JsonClass
  * @param sunset Sunset time
  * @param precipitationProbability Probability of precipitation (0-100%)
  */
-
+@Serializable
 
 data class DailyForecast (
 
     /* Date of forecast (YYYY-MM-DD format) */
-    @Json(name = "date")
+    @Contextual @SerialName(value = "date")
     val date: java.time.LocalDate,
 
     /* Measurements in imperial units */
-    @Json(name = "imperial")
+    @SerialName(value = "imperial")
     val imperial: DailyForecastImperial,
 
     /* Measurements in metric units */
-    @Json(name = "metric")
+    @SerialName(value = "metric")
     val metric: DailyForecastMetric,
 
     /* Human-readable condition */
-    @Json(name = "condition")
+    @SerialName(value = "condition")
     val condition: kotlin.String,
 
     /* Condition code */
-    @Json(name = "condition_code")
+    @Contextual @SerialName(value = "condition_code")
     val conditionCode: WeatherConditionCode,
 
     /* Sunrise time */
-    @Json(name = "sunrise")
+    @Contextual @SerialName(value = "sunrise")
     val sunrise: java.time.OffsetDateTime,
 
     /* Sunset time */
-    @Json(name = "sunset")
+    @Contextual @SerialName(value = "sunset")
     val sunset: java.time.OffsetDateTime,
 
     /* Probability of precipitation (0-100%) */
-    @Json(name = "precipitation_probability")
+    @SerialName(value = "precipitation_probability")
     val precipitationProbability: kotlin.Int? = null
 
 ) {

@@ -28,8 +28,9 @@ import com.mtnmanager.sdk.models.ResortInfo
 import com.mtnmanager.sdk.models.SeasonType
 import com.mtnmanager.sdk.models.TrailMapElement
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Contextual
 
 /**
  * A public trail map with enriched entity data.
@@ -45,39 +46,39 @@ import com.squareup.moshi.JsonClass
  * @param elements 
  * @param geoControlPoints 
  */
-
+@Serializable
 
 data class TrailMap (
 
-    @Json(name = "uuid")
+    @SerialName(value = "uuid")
     val uuid: kotlin.String,
 
-    @Json(name = "name")
+    @SerialName(value = "name")
     val name: kotlin.String,
 
-    @Json(name = "slug")
+    @SerialName(value = "slug")
     val slug: kotlin.String,
 
-    @Json(name = "season")
+    @Contextual @SerialName(value = "season")
     val season: SeasonType,
 
-    @Json(name = "display_order")
+    @SerialName(value = "display_order")
     val displayOrder: kotlin.Long,
 
     /* Monotonically incremented on every update. Clients can compare this  against a cached value to decide whether to reload the trail map. */
-    @Json(name = "version")
+    @SerialName(value = "version")
     val version: kotlin.Long,
 
-    @Json(name = "background_image_url")
+    @SerialName(value = "background_image_url")
     val backgroundImageUrl: kotlin.String,
 
-    @Json(name = "resort")
+    @SerialName(value = "resort")
     val resort: ResortInfo,
 
-    @Json(name = "elements")
+    @SerialName(value = "elements")
     val elements: kotlin.collections.List<TrailMapElement>,
 
-    @Json(name = "geo_control_points")
+    @SerialName(value = "geo_control_points")
     val geoControlPoints: kotlin.collections.List<GeoControlPoint>? = null
 
 ) {

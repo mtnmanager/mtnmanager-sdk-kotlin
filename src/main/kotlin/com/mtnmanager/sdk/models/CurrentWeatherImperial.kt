@@ -24,8 +24,9 @@
 package com.mtnmanager.sdk.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Contextual
 
 /**
  * Current temperature and precipitation measurements in imperial units
@@ -37,32 +38,32 @@ import com.squareup.moshi.JsonClass
  * @param precipitation Precipitation in inches
  * @param windGust Wind gust in mph
  */
-
+@Serializable
 
 data class CurrentWeatherImperial (
 
     /* Temperature in Fahrenheit */
-    @Json(name = "temperature")
+    @SerialName(value = "temperature")
     val temperature: kotlin.Int,
 
     /* Feels like temperature in Fahrenheit */
-    @Json(name = "feels_like")
+    @SerialName(value = "feels_like")
     val feelsLike: kotlin.Int,
 
     /* Wind speed in mph */
-    @Json(name = "wind_speed")
+    @SerialName(value = "wind_speed")
     val windSpeed: kotlin.Int,
 
     /* Snowfall in inches */
-    @Json(name = "snowfall")
+    @SerialName(value = "snowfall")
     val snowfall: kotlin.Int? = null,
 
     /* Precipitation in inches */
-    @Json(name = "precipitation")
+    @SerialName(value = "precipitation")
     val precipitation: kotlin.Int? = null,
 
     /* Wind gust in mph */
-    @Json(name = "wind_gust")
+    @SerialName(value = "wind_gust")
     val windGust: kotlin.Int? = null
 
 ) {

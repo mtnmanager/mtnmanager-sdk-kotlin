@@ -28,8 +28,9 @@ import com.mtnmanager.sdk.models.FeatureSize
 import com.mtnmanager.sdk.models.FeatureType
 import com.mtnmanager.sdk.models.TerrainParkFeatureStatus
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Contextual
 
 /**
  * Represents a single feature within a terrain park (jump, box, rail, etc.)  with its current status and size rating.
@@ -43,40 +44,40 @@ import com.squareup.moshi.JsonClass
  * @param propertySize Optional size rating of the feature (S, M, L, XL).
  * @param images Images attached to this feature, ordered for display. Each includes a  ThumbHash for rendering a blurred placeholder while the image loads.
  */
-
+@Serializable
 
 data class TerrainParkFeature (
 
     /* Unique identifier for the feature. */
-    @Json(name = "uuid")
+    @SerialName(value = "uuid")
     val uuid: kotlin.String,
 
     /* Display name of the feature. */
-    @Json(name = "name")
+    @SerialName(value = "name")
     val name: kotlin.String,
 
     /* URL-friendly name of the run. */
-    @Json(name = "slug")
+    @SerialName(value = "slug")
     val slug: kotlin.String,
 
     /* Type of feature (jump, box, rail, other). */
-    @Json(name = "feature_type")
+    @Contextual @SerialName(value = "feature_type")
     val featureType: FeatureType,
 
     /* Current operational status (open, closed, or unknown).  `unknown` unless the terrain park feature status is enabled. */
-    @Json(name = "status")
+    @Contextual @SerialName(value = "status")
     val status: TerrainParkFeatureStatus,
 
     /* Optional feature number. */
-    @Json(name = "number")
+    @SerialName(value = "number")
     val number: kotlin.Int? = null,
 
     /* Optional size rating of the feature (S, M, L, XL). */
-    @Json(name = "size")
+    @Contextual @SerialName(value = "size")
     val propertySize: FeatureSize? = null,
 
     /* Images attached to this feature, ordered for display. Each includes a  ThumbHash for rendering a blurred placeholder while the image loads. */
-    @Json(name = "images")
+    @SerialName(value = "images")
     val images: kotlin.collections.List<EntityImage>? = null
 
 ) {

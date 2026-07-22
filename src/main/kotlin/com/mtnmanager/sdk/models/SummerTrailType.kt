@@ -24,22 +24,22 @@
 package com.mtnmanager.sdk.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
+
 
 /**
  * 
  *
  * Values: hiking,mountain_biking
  */
-
-@JsonClass(generateAdapter = false)
+@Serializable
 enum class SummerTrailType(val value: kotlin.String) {
 
-    @Json(name = "hiking")
+    @SerialName(value = "hiking")
     hiking("hiking"),
 
-    @Json(name = "mountain_biking")
+    @SerialName(value = "mountain_biking")
     mountain_biking("mountain_biking");
 
     /**
@@ -68,4 +68,5 @@ enum class SummerTrailType(val value: kotlin.String) {
         }
     }
 }
+
 

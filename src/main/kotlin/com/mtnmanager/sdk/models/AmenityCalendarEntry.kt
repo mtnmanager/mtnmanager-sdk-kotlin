@@ -25,8 +25,9 @@ package com.mtnmanager.sdk.models
 
 import com.mtnmanager.sdk.models.AmenityCategory
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Contextual
 
 /**
  * Amenity entry within a CalendarDay, showing per-amenity hours for a specific date.
@@ -37,28 +38,28 @@ import com.squareup.moshi.JsonClass
  * @param opensAt Opening time in 24-hour format (HH:MM), in resort's local timezone.  `null` if this amenity is closed on this day.
  * @param closesAt Closing time in 24-hour format (HH:MM), in resort's local timezone.  `null` if this amenity is closed on this day.
  */
-
+@Serializable
 
 data class AmenityCalendarEntry (
 
     /* Amenity UUID. */
-    @Json(name = "uuid")
+    @SerialName(value = "uuid")
     val uuid: kotlin.String,
 
     /* Amenity name. */
-    @Json(name = "name")
+    @SerialName(value = "name")
     val name: kotlin.String,
 
     /* Amenity category. */
-    @Json(name = "category")
+    @Contextual @SerialName(value = "category")
     val category: AmenityCategory,
 
     /* Opening time in 24-hour format (HH:MM), in resort's local timezone.  `null` if this amenity is closed on this day. */
-    @Json(name = "opens_at")
+    @SerialName(value = "opens_at")
     val opensAt: kotlin.String? = null,
 
     /* Closing time in 24-hour format (HH:MM), in resort's local timezone.  `null` if this amenity is closed on this day. */
-    @Json(name = "closes_at")
+    @SerialName(value = "closes_at")
     val closesAt: kotlin.String? = null
 
 ) {

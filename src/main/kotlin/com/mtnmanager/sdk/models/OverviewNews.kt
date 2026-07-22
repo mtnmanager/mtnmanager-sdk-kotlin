@@ -24,8 +24,9 @@
 package com.mtnmanager.sdk.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Contextual
 
 /**
  * Written news — daily update, announcements, etc.
@@ -34,20 +35,20 @@ import com.squareup.moshi.JsonClass
  * @param html Rendered HTML (from Markdown).
  * @param updatedAt When the news was last updated.
  */
-
+@Serializable
 
 data class OverviewNews (
 
     /* Raw Markdown source. */
-    @Json(name = "raw")
+    @SerialName(value = "raw")
     val raw: kotlin.String,
 
     /* Rendered HTML (from Markdown). */
-    @Json(name = "html")
+    @SerialName(value = "html")
     val html: kotlin.String,
 
     /* When the news was last updated. */
-    @Json(name = "updated_at")
+    @Contextual @SerialName(value = "updated_at")
     val updatedAt: java.time.OffsetDateTime
 
 ) {

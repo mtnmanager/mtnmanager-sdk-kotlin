@@ -24,8 +24,9 @@
 package com.mtnmanager.sdk.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Contextual
 
 /**
  * A latitude/longitude point.
@@ -33,14 +34,14 @@ import com.squareup.moshi.JsonClass
  * @param lat 
  * @param lng 
  */
-
+@Serializable
 
 data class GeoPoint (
 
-    @Json(name = "lat")
+    @SerialName(value = "lat")
     val lat: kotlin.Double,
 
-    @Json(name = "lng")
+    @SerialName(value = "lng")
     val lng: kotlin.Double
 
 ) {

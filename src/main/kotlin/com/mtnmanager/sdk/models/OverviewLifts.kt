@@ -24,8 +24,9 @@
 package com.mtnmanager.sdk.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Contextual
 
 /**
  * Lift statistics: open/total counts and last-updated timestamp.
@@ -34,20 +35,20 @@ import com.squareup.moshi.JsonClass
  * @param updatedAt When the most recent update to lift status was made.
  * @param `open` Number of lifts currently open.  Not included if the lifts status feature is disabled.
  */
-
+@Serializable
 
 data class OverviewLifts (
 
     /* Total number of lifts at the resort. */
-    @Json(name = "total")
+    @SerialName(value = "total")
     val total: kotlin.Long,
 
     /* When the most recent update to lift status was made. */
-    @Json(name = "updated_at")
+    @Contextual @SerialName(value = "updated_at")
     val updatedAt: java.time.OffsetDateTime,
 
     /* Number of lifts currently open.  Not included if the lifts status feature is disabled. */
-    @Json(name = "open")
+    @SerialName(value = "open")
     val `open`: kotlin.Long? = null
 
 ) {

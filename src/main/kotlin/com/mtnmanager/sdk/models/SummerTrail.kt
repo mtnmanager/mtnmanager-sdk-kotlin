@@ -28,8 +28,9 @@ import com.mtnmanager.sdk.models.SummerTrailDifficulty
 import com.mtnmanager.sdk.models.SummerTrailStatus
 import com.mtnmanager.sdk.models.SummerTrailType
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Contextual
 
 /**
  * Represents a single summer trail at the resort with its current status,  type (e.g. hiking, mountain biking), and optional difficulty rating.
@@ -48,60 +49,60 @@ import com.squareup.moshi.JsonClass
  * @param areaDisplayOrder Display order of the area this trail belongs to, if assigned, for sorting purposes.
  * @param images Images attached to this trail, ordered for display. Each includes a  ThumbHash for rendering a blurred placeholder while the image loads.
  */
-
+@Serializable
 
 data class SummerTrail (
 
     /* Unique identifier for the trail. */
-    @Json(name = "uuid")
+    @SerialName(value = "uuid")
     val uuid: kotlin.String,
 
     /* Display name of the trail. */
-    @Json(name = "name")
+    @SerialName(value = "name")
     val name: kotlin.String,
 
     /* URL-friendly name of the trail. */
-    @Json(name = "slug")
+    @SerialName(value = "slug")
     val slug: kotlin.String,
 
     /* Type of trail activity (e.g. hiking, mountain_biking). Can have multiple. */
-    @Json(name = "trail_type")
-    val trailType: kotlin.collections.List<SummerTrailType>,
+    @SerialName(value = "trail_type")
+    val trailType: kotlin.collections.List<@Contextual SummerTrailType>,
 
     /* Current operational status (open, closed, or unknown). */
-    @Json(name = "status")
+    @Contextual @SerialName(value = "status")
     val status: SummerTrailStatus,
 
     /* Notes about current conditions on this trail. */
-    @Json(name = "condition_notes")
+    @SerialName(value = "condition_notes")
     val conditionNotes: kotlin.String,
 
     /* When this trail's information was last updated. */
-    @Json(name = "updated_at")
+    @Contextual @SerialName(value = "updated_at")
     val updatedAt: java.time.OffsetDateTime,
 
     /* Optional trail number. */
-    @Json(name = "number")
+    @SerialName(value = "number")
     val number: kotlin.Int? = null,
 
     /* Difficulty rating of the trail (optional for summer trails). */
-    @Json(name = "difficulty")
+    @Contextual @SerialName(value = "difficulty")
     val difficulty: SummerTrailDifficulty? = null,
 
     /* UUID of the area this trail belongs to, if assigned. */
-    @Json(name = "area_uuid")
+    @SerialName(value = "area_uuid")
     val areaUuid: kotlin.String? = null,
 
     /* Name of the area this trail belongs to, if assigned. */
-    @Json(name = "area_name")
+    @SerialName(value = "area_name")
     val areaName: kotlin.String? = null,
 
     /* Display order of the area this trail belongs to, if assigned, for sorting purposes. */
-    @Json(name = "area_display_order")
+    @SerialName(value = "area_display_order")
     val areaDisplayOrder: kotlin.Int? = null,
 
     /* Images attached to this trail, ordered for display. Each includes a  ThumbHash for rendering a blurred placeholder while the image loads. */
-    @Json(name = "images")
+    @SerialName(value = "images")
     val images: kotlin.collections.List<EntityImage>? = null
 
 ) {

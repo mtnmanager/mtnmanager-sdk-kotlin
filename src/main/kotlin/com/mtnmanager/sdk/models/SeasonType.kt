@@ -24,25 +24,25 @@
 package com.mtnmanager.sdk.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
+
 
 /**
  * Current operating season of the resort.
  *
  * Values: winter,summer,closed
  */
-
-@JsonClass(generateAdapter = false)
+@Serializable
 enum class SeasonType(val value: kotlin.String) {
 
-    @Json(name = "winter")
+    @SerialName(value = "winter")
     winter("winter"),
 
-    @Json(name = "summer")
+    @SerialName(value = "summer")
     summer("summer"),
 
-    @Json(name = "closed")
+    @SerialName(value = "closed")
     closed("closed");
 
     /**
@@ -71,4 +71,5 @@ enum class SeasonType(val value: kotlin.String) {
         }
     }
 }
+
 

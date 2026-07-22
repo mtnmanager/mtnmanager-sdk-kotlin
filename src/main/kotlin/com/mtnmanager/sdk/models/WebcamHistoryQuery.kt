@@ -24,8 +24,9 @@
 package com.mtnmanager.sdk.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Contextual
 
 /**
  * Query parameters for the history endpoint.
@@ -33,16 +34,16 @@ import com.squareup.moshi.JsonClass
  * @param from Inclusive lower bound on `captured_at` (RFC 3339).
  * @param to Inclusive upper bound on `captured_at` (RFC 3339).
  */
-
+@Serializable
 
 data class WebcamHistoryQuery (
 
     /* Inclusive lower bound on `captured_at` (RFC 3339). */
-    @Json(name = "from")
+    @SerialName(value = "from")
     val from: kotlin.String? = null,
 
     /* Inclusive upper bound on `captured_at` (RFC 3339). */
-    @Json(name = "to")
+    @SerialName(value = "to")
     val to: kotlin.String? = null
 
 ) {

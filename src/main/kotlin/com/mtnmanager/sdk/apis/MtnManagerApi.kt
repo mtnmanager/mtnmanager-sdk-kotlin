@@ -28,9 +28,9 @@ import okhttp3.Call
 import okhttp3.HttpUrl
 
 import com.mtnmanager.sdk.models.Amenity
+import com.mtnmanager.sdk.models.AppReport
 import com.mtnmanager.sdk.models.FullReport
 import com.mtnmanager.sdk.models.Lift
-import com.mtnmanager.sdk.models.MobileAppResponse
 import com.mtnmanager.sdk.models.OperatingHours
 import com.mtnmanager.sdk.models.Overview
 import com.mtnmanager.sdk.models.ParkingLot
@@ -44,7 +44,8 @@ import com.mtnmanager.sdk.models.Weather
 import com.mtnmanager.sdk.models.Webcam
 import com.mtnmanager.sdk.models.WebcamHistoryResponse
 
-import com.squareup.moshi.Json
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
 import com.mtnmanager.sdk.infrastructure.ApiClient
 import com.mtnmanager.sdk.infrastructure.ApiResponse
@@ -59,6 +60,7 @@ import com.mtnmanager.sdk.infrastructure.RequestMethod
 import com.mtnmanager.sdk.infrastructure.ResponseType
 import com.mtnmanager.sdk.infrastructure.Success
 import com.mtnmanager.sdk.infrastructure.toMultiValue
+import com.mtnmanager.sdk.infrastructure.Serializer
 
 open class MtnManagerApi(basePath: kotlin.String = defaultBasePath, client: Call.Factory = ApiClient.defaultClient) : ApiClient(basePath, client) {
     companion object {
@@ -135,6 +137,80 @@ open class MtnManagerApi(basePath: kotlin.String = defaultBasePath, client: Call
         return RequestConfig(
             method = RequestMethod.GET,
             path = "/api/v1/report/amenities",
+            query = localVariableQuery,
+            headers = localVariableHeaders,
+            requiresAuthentication = false,
+            body = localVariableBody
+        )
+    }
+
+    /**
+     * GET /api/v1/report/app
+     * Get app report
+     * 
+     * @param acceptLanguage Preferred language and optional region for human-readable strings in the response (e.g. operating hours summaries). Supports &#x60;en&#x60;, &#x60;fr&#x60;, &#x60;de&#x60;, &#x60;it&#x60;, and &#x60;es&#x60;, with optional region tags such as &#x60;fr-CA&#x60; or &#x60;de-CH&#x60;. Defaults to English when omitted or unsupported. (optional)
+     * @return AppReport
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     * @throws UnsupportedOperationException If the API returns an informational or redirection response
+     * @throws ClientException If the API returns a client error response
+     * @throws ServerException If the API returns a server error response
+     */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    fun getAppReport(acceptLanguage: kotlin.String? = null) : AppReport {
+        val localVarResponse = getAppReportWithHttpInfo(acceptLanguage = acceptLanguage)
+
+        return when (localVarResponse.responseType) {
+            ResponseType.Success -> (localVarResponse as Success<*>).data as AppReport
+            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
+            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
+            ResponseType.ClientError -> {
+                val localVarError = localVarResponse as ClientError<*>
+                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+            ResponseType.ServerError -> {
+                val localVarError = localVarResponse as ServerError<*>
+                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()} ${localVarError.body}", localVarError.statusCode, localVarResponse)
+            }
+        }
+    }
+
+    /**
+     * GET /api/v1/report/app
+     * Get app report
+     * 
+     * @param acceptLanguage Preferred language and optional region for human-readable strings in the response (e.g. operating hours summaries). Supports &#x60;en&#x60;, &#x60;fr&#x60;, &#x60;de&#x60;, &#x60;it&#x60;, and &#x60;es&#x60;, with optional region tags such as &#x60;fr-CA&#x60; or &#x60;de-CH&#x60;. Defaults to English when omitted or unsupported. (optional)
+     * @return ApiResponse<AppReport?>
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(IllegalStateException::class, IOException::class)
+    fun getAppReportWithHttpInfo(acceptLanguage: kotlin.String?) : ApiResponse<AppReport?> {
+        val localVariableConfig = getAppReportRequestConfig(acceptLanguage = acceptLanguage)
+
+        return request<Unit, AppReport>(
+            localVariableConfig
+        )
+    }
+
+    /**
+     * To obtain the request config of the operation getAppReport
+     *
+     * @param acceptLanguage Preferred language and optional region for human-readable strings in the response (e.g. operating hours summaries). Supports &#x60;en&#x60;, &#x60;fr&#x60;, &#x60;de&#x60;, &#x60;it&#x60;, and &#x60;es&#x60;, with optional region tags such as &#x60;fr-CA&#x60; or &#x60;de-CH&#x60;. Defaults to English when omitted or unsupported. (optional)
+     * @return RequestConfig
+     */
+    fun getAppReportRequestConfig(acceptLanguage: kotlin.String?) : RequestConfig<Unit> {
+        val localVariableBody = null
+        val localVariableQuery: MultiValueMap = mutableMapOf()
+        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+        acceptLanguage?.apply { localVariableHeaders["Accept-Language"] = this.toString() }
+        localVariableHeaders["Accept"] = "application/json"
+
+        return RequestConfig(
+            method = RequestMethod.GET,
+            path = "/api/v1/report/app",
             query = localVariableQuery,
             headers = localVariableHeaders,
             requiresAuthentication = false,
@@ -357,80 +433,6 @@ open class MtnManagerApi(basePath: kotlin.String = defaultBasePath, client: Call
         return RequestConfig(
             method = RequestMethod.GET,
             path = "/api/v1/report/lifts",
-            query = localVariableQuery,
-            headers = localVariableHeaders,
-            requiresAuthentication = false,
-            body = localVariableBody
-        )
-    }
-
-    /**
-     * GET /api/v1/report/mobile-app
-     * Get mobile app data
-     * 
-     * @param acceptLanguage Preferred language and optional region for human-readable strings in the response (e.g. operating hours summaries). Supports &#x60;en&#x60;, &#x60;fr&#x60;, &#x60;de&#x60;, &#x60;it&#x60;, and &#x60;es&#x60;, with optional region tags such as &#x60;fr-CA&#x60; or &#x60;de-CH&#x60;. Defaults to English when omitted or unsupported. (optional)
-     * @return MobileAppResponse
-     * @throws IllegalStateException If the request is not correctly configured
-     * @throws IOException Rethrows the OkHttp execute method exception
-     * @throws UnsupportedOperationException If the API returns an informational or redirection response
-     * @throws ClientException If the API returns a client error response
-     * @throws ServerException If the API returns a server error response
-     */
-    @Suppress("UNCHECKED_CAST")
-    @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun getMobileApp(acceptLanguage: kotlin.String? = null) : MobileAppResponse {
-        val localVarResponse = getMobileAppWithHttpInfo(acceptLanguage = acceptLanguage)
-
-        return when (localVarResponse.responseType) {
-            ResponseType.Success -> (localVarResponse as Success<*>).data as MobileAppResponse
-            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
-            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
-            ResponseType.ClientError -> {
-                val localVarError = localVarResponse as ClientError<*>
-                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
-            }
-            ResponseType.ServerError -> {
-                val localVarError = localVarResponse as ServerError<*>
-                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()} ${localVarError.body}", localVarError.statusCode, localVarResponse)
-            }
-        }
-    }
-
-    /**
-     * GET /api/v1/report/mobile-app
-     * Get mobile app data
-     * 
-     * @param acceptLanguage Preferred language and optional region for human-readable strings in the response (e.g. operating hours summaries). Supports &#x60;en&#x60;, &#x60;fr&#x60;, &#x60;de&#x60;, &#x60;it&#x60;, and &#x60;es&#x60;, with optional region tags such as &#x60;fr-CA&#x60; or &#x60;de-CH&#x60;. Defaults to English when omitted or unsupported. (optional)
-     * @return ApiResponse<MobileAppResponse?>
-     * @throws IllegalStateException If the request is not correctly configured
-     * @throws IOException Rethrows the OkHttp execute method exception
-     */
-    @Suppress("UNCHECKED_CAST")
-    @Throws(IllegalStateException::class, IOException::class)
-    fun getMobileAppWithHttpInfo(acceptLanguage: kotlin.String?) : ApiResponse<MobileAppResponse?> {
-        val localVariableConfig = getMobileAppRequestConfig(acceptLanguage = acceptLanguage)
-
-        return request<Unit, MobileAppResponse>(
-            localVariableConfig
-        )
-    }
-
-    /**
-     * To obtain the request config of the operation getMobileApp
-     *
-     * @param acceptLanguage Preferred language and optional region for human-readable strings in the response (e.g. operating hours summaries). Supports &#x60;en&#x60;, &#x60;fr&#x60;, &#x60;de&#x60;, &#x60;it&#x60;, and &#x60;es&#x60;, with optional region tags such as &#x60;fr-CA&#x60; or &#x60;de-CH&#x60;. Defaults to English when omitted or unsupported. (optional)
-     * @return RequestConfig
-     */
-    fun getMobileAppRequestConfig(acceptLanguage: kotlin.String?) : RequestConfig<Unit> {
-        val localVariableBody = null
-        val localVariableQuery: MultiValueMap = mutableMapOf()
-        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
-        acceptLanguage?.apply { localVariableHeaders["Accept-Language"] = this.toString() }
-        localVariableHeaders["Accept"] = "application/json"
-
-        return RequestConfig(
-            method = RequestMethod.GET,
-            path = "/api/v1/report/mobile-app",
             query = localVariableQuery,
             headers = localVariableHeaders,
             requiresAuthentication = false,

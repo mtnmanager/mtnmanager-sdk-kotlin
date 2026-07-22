@@ -24,8 +24,9 @@
 package com.mtnmanager.sdk.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Contextual
 
 /**
  * Summer trail statistics: open/total counts and last-updated timestamp.
@@ -34,20 +35,20 @@ import com.squareup.moshi.JsonClass
  * @param updatedAt When the most recent update to summer trail status was made.
  * @param `open` Number of summer trails currently open.  Not included if the summer trails status feature is disabled.
  */
-
+@Serializable
 
 data class OverviewSummerTrails (
 
     /* Total number of summer trails at the resort. */
-    @Json(name = "total")
+    @SerialName(value = "total")
     val total: kotlin.Long,
 
     /* When the most recent update to summer trail status was made. */
-    @Json(name = "updated_at")
+    @Contextual @SerialName(value = "updated_at")
     val updatedAt: java.time.OffsetDateTime,
 
     /* Number of summer trails currently open.  Not included if the summer trails status feature is disabled. */
-    @Json(name = "open")
+    @SerialName(value = "open")
     val `open`: kotlin.Long? = null
 
 ) {

@@ -24,55 +24,55 @@
 package com.mtnmanager.sdk.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
+
 
 /**
  * Category classification for amenities
  *
  * Values: restaurant,coffee,bar,tubing,ski_school,rental_shop,daycare,ticketing,lodge,hotel,lockers,retail,other
  */
-
-@JsonClass(generateAdapter = false)
+@Serializable
 enum class AmenityCategory(val value: kotlin.String) {
 
-    @Json(name = "restaurant")
+    @SerialName(value = "restaurant")
     restaurant("restaurant"),
 
-    @Json(name = "coffee")
+    @SerialName(value = "coffee")
     coffee("coffee"),
 
-    @Json(name = "bar")
+    @SerialName(value = "bar")
     bar("bar"),
 
-    @Json(name = "tubing")
+    @SerialName(value = "tubing")
     tubing("tubing"),
 
-    @Json(name = "ski_school")
+    @SerialName(value = "ski_school")
     ski_school("ski_school"),
 
-    @Json(name = "rental_shop")
+    @SerialName(value = "rental_shop")
     rental_shop("rental_shop"),
 
-    @Json(name = "daycare")
+    @SerialName(value = "daycare")
     daycare("daycare"),
 
-    @Json(name = "ticketing")
+    @SerialName(value = "ticketing")
     ticketing("ticketing"),
 
-    @Json(name = "lodge")
+    @SerialName(value = "lodge")
     lodge("lodge"),
 
-    @Json(name = "hotel")
+    @SerialName(value = "hotel")
     hotel("hotel"),
 
-    @Json(name = "lockers")
+    @SerialName(value = "lockers")
     lockers("lockers"),
 
-    @Json(name = "retail")
+    @SerialName(value = "retail")
     retail("retail"),
 
-    @Json(name = "other")
+    @SerialName(value = "other")
     other("other");
 
     /**
@@ -101,4 +101,5 @@ enum class AmenityCategory(val value: kotlin.String) {
         }
     }
 }
+
 

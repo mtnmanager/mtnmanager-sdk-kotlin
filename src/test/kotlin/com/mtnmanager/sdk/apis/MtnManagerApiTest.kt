@@ -28,9 +28,9 @@ import io.kotlintest.specs.ShouldSpec
 
 import com.mtnmanager.sdk.apis.MtnManagerApi
 import com.mtnmanager.sdk.models.Amenity
+import com.mtnmanager.sdk.models.AppReport
 import com.mtnmanager.sdk.models.FullReport
 import com.mtnmanager.sdk.models.Lift
-import com.mtnmanager.sdk.models.MobileAppResponse
 import com.mtnmanager.sdk.models.OperatingHours
 import com.mtnmanager.sdk.models.Overview
 import com.mtnmanager.sdk.models.ParkingLot
@@ -57,6 +57,14 @@ class MtnManagerApiTest : ShouldSpec() {
             //result shouldBe ("TODO")
         }
 
+        // to test getAppReport
+        should("test getAppReport") {
+            // uncomment below to test getAppReport
+            //val acceptLanguage : kotlin.String = fr-CA // kotlin.String | Preferred language and optional region for human-readable strings in the response (e.g. operating hours summaries). Supports `en`, `fr`, `de`, `it`, and `es`, with optional region tags such as `fr-CA` or `de-CH`. Defaults to English when omitted or unsupported.
+            //val result : AppReport = apiInstance.getAppReport(acceptLanguage)
+            //result shouldBe ("TODO")
+        }
+
         // to test getFullReport
         should("test getFullReport") {
             // uncomment below to test getFullReport
@@ -78,14 +86,6 @@ class MtnManagerApiTest : ShouldSpec() {
             // uncomment below to test getLifts
             //val acceptLanguage : kotlin.String = fr-CA // kotlin.String | Preferred language and optional region for human-readable strings in the response (e.g. operating hours summaries). Supports `en`, `fr`, `de`, `it`, and `es`, with optional region tags such as `fr-CA` or `de-CH`. Defaults to English when omitted or unsupported.
             //val result : kotlin.collections.List<Lift> = apiInstance.getLifts(acceptLanguage)
-            //result shouldBe ("TODO")
-        }
-
-        // to test getMobileApp
-        should("test getMobileApp") {
-            // uncomment below to test getMobileApp
-            //val acceptLanguage : kotlin.String = fr-CA // kotlin.String | Preferred language and optional region for human-readable strings in the response (e.g. operating hours summaries). Supports `en`, `fr`, `de`, `it`, and `es`, with optional region tags such as `fr-CA` or `de-CH`. Defaults to English when omitted or unsupported.
-            //val result : MobileAppResponse = apiInstance.getMobileApp(acceptLanguage)
             //result shouldBe ("TODO")
         }
 

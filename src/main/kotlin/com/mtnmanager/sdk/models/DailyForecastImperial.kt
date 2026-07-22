@@ -24,8 +24,9 @@
 package com.mtnmanager.sdk.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Contextual
 
 /**
  * Daily forecast measurements in imperial units
@@ -37,32 +38,32 @@ import com.squareup.moshi.JsonClass
  * @param windSpeedMax Maximum wind speed in mph
  * @param windGustMax Maximum wind gust in mph
  */
-
+@Serializable
 
 data class DailyForecastImperial (
 
     /* High temperature in Fahrenheit */
-    @Json(name = "temperature_high")
+    @SerialName(value = "temperature_high")
     val temperatureHigh: kotlin.Int,
 
     /* Low temperature in Fahrenheit */
-    @Json(name = "temperature_low")
+    @SerialName(value = "temperature_low")
     val temperatureLow: kotlin.Int,
 
     /* Total snowfall expected in inches */
-    @Json(name = "snowfall_total")
+    @SerialName(value = "snowfall_total")
     val snowfallTotal: kotlin.Int? = null,
 
     /* Total precipitation expected in inches */
-    @Json(name = "precipitation_total")
+    @SerialName(value = "precipitation_total")
     val precipitationTotal: kotlin.Int? = null,
 
     /* Maximum wind speed in mph */
-    @Json(name = "wind_speed_max")
+    @SerialName(value = "wind_speed_max")
     val windSpeedMax: kotlin.Int? = null,
 
     /* Maximum wind gust in mph */
-    @Json(name = "wind_gust_max")
+    @SerialName(value = "wind_gust_max")
     val windGustMax: kotlin.Int? = null
 
 ) {

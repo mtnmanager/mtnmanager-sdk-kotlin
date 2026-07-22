@@ -26,8 +26,9 @@ package com.mtnmanager.sdk.models
 import com.mtnmanager.sdk.models.Amenity
 import com.mtnmanager.sdk.models.MarkerIcon
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Contextual
 
 /**
  * 
@@ -41,32 +42,32 @@ import com.squareup.moshi.JsonClass
  * @param amenity 
  * @param groupLabel 
  */
-
+@Serializable
 
 data class TrailMapElementOneOf4 (
 
-    @Json(name = "type")
+    @SerialName(value = "type")
     val type: TrailMapElementOneOf4.Type,
 
-    @Json(name = "uuid")
+    @SerialName(value = "uuid")
     val uuid: kotlin.String,
 
-    @Json(name = "x")
+    @SerialName(value = "x")
     val x: kotlin.Double,
 
-    @Json(name = "y")
+    @SerialName(value = "y")
     val y: kotlin.Double,
 
-    @Json(name = "icon")
+    @Contextual @SerialName(value = "icon")
     val icon: MarkerIcon? = null,
 
-    @Json(name = "color")
+    @SerialName(value = "color")
     val color: kotlin.String? = null,
 
-    @Json(name = "amenity")
+    @SerialName(value = "amenity")
     val amenity: Amenity? = null,
 
-    @Json(name = "group_label")
+    @SerialName(value = "group_label")
     val groupLabel: kotlin.String? = null
 
 ) {
@@ -76,9 +77,9 @@ data class TrailMapElementOneOf4 (
      *
      * Values: amenity_marker
      */
-    @JsonClass(generateAdapter = false)
+    @Serializable
     enum class Type(val value: kotlin.String) {
-        @Json(name = "amenity_marker") amenity_marker("amenity_marker");
+        @SerialName(value = "amenity_marker") amenity_marker("amenity_marker");
     }
 
 }

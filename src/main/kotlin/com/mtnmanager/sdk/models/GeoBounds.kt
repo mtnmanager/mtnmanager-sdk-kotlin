@@ -25,8 +25,9 @@ package com.mtnmanager.sdk.models
 
 import com.mtnmanager.sdk.models.GeoPoint
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Contextual
 
 /**
  * Lat/lng bounding box and centroid for a trail map's georeferenced area.
@@ -37,23 +38,23 @@ import com.squareup.moshi.JsonClass
  * @param maxLng 
  * @param center 
  */
-
+@Serializable
 
 data class GeoBounds (
 
-    @Json(name = "min_lat")
+    @SerialName(value = "min_lat")
     val minLat: kotlin.Double,
 
-    @Json(name = "max_lat")
+    @SerialName(value = "max_lat")
     val maxLat: kotlin.Double,
 
-    @Json(name = "min_lng")
+    @SerialName(value = "min_lng")
     val minLng: kotlin.Double,
 
-    @Json(name = "max_lng")
+    @SerialName(value = "max_lng")
     val maxLng: kotlin.Double,
 
-    @Json(name = "center")
+    @SerialName(value = "center")
     val center: GeoPoint
 
 ) {

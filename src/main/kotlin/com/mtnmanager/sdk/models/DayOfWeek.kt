@@ -24,37 +24,37 @@
 package com.mtnmanager.sdk.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
+
 
 /**
  * 
  *
  * Values: Sunday,Monday,Tuesday,Wednesday,Thursday,Friday,Saturday
  */
-
-@JsonClass(generateAdapter = false)
+@Serializable
 enum class DayOfWeek(val value: kotlin.String) {
 
-    @Json(name = "Sunday")
+    @SerialName(value = "Sunday")
     Sunday("Sunday"),
 
-    @Json(name = "Monday")
+    @SerialName(value = "Monday")
     Monday("Monday"),
 
-    @Json(name = "Tuesday")
+    @SerialName(value = "Tuesday")
     Tuesday("Tuesday"),
 
-    @Json(name = "Wednesday")
+    @SerialName(value = "Wednesday")
     Wednesday("Wednesday"),
 
-    @Json(name = "Thursday")
+    @SerialName(value = "Thursday")
     Thursday("Thursday"),
 
-    @Json(name = "Friday")
+    @SerialName(value = "Friday")
     Friday("Friday"),
 
-    @Json(name = "Saturday")
+    @SerialName(value = "Saturday")
     Saturday("Saturday");
 
     /**
@@ -83,4 +83,5 @@ enum class DayOfWeek(val value: kotlin.String) {
         }
     }
 }
+
 

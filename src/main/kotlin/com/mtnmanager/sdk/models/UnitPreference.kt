@@ -24,22 +24,22 @@
 package com.mtnmanager.sdk.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
+
 
 /**
  * Unit preference (cm/in, km/miles, etc.)
  *
  * Values: metric,imperial
  */
-
-@JsonClass(generateAdapter = false)
+@Serializable
 enum class UnitPreference(val value: kotlin.String) {
 
-    @Json(name = "metric")
+    @SerialName(value = "metric")
     metric("metric"),
 
-    @Json(name = "imperial")
+    @SerialName(value = "imperial")
     imperial("imperial");
 
     /**
@@ -68,4 +68,5 @@ enum class UnitPreference(val value: kotlin.String) {
         }
     }
 }
+
 
