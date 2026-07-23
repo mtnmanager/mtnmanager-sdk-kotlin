@@ -28,6 +28,7 @@ import io.kotlintest.specs.ShouldSpec
 
 import com.mtnmanager.sdk.models.AppReport
 import com.mtnmanager.sdk.models.Amenity
+import com.mtnmanager.sdk.models.AppConfig
 import com.mtnmanager.sdk.models.Lift
 import com.mtnmanager.sdk.models.MobileAppBanner
 import com.mtnmanager.sdk.models.OperatingHours
@@ -46,6 +47,12 @@ class AppReportTest : ShouldSpec() {
     init {
         // uncomment below to create an instance of AppReport
         //val modelInstance = AppReport()
+
+        // to test the property `config` - App-level configuration: the resort's hosted base URL and cache-busting  metadata for statically shipped assets.
+        should("test config") {
+            // uncomment below to test the property
+            //modelInstance.config shouldBe ("TODO")
+        }
 
         // to test the property `resort`
         should("test resort") {

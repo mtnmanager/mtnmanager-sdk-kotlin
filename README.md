@@ -72,6 +72,7 @@ All URIs are relative to *https://your-resort.mtnmanager.com*
  - [com.mtnmanager.sdk.models.AmenityCalendarEntry](docs/AmenityCalendarEntry.md)
  - [com.mtnmanager.sdk.models.AmenityCategory](docs/AmenityCategory.md)
  - [com.mtnmanager.sdk.models.AmenitySchedule](docs/AmenitySchedule.md)
+ - [com.mtnmanager.sdk.models.AppConfig](docs/AppConfig.md)
  - [com.mtnmanager.sdk.models.AppReport](docs/AppReport.md)
  - [com.mtnmanager.sdk.models.CalendarDay](docs/CalendarDay.md)
  - [com.mtnmanager.sdk.models.ClosureReason](docs/ClosureReason.md)

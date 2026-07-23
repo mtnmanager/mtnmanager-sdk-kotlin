@@ -24,6 +24,7 @@
 package com.mtnmanager.sdk.models
 
 import com.mtnmanager.sdk.models.Amenity
+import com.mtnmanager.sdk.models.AppConfig
 import com.mtnmanager.sdk.models.Lift
 import com.mtnmanager.sdk.models.MobileAppBanner
 import com.mtnmanager.sdk.models.OperatingHours
@@ -50,6 +51,7 @@ import kotlinx.serialization.encoding.Encoder
 /**
  * The aggregated report built for the mobile apps: every domain of the full  report inlined directly, plus the amenities list, trail-map summaries, and  mobile-app banners — all from a single request. Requires the `MobileApp`  entitlement; feature-gated sections (trail maps) come back empty rather than  erroring.
  *
+ * @param config App-level configuration: the resort's hosted base URL and cache-busting  metadata for statically shipped assets.
  * @param resort 
  * @param status 
  * @param snow Provides current snow conditions including base depth, surface conditions,  and snowfall totals in both metric and imperial units.   May contain multiple, representing different reporting areas.
@@ -68,6 +70,10 @@ import kotlinx.serialization.encoding.Encoder
 @Serializable
 
 data class AppReport (
+
+    /* App-level configuration: the resort's hosted base URL and cache-busting  metadata for statically shipped assets. */
+    @SerialName(value = "config")
+    val config: AppConfig,
 
     @SerialName(value = "resort")
     val resort: ResortInfo,
