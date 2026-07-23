@@ -58,6 +58,7 @@ All URIs are relative to *https://your-resort.mtnmanager.com*
 | *MtnManagerApi* | [**getSummerTrails**](docs/MtnManagerApi.md#getsummertrails) | **GET** /api/v1/report/summer-trails | Get summer trails |
 | *MtnManagerApi* | [**getTerrainParks**](docs/MtnManagerApi.md#getterrainparks) | **GET** /api/v1/report/terrain-parks | Get terrain parks |
 | *MtnManagerApi* | [**getTrailMap**](docs/MtnManagerApi.md#gettrailmap) | **GET** /api/v1/report/trail-map/{uuid} | Get trail map |
+| *MtnManagerApi* | [**getTrailMapStatic**](docs/MtnManagerApi.md#gettrailmapstatic) | **GET** /api/v1/report/trail-map/{uuid}/static/{version} | Get static trail map |
 | *MtnManagerApi* | [**getTrailMaps**](docs/MtnManagerApi.md#gettrailmaps) | **GET** /api/v1/report/trail-maps | Get trail maps |
 | *MtnManagerApi* | [**getWeather**](docs/MtnManagerApi.md#getweather) | **GET** /api/v1/report/weather | Get weather |
 | *MtnManagerApi* | [**getWebcamHistory**](docs/MtnManagerApi.md#getwebcamhistory) | **GET** /api/v1/report/webcam/{uuid}/history | Get webcam history |
@@ -88,6 +89,7 @@ All URIs are relative to *https://your-resort.mtnmanager.com*
  - [com.mtnmanager.sdk.models.GeoBounds](docs/GeoBounds.md)
  - [com.mtnmanager.sdk.models.GeoControlPoint](docs/GeoControlPoint.md)
  - [com.mtnmanager.sdk.models.GeoPoint](docs/GeoPoint.md)
+ - [com.mtnmanager.sdk.models.GeometryMode](docs/GeometryMode.md)
  - [com.mtnmanager.sdk.models.HourlyForecast](docs/HourlyForecast.md)
  - [com.mtnmanager.sdk.models.HourlyForecastImperial](docs/HourlyForecastImperial.md)
  - [com.mtnmanager.sdk.models.HourlyForecastMetric](docs/HourlyForecastMetric.md)
@@ -136,6 +138,16 @@ All URIs are relative to *https://your-resort.mtnmanager.com*
  - [com.mtnmanager.sdk.models.TrailMapElementOneOf5](docs/TrailMapElementOneOf5.md)
  - [com.mtnmanager.sdk.models.TrailMapElementOneOf6](docs/TrailMapElementOneOf6.md)
  - [com.mtnmanager.sdk.models.TrailMapElementOneOf7](docs/TrailMapElementOneOf7.md)
+ - [com.mtnmanager.sdk.models.TrailMapStatic](docs/TrailMapStatic.md)
+ - [com.mtnmanager.sdk.models.TrailMapStaticElement](docs/TrailMapStaticElement.md)
+ - [com.mtnmanager.sdk.models.TrailMapStaticElementOneOf](docs/TrailMapStaticElementOneOf.md)
+ - [com.mtnmanager.sdk.models.TrailMapStaticElementOneOf1](docs/TrailMapStaticElementOneOf1.md)
+ - [com.mtnmanager.sdk.models.TrailMapStaticElementOneOf2](docs/TrailMapStaticElementOneOf2.md)
+ - [com.mtnmanager.sdk.models.TrailMapStaticElementOneOf3](docs/TrailMapStaticElementOneOf3.md)
+ - [com.mtnmanager.sdk.models.TrailMapStaticElementOneOf4](docs/TrailMapStaticElementOneOf4.md)
+ - [com.mtnmanager.sdk.models.TrailMapStaticElementOneOf5](docs/TrailMapStaticElementOneOf5.md)
+ - [com.mtnmanager.sdk.models.TrailMapStaticElementOneOf6](docs/TrailMapStaticElementOneOf6.md)
+ - [com.mtnmanager.sdk.models.TrailMapStaticPath](docs/TrailMapStaticPath.md)
  - [com.mtnmanager.sdk.models.TrailMapSummary](docs/TrailMapSummary.md)
  - [com.mtnmanager.sdk.models.UnitPreference](docs/UnitPreference.md)
  - [com.mtnmanager.sdk.models.Weather](docs/Weather.md)

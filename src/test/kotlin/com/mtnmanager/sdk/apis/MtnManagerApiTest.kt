@@ -39,6 +39,7 @@ import com.mtnmanager.sdk.models.SnowReport
 import com.mtnmanager.sdk.models.SummerTrail
 import com.mtnmanager.sdk.models.TerrainPark
 import com.mtnmanager.sdk.models.TrailMap
+import com.mtnmanager.sdk.models.TrailMapStatic
 import com.mtnmanager.sdk.models.TrailMapSummary
 import com.mtnmanager.sdk.models.Weather
 import com.mtnmanager.sdk.models.Webcam
@@ -143,6 +144,16 @@ class MtnManagerApiTest : ShouldSpec() {
             //val uuid : kotlin.String = uuid_example // kotlin.String | Resource UUID
             //val acceptLanguage : kotlin.String = fr-CA // kotlin.String | Preferred language and optional region for human-readable strings in the response (e.g. operating hours summaries). Supports `en`, `fr`, `de`, `it`, and `es`, with optional region tags such as `fr-CA` or `de-CH`. Defaults to English when omitted or unsupported.
             //val result : TrailMap = apiInstance.getTrailMap(uuid, acceptLanguage)
+            //result shouldBe ("TODO")
+        }
+
+        // to test getTrailMapStatic
+        should("test getTrailMapStatic") {
+            // uncomment below to test getTrailMapStatic
+            //val uuid : kotlin.String = uuid_example // kotlin.String | Trail map UUID
+            //val version : kotlin.Long = 789 // kotlin.Long | The map version being requested (from `TrailMapSummary.version`)
+            //val acceptLanguage : kotlin.String = fr-CA // kotlin.String | Preferred language and optional region for human-readable strings in the response (e.g. operating hours summaries). Supports `en`, `fr`, `de`, `it`, and `es`, with optional region tags such as `fr-CA` or `de-CH`. Defaults to English when omitted or unsupported.
+            //val result : TrailMapStatic = apiInstance.getTrailMapStatic(uuid, version, acceptLanguage)
             //result shouldBe ("TODO")
         }
 

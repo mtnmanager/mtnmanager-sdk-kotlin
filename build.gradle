@@ -1,5 +1,5 @@
 group 'com.mtnmanager'
-version '1.7.4'
+version '1.7.5'
 
 wrapper {
     gradleVersion = '8.14.3'
@@ -70,7 +70,7 @@ publishing {
         maven(MavenPublication) {
             groupId = 'com.mtnmanager'
             artifactId = 'mtnmanager-sdk'
-            version = '1.7.4'
+            version = '1.7.5'
             from components.java
         }
     }

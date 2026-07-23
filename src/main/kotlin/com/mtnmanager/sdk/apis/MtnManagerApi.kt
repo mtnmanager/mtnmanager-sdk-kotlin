@@ -39,6 +39,7 @@ import com.mtnmanager.sdk.models.SnowReport
 import com.mtnmanager.sdk.models.SummerTrail
 import com.mtnmanager.sdk.models.TerrainPark
 import com.mtnmanager.sdk.models.TrailMap
+import com.mtnmanager.sdk.models.TrailMapStatic
 import com.mtnmanager.sdk.models.TrailMapSummary
 import com.mtnmanager.sdk.models.Weather
 import com.mtnmanager.sdk.models.Webcam
@@ -954,6 +955,86 @@ open class MtnManagerApi(basePath: kotlin.String = defaultBasePath, client: Call
         return RequestConfig(
             method = RequestMethod.GET,
             path = "/api/v1/report/trail-map/{uuid}".replace("{"+"uuid"+"}", encodeURIComponent(uuid.toString())),
+            query = localVariableQuery,
+            headers = localVariableHeaders,
+            requiresAuthentication = false,
+            body = localVariableBody
+        )
+    }
+
+    /**
+     * GET /api/v1/report/trail-map/{uuid}/static/{version}
+     * Get static trail map
+     * 
+     * @param uuid Trail map UUID
+     * @param version The map version being requested (from &#x60;TrailMapSummary.version&#x60;)
+     * @param acceptLanguage Preferred language and optional region for human-readable strings in the response (e.g. operating hours summaries). Supports &#x60;en&#x60;, &#x60;fr&#x60;, &#x60;de&#x60;, &#x60;it&#x60;, and &#x60;es&#x60;, with optional region tags such as &#x60;fr-CA&#x60; or &#x60;de-CH&#x60;. Defaults to English when omitted or unsupported. (optional)
+     * @return TrailMapStatic
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     * @throws UnsupportedOperationException If the API returns an informational or redirection response
+     * @throws ClientException If the API returns a client error response
+     * @throws ServerException If the API returns a server error response
+     */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    fun getTrailMapStatic(uuid: kotlin.String, version: kotlin.Long, acceptLanguage: kotlin.String? = null) : TrailMapStatic {
+        val localVarResponse = getTrailMapStaticWithHttpInfo(uuid = uuid, version = version, acceptLanguage = acceptLanguage)
+
+        return when (localVarResponse.responseType) {
+            ResponseType.Success -> (localVarResponse as Success<*>).data as TrailMapStatic
+            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
+            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
+            ResponseType.ClientError -> {
+                val localVarError = localVarResponse as ClientError<*>
+                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+            ResponseType.ServerError -> {
+                val localVarError = localVarResponse as ServerError<*>
+                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()} ${localVarError.body}", localVarError.statusCode, localVarResponse)
+            }
+        }
+    }
+
+    /**
+     * GET /api/v1/report/trail-map/{uuid}/static/{version}
+     * Get static trail map
+     * 
+     * @param uuid Trail map UUID
+     * @param version The map version being requested (from &#x60;TrailMapSummary.version&#x60;)
+     * @param acceptLanguage Preferred language and optional region for human-readable strings in the response (e.g. operating hours summaries). Supports &#x60;en&#x60;, &#x60;fr&#x60;, &#x60;de&#x60;, &#x60;it&#x60;, and &#x60;es&#x60;, with optional region tags such as &#x60;fr-CA&#x60; or &#x60;de-CH&#x60;. Defaults to English when omitted or unsupported. (optional)
+     * @return ApiResponse<TrailMapStatic?>
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(IllegalStateException::class, IOException::class)
+    fun getTrailMapStaticWithHttpInfo(uuid: kotlin.String, version: kotlin.Long, acceptLanguage: kotlin.String?) : ApiResponse<TrailMapStatic?> {
+        val localVariableConfig = getTrailMapStaticRequestConfig(uuid = uuid, version = version, acceptLanguage = acceptLanguage)
+
+        return request<Unit, TrailMapStatic>(
+            localVariableConfig
+        )
+    }
+
+    /**
+     * To obtain the request config of the operation getTrailMapStatic
+     *
+     * @param uuid Trail map UUID
+     * @param version The map version being requested (from &#x60;TrailMapSummary.version&#x60;)
+     * @param acceptLanguage Preferred language and optional region for human-readable strings in the response (e.g. operating hours summaries). Supports &#x60;en&#x60;, &#x60;fr&#x60;, &#x60;de&#x60;, &#x60;it&#x60;, and &#x60;es&#x60;, with optional region tags such as &#x60;fr-CA&#x60; or &#x60;de-CH&#x60;. Defaults to English when omitted or unsupported. (optional)
+     * @return RequestConfig
+     */
+    fun getTrailMapStaticRequestConfig(uuid: kotlin.String, version: kotlin.Long, acceptLanguage: kotlin.String?) : RequestConfig<Unit> {
+        val localVariableBody = null
+        val localVariableQuery: MultiValueMap = mutableMapOf()
+        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+        acceptLanguage?.apply { localVariableHeaders["Accept-Language"] = this.toString() }
+        localVariableHeaders["Accept"] = "application/json"
+
+        return RequestConfig(
+            method = RequestMethod.GET,
+            path = "/api/v1/report/trail-map/{uuid}/static/{version}".replace("{"+"uuid"+"}", encodeURIComponent(uuid.toString())).replace("{"+"version"+"}", encodeURIComponent(version.toString())),
             query = localVariableQuery,
             headers = localVariableHeaders,
             requiresAuthentication = false,

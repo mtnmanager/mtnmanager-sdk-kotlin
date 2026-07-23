@@ -16,6 +16,7 @@ All URIs are relative to *https://your-resort.mtnmanager.com*
 | [**getSummerTrails**](MtnManagerApi.md#getSummerTrails) | **GET** /api/v1/report/summer-trails | Get summer trails |
 | [**getTerrainParks**](MtnManagerApi.md#getTerrainParks) | **GET** /api/v1/report/terrain-parks | Get terrain parks |
 | [**getTrailMap**](MtnManagerApi.md#getTrailMap) | **GET** /api/v1/report/trail-map/{uuid} | Get trail map |
+| [**getTrailMapStatic**](MtnManagerApi.md#getTrailMapStatic) | **GET** /api/v1/report/trail-map/{uuid}/static/{version} | Get static trail map |
 | [**getTrailMaps**](MtnManagerApi.md#getTrailMaps) | **GET** /api/v1/report/trail-maps | Get trail maps |
 | [**getWeather**](MtnManagerApi.md#getWeather) | **GET** /api/v1/report/weather | Get weather |
 | [**getWebcamHistory**](MtnManagerApi.md#getWebcamHistory) | **GET** /api/v1/report/webcam/{uuid}/history | Get webcam history |
@@ -542,6 +543,54 @@ try {
 ### Return type
 
 [**TrailMap**](TrailMap.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+<a id="getTrailMapStatic"></a>
+# **getTrailMapStatic**
+> TrailMapStatic getTrailMapStatic(uuid, version, acceptLanguage)
+
+Get static trail map
+
+### Example
+```kotlin
+// Import classes:
+//import com.mtnmanager.sdk.infrastructure.*
+//import com.mtnmanager.sdk.models.*
+
+val apiInstance = MtnManagerApi()
+val uuid : kotlin.String = uuid_example // kotlin.String | Trail map UUID
+val version : kotlin.Long = 789 // kotlin.Long | The map version being requested (from `TrailMapSummary.version`)
+val acceptLanguage : kotlin.String = fr-CA // kotlin.String | Preferred language and optional region for human-readable strings in the response (e.g. operating hours summaries). Supports `en`, `fr`, `de`, `it`, and `es`, with optional region tags such as `fr-CA` or `de-CH`. Defaults to English when omitted or unsupported.
+try {
+    val result : TrailMapStatic = apiInstance.getTrailMapStatic(uuid, version, acceptLanguage)
+    println(result)
+} catch (e: ClientException) {
+    println("4xx response calling MtnManagerApi#getTrailMapStatic")
+    e.printStackTrace()
+} catch (e: ServerException) {
+    println("5xx response calling MtnManagerApi#getTrailMapStatic")
+    e.printStackTrace()
+}
+```
+
+### Parameters
+| **uuid** | **kotlin.String**| Trail map UUID | |
+| **version** | **kotlin.Long**| The map version being requested (from &#x60;TrailMapSummary.version&#x60;) | |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **acceptLanguage** | **kotlin.String**| Preferred language and optional region for human-readable strings in the response (e.g. operating hours summaries). Supports &#x60;en&#x60;, &#x60;fr&#x60;, &#x60;de&#x60;, &#x60;it&#x60;, and &#x60;es&#x60;, with optional region tags such as &#x60;fr-CA&#x60; or &#x60;de-CH&#x60;. Defaults to English when omitted or unsupported. | [optional] |
+
+### Return type
+
+[**TrailMapStatic**](TrailMapStatic.md)
 
 ### Authorization
 
