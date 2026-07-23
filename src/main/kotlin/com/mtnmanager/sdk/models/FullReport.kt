@@ -38,6 +38,11 @@ import com.mtnmanager.sdk.models.Webcam
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Contextual
+import kotlinx.serialization.KSerializer
+import kotlinx.serialization.Serializer
+import kotlinx.serialization.builtins.serializer
+import kotlinx.serialization.encoding.Decoder
+import kotlinx.serialization.encoding.Encoder
 
 /**
  * The all-in-one endpoint containing the full report — resort information, current status,  runs, lifts, snow, terrain parks, summer trails, hours, and weather.

@@ -26,14 +26,19 @@ package com.mtnmanager.sdk.models
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.KSerializer
+import kotlinx.serialization.Serializer
+import kotlinx.serialization.builtins.serializer
+import kotlinx.serialization.encoding.Decoder
+import kotlinx.serialization.encoding.Encoder
 
 
 /**
  * Industry-standard letter codes describing snow surface conditions.
  *
- * Values: BS,CO,FG,HP,IP,IS,LG,MG,P,PP,SC,TC,V,WG,WP
+ * Values: BS,CO,FG,HP,IP,IS,LG,MG,P,PP,SC,TC,V,WG,WP,unknown_default_open_api
  */
-@Serializable
+@Serializable(with = SurfaceConditionSerializer::class)
 enum class SurfaceCondition(val value: kotlin.String) {
 
     @SerialName(value = "BS")
@@ -79,7 +84,10 @@ enum class SurfaceCondition(val value: kotlin.String) {
     WG("WG"),
 
     @SerialName(value = "WP")
-    WP("WP");
+    WP("WP"),
+
+    @SerialName(value = "unknown_default_open_api")
+    unknown_default_open_api("unknown_default_open_api");
 
     /**
      * Override [toString()] to avoid using the enum variable name as the value, and instead use
@@ -105,6 +113,20 @@ enum class SurfaceCondition(val value: kotlin.String) {
             it == value || normalizedData == "$value".lowercase()
           }
         }
+    }
+}
+
+internal object SurfaceConditionSerializer : KSerializer<SurfaceCondition> {
+    override val descriptor = kotlin.String.serializer().descriptor
+
+    override fun deserialize(decoder: Decoder): SurfaceCondition {
+        val value = decoder.decodeSerializableValue(kotlin.String.serializer())
+        return SurfaceCondition.entries.firstOrNull { it.value == value }
+            ?: SurfaceCondition.unknown_default_open_api
+    }
+
+    override fun serialize(encoder: Encoder, value: SurfaceCondition) {
+        encoder.encodeSerializableValue(kotlin.String.serializer(), value.value)
     }
 }
 

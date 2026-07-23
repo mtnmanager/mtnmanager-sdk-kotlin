@@ -26,14 +26,19 @@ package com.mtnmanager.sdk.models
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.KSerializer
+import kotlinx.serialization.Serializer
+import kotlinx.serialization.builtins.serializer
+import kotlinx.serialization.encoding.Decoder
+import kotlinx.serialization.encoding.Encoder
 
 
 /**
  * Category classification for amenities
  *
- * Values: restaurant,coffee,bar,tubing,ski_school,rental_shop,daycare,ticketing,lodge,hotel,lockers,retail,other
+ * Values: restaurant,coffee,bar,tubing,ski_school,rental_shop,daycare,ticketing,lodge,hotel,lockers,retail,other,unknown_default_open_api
  */
-@Serializable
+@Serializable(with = AmenityCategorySerializer::class)
 enum class AmenityCategory(val value: kotlin.String) {
 
     @SerialName(value = "restaurant")
@@ -73,7 +78,10 @@ enum class AmenityCategory(val value: kotlin.String) {
     retail("retail"),
 
     @SerialName(value = "other")
-    other("other");
+    other("other"),
+
+    @SerialName(value = "unknown_default_open_api")
+    unknown_default_open_api("unknown_default_open_api");
 
     /**
      * Override [toString()] to avoid using the enum variable name as the value, and instead use
@@ -99,6 +107,20 @@ enum class AmenityCategory(val value: kotlin.String) {
             it == value || normalizedData == "$value".lowercase()
           }
         }
+    }
+}
+
+internal object AmenityCategorySerializer : KSerializer<AmenityCategory> {
+    override val descriptor = kotlin.String.serializer().descriptor
+
+    override fun deserialize(decoder: Decoder): AmenityCategory {
+        val value = decoder.decodeSerializableValue(kotlin.String.serializer())
+        return AmenityCategory.entries.firstOrNull { it.value == value }
+            ?: AmenityCategory.unknown_default_open_api
+    }
+
+    override fun serialize(encoder: Encoder, value: AmenityCategory) {
+        encoder.encodeSerializableValue(kotlin.String.serializer(), value.value)
     }
 }
 

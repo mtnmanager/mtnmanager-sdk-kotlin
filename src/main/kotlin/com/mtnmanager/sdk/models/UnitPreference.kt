@@ -26,21 +26,29 @@ package com.mtnmanager.sdk.models
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.KSerializer
+import kotlinx.serialization.Serializer
+import kotlinx.serialization.builtins.serializer
+import kotlinx.serialization.encoding.Decoder
+import kotlinx.serialization.encoding.Encoder
 
 
 /**
  * Unit preference (cm/in, km/miles, etc.)
  *
- * Values: metric,imperial
+ * Values: metric,imperial,unknown_default_open_api
  */
-@Serializable
+@Serializable(with = UnitPreferenceSerializer::class)
 enum class UnitPreference(val value: kotlin.String) {
 
     @SerialName(value = "metric")
     metric("metric"),
 
     @SerialName(value = "imperial")
-    imperial("imperial");
+    imperial("imperial"),
+
+    @SerialName(value = "unknown_default_open_api")
+    unknown_default_open_api("unknown_default_open_api");
 
     /**
      * Override [toString()] to avoid using the enum variable name as the value, and instead use
@@ -66,6 +74,20 @@ enum class UnitPreference(val value: kotlin.String) {
             it == value || normalizedData == "$value".lowercase()
           }
         }
+    }
+}
+
+internal object UnitPreferenceSerializer : KSerializer<UnitPreference> {
+    override val descriptor = kotlin.String.serializer().descriptor
+
+    override fun deserialize(decoder: Decoder): UnitPreference {
+        val value = decoder.decodeSerializableValue(kotlin.String.serializer())
+        return UnitPreference.entries.firstOrNull { it.value == value }
+            ?: UnitPreference.unknown_default_open_api
+    }
+
+    override fun serialize(encoder: Encoder, value: UnitPreference) {
+        encoder.encodeSerializableValue(kotlin.String.serializer(), value.value)
     }
 }
 

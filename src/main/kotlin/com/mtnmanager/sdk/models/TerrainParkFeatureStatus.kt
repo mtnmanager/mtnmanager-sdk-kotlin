@@ -26,14 +26,19 @@ package com.mtnmanager.sdk.models
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.KSerializer
+import kotlinx.serialization.Serializer
+import kotlinx.serialization.builtins.serializer
+import kotlinx.serialization.encoding.Decoder
+import kotlinx.serialization.encoding.Encoder
 
 
 /**
  * Operational status of a terrain park feature.
  *
- * Values: `open`,closed,unknown
+ * Values: `open`,closed,unknown,unknown_default_open_api
  */
-@Serializable
+@Serializable(with = TerrainParkFeatureStatusSerializer::class)
 enum class TerrainParkFeatureStatus(val value: kotlin.String) {
 
     @SerialName(value = "open")
@@ -43,7 +48,10 @@ enum class TerrainParkFeatureStatus(val value: kotlin.String) {
     closed("closed"),
 
     @SerialName(value = "unknown")
-    unknown("unknown");
+    unknown("unknown"),
+
+    @SerialName(value = "unknown_default_open_api")
+    unknown_default_open_api("unknown_default_open_api");
 
     /**
      * Override [toString()] to avoid using the enum variable name as the value, and instead use
@@ -69,6 +77,20 @@ enum class TerrainParkFeatureStatus(val value: kotlin.String) {
             it == value || normalizedData == "$value".lowercase()
           }
         }
+    }
+}
+
+internal object TerrainParkFeatureStatusSerializer : KSerializer<TerrainParkFeatureStatus> {
+    override val descriptor = kotlin.String.serializer().descriptor
+
+    override fun deserialize(decoder: Decoder): TerrainParkFeatureStatus {
+        val value = decoder.decodeSerializableValue(kotlin.String.serializer())
+        return TerrainParkFeatureStatus.entries.firstOrNull { it.value == value }
+            ?: TerrainParkFeatureStatus.unknown_default_open_api
+    }
+
+    override fun serialize(encoder: Encoder, value: TerrainParkFeatureStatus) {
+        encoder.encodeSerializableValue(kotlin.String.serializer(), value.value)
     }
 }
 

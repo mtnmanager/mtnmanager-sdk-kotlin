@@ -27,6 +27,11 @@ package com.mtnmanager.sdk.models
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Contextual
+import kotlinx.serialization.KSerializer
+import kotlinx.serialization.Serializer
+import kotlinx.serialization.builtins.serializer
+import kotlinx.serialization.encoding.Decoder
+import kotlinx.serialization.encoding.Encoder
 
 /**
  * A single image attached to a resort entity, with a client-supplied ThumbHash  for rendering a blurred placeholder while the full image loads.

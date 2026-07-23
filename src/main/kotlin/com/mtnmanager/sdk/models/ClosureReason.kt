@@ -26,14 +26,19 @@ package com.mtnmanager.sdk.models
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.KSerializer
+import kotlinx.serialization.Serializer
+import kotlinx.serialization.builtins.serializer
+import kotlinx.serialization.encoding.Decoder
+import kotlinx.serialization.encoding.Encoder
 
 
 /**
  * Reason for unexpected closure
  *
- * Values: extreme_cold,high_winds,snow_conditions,mechanical_issues
+ * Values: extreme_cold,high_winds,snow_conditions,mechanical_issues,unknown_default_open_api
  */
-@Serializable
+@Serializable(with = ClosureReasonSerializer::class)
 enum class ClosureReason(val value: kotlin.String) {
 
     @SerialName(value = "extreme_cold")
@@ -46,7 +51,10 @@ enum class ClosureReason(val value: kotlin.String) {
     snow_conditions("snow_conditions"),
 
     @SerialName(value = "mechanical_issues")
-    mechanical_issues("mechanical_issues");
+    mechanical_issues("mechanical_issues"),
+
+    @SerialName(value = "unknown_default_open_api")
+    unknown_default_open_api("unknown_default_open_api");
 
     /**
      * Override [toString()] to avoid using the enum variable name as the value, and instead use
@@ -72,6 +80,20 @@ enum class ClosureReason(val value: kotlin.String) {
             it == value || normalizedData == "$value".lowercase()
           }
         }
+    }
+}
+
+internal object ClosureReasonSerializer : KSerializer<ClosureReason> {
+    override val descriptor = kotlin.String.serializer().descriptor
+
+    override fun deserialize(decoder: Decoder): ClosureReason {
+        val value = decoder.decodeSerializableValue(kotlin.String.serializer())
+        return ClosureReason.entries.firstOrNull { it.value == value }
+            ?: ClosureReason.unknown_default_open_api
+    }
+
+    override fun serialize(encoder: Encoder, value: ClosureReason) {
+        encoder.encodeSerializableValue(kotlin.String.serializer(), value.value)
     }
 }
 

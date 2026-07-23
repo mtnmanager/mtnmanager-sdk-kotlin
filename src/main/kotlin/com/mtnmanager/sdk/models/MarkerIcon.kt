@@ -26,14 +26,19 @@ package com.mtnmanager.sdk.models
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.KSerializer
+import kotlinx.serialization.Serializer
+import kotlinx.serialization.builtins.serializer
+import kotlinx.serialization.encoding.Decoder
+import kotlinx.serialization.encoding.Encoder
 
 
 /**
  * 
  *
- * Values: restaurant,coffee,bar,water,ski_school,rental_shop,tubing,daycare,ticketing,lodge,hotel,restroom,lockers,first_aid,parking,bus,info,help,phone,retail,atm,star,webcam
+ * Values: restaurant,coffee,bar,water,ski_school,rental_shop,tubing,daycare,ticketing,lodge,hotel,restroom,lockers,first_aid,parking,bus,info,help,phone,retail,atm,star,webcam,unknown_default_open_api
  */
-@Serializable
+@Serializable(with = MarkerIconSerializer::class)
 enum class MarkerIcon(val value: kotlin.String) {
 
     @SerialName(value = "restaurant")
@@ -103,7 +108,10 @@ enum class MarkerIcon(val value: kotlin.String) {
     star("star"),
 
     @SerialName(value = "webcam")
-    webcam("webcam");
+    webcam("webcam"),
+
+    @SerialName(value = "unknown_default_open_api")
+    unknown_default_open_api("unknown_default_open_api");
 
     /**
      * Override [toString()] to avoid using the enum variable name as the value, and instead use
@@ -129,6 +137,20 @@ enum class MarkerIcon(val value: kotlin.String) {
             it == value || normalizedData == "$value".lowercase()
           }
         }
+    }
+}
+
+internal object MarkerIconSerializer : KSerializer<MarkerIcon> {
+    override val descriptor = kotlin.String.serializer().descriptor
+
+    override fun deserialize(decoder: Decoder): MarkerIcon {
+        val value = decoder.decodeSerializableValue(kotlin.String.serializer())
+        return MarkerIcon.entries.firstOrNull { it.value == value }
+            ?: MarkerIcon.unknown_default_open_api
+    }
+
+    override fun serialize(encoder: Encoder, value: MarkerIcon) {
+        encoder.encodeSerializableValue(kotlin.String.serializer(), value.value)
     }
 }
 

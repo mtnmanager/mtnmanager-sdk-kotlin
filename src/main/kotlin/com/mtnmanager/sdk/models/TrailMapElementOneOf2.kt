@@ -29,6 +29,11 @@ import com.mtnmanager.sdk.models.TerrainPark
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Contextual
+import kotlinx.serialization.KSerializer
+import kotlinx.serialization.Serializer
+import kotlinx.serialization.builtins.serializer
+import kotlinx.serialization.encoding.Decoder
+import kotlinx.serialization.encoding.Encoder
 
 /**
  * 
@@ -67,11 +72,26 @@ data class TrailMapElementOneOf2 (
     /**
      * 
      *
-     * Values: terrain_park
+     * Values: terrain_park,unknown_default_open_api
      */
-    @Serializable
+    @Serializable(with = TypeSerializer::class)
     enum class Type(val value: kotlin.String) {
-        @SerialName(value = "terrain_park") terrain_park("terrain_park");
+        @SerialName(value = "terrain_park") terrain_park("terrain_park"),
+        @SerialName(value = "unknown_default_open_api") unknown_default_open_api("unknown_default_open_api");
+    }
+
+    internal object TypeSerializer : KSerializer<Type> {
+        override val descriptor = kotlin.String.serializer().descriptor
+
+        override fun deserialize(decoder: Decoder): Type {
+            val value = decoder.decodeSerializableValue(kotlin.String.serializer())
+            return Type.entries.firstOrNull { it.value == value }
+                ?: Type.unknown_default_open_api
+        }
+
+        override fun serialize(encoder: Encoder, value: Type) {
+            encoder.encodeSerializableValue(kotlin.String.serializer(), value.value)
+        }
     }
 
 }

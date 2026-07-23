@@ -26,21 +26,29 @@ package com.mtnmanager.sdk.models
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.KSerializer
+import kotlinx.serialization.Serializer
+import kotlinx.serialization.builtins.serializer
+import kotlinx.serialization.encoding.Decoder
+import kotlinx.serialization.encoding.Encoder
 
 
 /**
  * Current operational status of the resort.
  *
- * Values: `open`,closed
+ * Values: `open`,closed,unknown_default_open_api
  */
-@Serializable
+@Serializable(with = ResortStatusSerializer::class)
 enum class ResortStatus(val value: kotlin.String) {
 
     @SerialName(value = "open")
     `open`("open"),
 
     @SerialName(value = "closed")
-    closed("closed");
+    closed("closed"),
+
+    @SerialName(value = "unknown_default_open_api")
+    unknown_default_open_api("unknown_default_open_api");
 
     /**
      * Override [toString()] to avoid using the enum variable name as the value, and instead use
@@ -66,6 +74,20 @@ enum class ResortStatus(val value: kotlin.String) {
             it == value || normalizedData == "$value".lowercase()
           }
         }
+    }
+}
+
+internal object ResortStatusSerializer : KSerializer<ResortStatus> {
+    override val descriptor = kotlin.String.serializer().descriptor
+
+    override fun deserialize(decoder: Decoder): ResortStatus {
+        val value = decoder.decodeSerializableValue(kotlin.String.serializer())
+        return ResortStatus.entries.firstOrNull { it.value == value }
+            ?: ResortStatus.unknown_default_open_api
+    }
+
+    override fun serialize(encoder: Encoder, value: ResortStatus) {
+        encoder.encodeSerializableValue(kotlin.String.serializer(), value.value)
     }
 }
 

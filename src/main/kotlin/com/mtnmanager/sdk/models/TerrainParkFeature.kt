@@ -31,6 +31,11 @@ import com.mtnmanager.sdk.models.TerrainParkFeatureStatus
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Contextual
+import kotlinx.serialization.KSerializer
+import kotlinx.serialization.Serializer
+import kotlinx.serialization.builtins.serializer
+import kotlinx.serialization.encoding.Decoder
+import kotlinx.serialization.encoding.Encoder
 
 /**
  * Represents a single feature within a terrain park (jump, box, rail, etc.)  with its current status and size rating.

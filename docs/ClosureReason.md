@@ -12,5 +12,7 @@
 
     * `mechanical_issues` (value: `"mechanical_issues"`)
 
+    * `unknown_default_open_api` (value: `"unknown_default_open_api"`)
+
 
 

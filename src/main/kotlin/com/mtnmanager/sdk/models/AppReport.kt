@@ -41,6 +41,11 @@ import com.mtnmanager.sdk.models.Webcam
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Contextual
+import kotlinx.serialization.KSerializer
+import kotlinx.serialization.Serializer
+import kotlinx.serialization.builtins.serializer
+import kotlinx.serialization.encoding.Decoder
+import kotlinx.serialization.encoding.Encoder
 
 /**
  * The aggregated report built for the mobile apps: every domain of the full  report inlined directly, plus the amenities list, trail-map summaries, and  mobile-app banners — all from a single request. Requires the `MobileApp`  entitlement; feature-gated sections (trail maps) come back empty rather than  erroring.

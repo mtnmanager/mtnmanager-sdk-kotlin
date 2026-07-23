@@ -26,14 +26,19 @@ package com.mtnmanager.sdk.models
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.KSerializer
+import kotlinx.serialization.Serializer
+import kotlinx.serialization.builtins.serializer
+import kotlinx.serialization.encoding.Decoder
+import kotlinx.serialization.encoding.Encoder
 
 
 /**
  * Difficulty rating for a summer trail.
  *
- * Values: beginner,intermediate,advanced,expert
+ * Values: beginner,intermediate,advanced,expert,unknown_default_open_api
  */
-@Serializable
+@Serializable(with = SummerTrailDifficultySerializer::class)
 enum class SummerTrailDifficulty(val value: kotlin.String) {
 
     @SerialName(value = "beginner")
@@ -46,7 +51,10 @@ enum class SummerTrailDifficulty(val value: kotlin.String) {
     advanced("advanced"),
 
     @SerialName(value = "expert")
-    expert("expert");
+    expert("expert"),
+
+    @SerialName(value = "unknown_default_open_api")
+    unknown_default_open_api("unknown_default_open_api");
 
     /**
      * Override [toString()] to avoid using the enum variable name as the value, and instead use
@@ -72,6 +80,20 @@ enum class SummerTrailDifficulty(val value: kotlin.String) {
             it == value || normalizedData == "$value".lowercase()
           }
         }
+    }
+}
+
+internal object SummerTrailDifficultySerializer : KSerializer<SummerTrailDifficulty> {
+    override val descriptor = kotlin.String.serializer().descriptor
+
+    override fun deserialize(decoder: Decoder): SummerTrailDifficulty {
+        val value = decoder.decodeSerializableValue(kotlin.String.serializer())
+        return SummerTrailDifficulty.entries.firstOrNull { it.value == value }
+            ?: SummerTrailDifficulty.unknown_default_open_api
+    }
+
+    override fun serialize(encoder: Encoder, value: SummerTrailDifficulty) {
+        encoder.encodeSerializableValue(kotlin.String.serializer(), value.value)
     }
 }
 

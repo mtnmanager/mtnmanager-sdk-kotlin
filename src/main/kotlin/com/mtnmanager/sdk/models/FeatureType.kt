@@ -26,14 +26,19 @@ package com.mtnmanager.sdk.models
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.KSerializer
+import kotlinx.serialization.Serializer
+import kotlinx.serialization.builtins.serializer
+import kotlinx.serialization.encoding.Decoder
+import kotlinx.serialization.encoding.Encoder
 
 
 /**
  * Type of terrain park feature.
  *
- * Values: jump,box,rail,other
+ * Values: jump,box,rail,other,unknown_default_open_api
  */
-@Serializable
+@Serializable(with = FeatureTypeSerializer::class)
 enum class FeatureType(val value: kotlin.String) {
 
     @SerialName(value = "jump")
@@ -46,7 +51,10 @@ enum class FeatureType(val value: kotlin.String) {
     rail("rail"),
 
     @SerialName(value = "other")
-    other("other");
+    other("other"),
+
+    @SerialName(value = "unknown_default_open_api")
+    unknown_default_open_api("unknown_default_open_api");
 
     /**
      * Override [toString()] to avoid using the enum variable name as the value, and instead use
@@ -72,6 +80,20 @@ enum class FeatureType(val value: kotlin.String) {
             it == value || normalizedData == "$value".lowercase()
           }
         }
+    }
+}
+
+internal object FeatureTypeSerializer : KSerializer<FeatureType> {
+    override val descriptor = kotlin.String.serializer().descriptor
+
+    override fun deserialize(decoder: Decoder): FeatureType {
+        val value = decoder.decodeSerializableValue(kotlin.String.serializer())
+        return FeatureType.entries.firstOrNull { it.value == value }
+            ?: FeatureType.unknown_default_open_api
+    }
+
+    override fun serialize(encoder: Encoder, value: FeatureType) {
+        encoder.encodeSerializableValue(kotlin.String.serializer(), value.value)
     }
 }
 

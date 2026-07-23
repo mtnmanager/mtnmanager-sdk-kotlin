@@ -30,6 +30,11 @@ import com.mtnmanager.sdk.models.TerrainParkStatus
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Contextual
+import kotlinx.serialization.KSerializer
+import kotlinx.serialization.Serializer
+import kotlinx.serialization.builtins.serializer
+import kotlinx.serialization.encoding.Decoder
+import kotlinx.serialization.encoding.Encoder
 
 /**
  * Represents a terrain park at the resort with its current status,  condition notes, and list of features (jumps, boxes, rails, etc.) within it.

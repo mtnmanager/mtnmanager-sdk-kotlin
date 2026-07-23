@@ -28,6 +28,11 @@ import com.mtnmanager.sdk.models.AmenityCategory
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Contextual
+import kotlinx.serialization.KSerializer
+import kotlinx.serialization.Serializer
+import kotlinx.serialization.builtins.serializer
+import kotlinx.serialization.encoding.Decoder
+import kotlinx.serialization.encoding.Encoder
 
 /**
  * Amenity entry within a CalendarDay, showing per-amenity hours for a specific date.

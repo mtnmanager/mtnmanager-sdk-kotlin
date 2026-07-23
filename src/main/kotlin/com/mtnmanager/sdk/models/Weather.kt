@@ -30,6 +30,11 @@ import com.mtnmanager.sdk.models.HourlyForecast
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Contextual
+import kotlinx.serialization.KSerializer
+import kotlinx.serialization.Serializer
+import kotlinx.serialization.builtins.serializer
+import kotlinx.serialization.encoding.Decoder
+import kotlinx.serialization.encoding.Encoder
 
 /**
  * Current and forecasted weather conditions for the resort's location.  Only included/available if the weather feature is enabled and GPS coordinates are configured.

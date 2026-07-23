@@ -26,21 +26,29 @@ package com.mtnmanager.sdk.models
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.KSerializer
+import kotlinx.serialization.Serializer
+import kotlinx.serialization.builtins.serializer
+import kotlinx.serialization.encoding.Decoder
+import kotlinx.serialization.encoding.Encoder
 
 
 /**
  * 
  *
- * Values: hiking,mountain_biking
+ * Values: hiking,mountain_biking,unknown_default_open_api
  */
-@Serializable
+@Serializable(with = SummerTrailTypeSerializer::class)
 enum class SummerTrailType(val value: kotlin.String) {
 
     @SerialName(value = "hiking")
     hiking("hiking"),
 
     @SerialName(value = "mountain_biking")
-    mountain_biking("mountain_biking");
+    mountain_biking("mountain_biking"),
+
+    @SerialName(value = "unknown_default_open_api")
+    unknown_default_open_api("unknown_default_open_api");
 
     /**
      * Override [toString()] to avoid using the enum variable name as the value, and instead use
@@ -66,6 +74,20 @@ enum class SummerTrailType(val value: kotlin.String) {
             it == value || normalizedData == "$value".lowercase()
           }
         }
+    }
+}
+
+internal object SummerTrailTypeSerializer : KSerializer<SummerTrailType> {
+    override val descriptor = kotlin.String.serializer().descriptor
+
+    override fun deserialize(decoder: Decoder): SummerTrailType {
+        val value = decoder.decodeSerializableValue(kotlin.String.serializer())
+        return SummerTrailType.entries.firstOrNull { it.value == value }
+            ?: SummerTrailType.unknown_default_open_api
+    }
+
+    override fun serialize(encoder: Encoder, value: SummerTrailType) {
+        encoder.encodeSerializableValue(kotlin.String.serializer(), value.value)
     }
 }
 

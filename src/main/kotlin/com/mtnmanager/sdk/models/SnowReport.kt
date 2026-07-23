@@ -29,6 +29,11 @@ import com.mtnmanager.sdk.models.SurfaceCondition
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Contextual
+import kotlinx.serialization.KSerializer
+import kotlinx.serialization.Serializer
+import kotlinx.serialization.builtins.serializer
+import kotlinx.serialization.encoding.Decoder
+import kotlinx.serialization.encoding.Encoder
 
 /**
  * Provides current snow conditions for a specific area or the entire resort,  including base depth, surface conditions, and snowfall totals in both  metric and imperial units.

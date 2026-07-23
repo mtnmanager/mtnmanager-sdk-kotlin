@@ -27,6 +27,11 @@ package com.mtnmanager.sdk.models
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Contextual
+import kotlinx.serialization.KSerializer
+import kotlinx.serialization.Serializer
+import kotlinx.serialization.builtins.serializer
+import kotlinx.serialization.encoding.Decoder
+import kotlinx.serialization.encoding.Encoder
 
 /**
  * A public webcam entry. Consumers pick `latest` (always the newest frame) or  `latest-daylight` (the last daylight frame, never a black night shot)  depending on whether they want the freshest or a guaranteed-lit image.

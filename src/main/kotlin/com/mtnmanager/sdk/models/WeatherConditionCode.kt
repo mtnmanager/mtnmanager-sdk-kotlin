@@ -26,14 +26,19 @@ package com.mtnmanager.sdk.models
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.KSerializer
+import kotlinx.serialization.Serializer
+import kotlinx.serialization.builtins.serializer
+import kotlinx.serialization.encoding.Decoder
+import kotlinx.serialization.encoding.Encoder
 
 
 /**
  * Weather condition code
  *
- * Values: Clear,Cloudy,Foggy,Haze,MostlyClear,MostlyCloudy,PartlyCloudy,Smoky,BlowingDust,Breezy,Windy,Drizzle,HeavyRain,IsolatedThunderstorms,Rain,SunShowers,ScatteredThunderstorms,StrongStorms,Thunderstorms,Frigid,Hail,Hot,Flurries,Sleet,Snow,SunFlurries,WintryMix,Blizzard,BlowingSnow,FreezingDrizzle,FreezingRain,HeavySnow,Hurricane,TropicalStorm,Unknown
+ * Values: Clear,Cloudy,Foggy,Haze,MostlyClear,MostlyCloudy,PartlyCloudy,Smoky,BlowingDust,Breezy,Windy,Drizzle,HeavyRain,IsolatedThunderstorms,Rain,SunShowers,ScatteredThunderstorms,StrongStorms,Thunderstorms,Frigid,Hail,Hot,Flurries,Sleet,Snow,SunFlurries,WintryMix,Blizzard,BlowingSnow,FreezingDrizzle,FreezingRain,HeavySnow,Hurricane,TropicalStorm,Unknown,unknown_default_open_api
  */
-@Serializable
+@Serializable(with = WeatherConditionCodeSerializer::class)
 enum class WeatherConditionCode(val value: kotlin.String) {
 
     @SerialName(value = "Clear")
@@ -139,7 +144,10 @@ enum class WeatherConditionCode(val value: kotlin.String) {
     TropicalStorm("TropicalStorm"),
 
     @SerialName(value = "Unknown")
-    Unknown("Unknown");
+    Unknown("Unknown"),
+
+    @SerialName(value = "unknown_default_open_api")
+    unknown_default_open_api("unknown_default_open_api");
 
     /**
      * Override [toString()] to avoid using the enum variable name as the value, and instead use
@@ -165,6 +173,20 @@ enum class WeatherConditionCode(val value: kotlin.String) {
             it == value || normalizedData == "$value".lowercase()
           }
         }
+    }
+}
+
+internal object WeatherConditionCodeSerializer : KSerializer<WeatherConditionCode> {
+    override val descriptor = kotlin.String.serializer().descriptor
+
+    override fun deserialize(decoder: Decoder): WeatherConditionCode {
+        val value = decoder.decodeSerializableValue(kotlin.String.serializer())
+        return WeatherConditionCode.entries.firstOrNull { it.value == value }
+            ?: WeatherConditionCode.unknown_default_open_api
+    }
+
+    override fun serialize(encoder: Encoder, value: WeatherConditionCode) {
+        encoder.encodeSerializableValue(kotlin.String.serializer(), value.value)
     }
 }
 

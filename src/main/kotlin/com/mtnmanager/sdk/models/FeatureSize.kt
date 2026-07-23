@@ -26,14 +26,19 @@ package com.mtnmanager.sdk.models
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.KSerializer
+import kotlinx.serialization.Serializer
+import kotlinx.serialization.builtins.serializer
+import kotlinx.serialization.encoding.Decoder
+import kotlinx.serialization.encoding.Encoder
 
 
 /**
  * Size rating of terrain park feature.
  *
- * Values: s,m,l,xl
+ * Values: s,m,l,xl,unknown_default_open_api
  */
-@Serializable
+@Serializable(with = FeatureSizeSerializer::class)
 enum class FeatureSize(val value: kotlin.String) {
 
     @SerialName(value = "s")
@@ -46,7 +51,10 @@ enum class FeatureSize(val value: kotlin.String) {
     l("l"),
 
     @SerialName(value = "xl")
-    xl("xl");
+    xl("xl"),
+
+    @SerialName(value = "unknown_default_open_api")
+    unknown_default_open_api("unknown_default_open_api");
 
     /**
      * Override [toString()] to avoid using the enum variable name as the value, and instead use
@@ -72,6 +80,20 @@ enum class FeatureSize(val value: kotlin.String) {
             it == value || normalizedData == "$value".lowercase()
           }
         }
+    }
+}
+
+internal object FeatureSizeSerializer : KSerializer<FeatureSize> {
+    override val descriptor = kotlin.String.serializer().descriptor
+
+    override fun deserialize(decoder: Decoder): FeatureSize {
+        val value = decoder.decodeSerializableValue(kotlin.String.serializer())
+        return FeatureSize.entries.firstOrNull { it.value == value }
+            ?: FeatureSize.unknown_default_open_api
+    }
+
+    override fun serialize(encoder: Encoder, value: FeatureSize) {
+        encoder.encodeSerializableValue(kotlin.String.serializer(), value.value)
     }
 }
 

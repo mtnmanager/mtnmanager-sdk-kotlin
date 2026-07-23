@@ -26,14 +26,19 @@ package com.mtnmanager.sdk.models
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.KSerializer
+import kotlinx.serialization.Serializer
+import kotlinx.serialization.builtins.serializer
+import kotlinx.serialization.encoding.Decoder
+import kotlinx.serialization.encoding.Encoder
 
 
 /**
  * Operational status of a ski lift.
  *
- * Values: `open`,closed,on_hold,unknown
+ * Values: `open`,closed,on_hold,unknown,unknown_default_open_api
  */
-@Serializable
+@Serializable(with = LiftStatusSerializer::class)
 enum class LiftStatus(val value: kotlin.String) {
 
     @SerialName(value = "open")
@@ -46,7 +51,10 @@ enum class LiftStatus(val value: kotlin.String) {
     on_hold("on_hold"),
 
     @SerialName(value = "unknown")
-    unknown("unknown");
+    unknown("unknown"),
+
+    @SerialName(value = "unknown_default_open_api")
+    unknown_default_open_api("unknown_default_open_api");
 
     /**
      * Override [toString()] to avoid using the enum variable name as the value, and instead use
@@ -72,6 +80,20 @@ enum class LiftStatus(val value: kotlin.String) {
             it == value || normalizedData == "$value".lowercase()
           }
         }
+    }
+}
+
+internal object LiftStatusSerializer : KSerializer<LiftStatus> {
+    override val descriptor = kotlin.String.serializer().descriptor
+
+    override fun deserialize(decoder: Decoder): LiftStatus {
+        val value = decoder.decodeSerializableValue(kotlin.String.serializer())
+        return LiftStatus.entries.firstOrNull { it.value == value }
+            ?: LiftStatus.unknown_default_open_api
+    }
+
+    override fun serialize(encoder: Encoder, value: LiftStatus) {
+        encoder.encodeSerializableValue(kotlin.String.serializer(), value.value)
     }
 }
 

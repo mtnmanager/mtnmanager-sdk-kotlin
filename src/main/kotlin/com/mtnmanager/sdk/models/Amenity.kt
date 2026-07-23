@@ -30,6 +30,11 @@ import com.mtnmanager.sdk.models.Schedule
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Contextual
+import kotlinx.serialization.KSerializer
+import kotlinx.serialization.Serializer
+import kotlinx.serialization.builtins.serializer
+import kotlinx.serialization.encoding.Decoder
+import kotlinx.serialization.encoding.Encoder
 
 /**
  * Represents an amenity at the resort (e.g. lodge, restaurant, ski school)  with its category, description, website, and hours.

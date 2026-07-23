@@ -26,14 +26,19 @@ package com.mtnmanager.sdk.models
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.KSerializer
+import kotlinx.serialization.Serializer
+import kotlinx.serialization.builtins.serializer
+import kotlinx.serialization.encoding.Decoder
+import kotlinx.serialization.encoding.Encoder
 
 
 /**
  * 
  *
- * Values: Sunday,Monday,Tuesday,Wednesday,Thursday,Friday,Saturday
+ * Values: Sunday,Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,unknown_default_open_api
  */
-@Serializable
+@Serializable(with = DayOfWeekSerializer::class)
 enum class DayOfWeek(val value: kotlin.String) {
 
     @SerialName(value = "Sunday")
@@ -55,7 +60,10 @@ enum class DayOfWeek(val value: kotlin.String) {
     Friday("Friday"),
 
     @SerialName(value = "Saturday")
-    Saturday("Saturday");
+    Saturday("Saturday"),
+
+    @SerialName(value = "unknown_default_open_api")
+    unknown_default_open_api("unknown_default_open_api");
 
     /**
      * Override [toString()] to avoid using the enum variable name as the value, and instead use
@@ -81,6 +89,20 @@ enum class DayOfWeek(val value: kotlin.String) {
             it == value || normalizedData == "$value".lowercase()
           }
         }
+    }
+}
+
+internal object DayOfWeekSerializer : KSerializer<DayOfWeek> {
+    override val descriptor = kotlin.String.serializer().descriptor
+
+    override fun deserialize(decoder: Decoder): DayOfWeek {
+        val value = decoder.decodeSerializableValue(kotlin.String.serializer())
+        return DayOfWeek.entries.firstOrNull { it.value == value }
+            ?: DayOfWeek.unknown_default_open_api
+    }
+
+    override fun serialize(encoder: Encoder, value: DayOfWeek) {
+        encoder.encodeSerializableValue(kotlin.String.serializer(), value.value)
     }
 }
 

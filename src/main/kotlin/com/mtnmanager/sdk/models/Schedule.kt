@@ -28,6 +28,11 @@ import com.mtnmanager.sdk.models.DayOfWeek
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Contextual
+import kotlinx.serialization.KSerializer
+import kotlinx.serialization.Serializer
+import kotlinx.serialization.builtins.serializer
+import kotlinx.serialization.encoding.Decoder
+import kotlinx.serialization.encoding.Encoder
 
 /**
  * Recurring schedule pattern with human-readable and machine-readable formats.   Describes a regular operating schedule (e.g., \"Weekends 10am-4pm\") with  both formatted strings for display and structured data for programmatic use.

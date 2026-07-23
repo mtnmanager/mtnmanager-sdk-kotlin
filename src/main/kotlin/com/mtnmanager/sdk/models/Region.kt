@@ -26,21 +26,29 @@ package com.mtnmanager.sdk.models
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.KSerializer
+import kotlinx.serialization.Serializer
+import kotlinx.serialization.builtins.serializer
+import kotlinx.serialization.encoding.Decoder
+import kotlinx.serialization.encoding.Encoder
 
 
 /**
  * Region for an account
  *
- * Values: na,eu
+ * Values: na,eu,unknown_default_open_api
  */
-@Serializable
+@Serializable(with = RegionSerializer::class)
 enum class Region(val value: kotlin.String) {
 
     @SerialName(value = "na")
     na("na"),
 
     @SerialName(value = "eu")
-    eu("eu");
+    eu("eu"),
+
+    @SerialName(value = "unknown_default_open_api")
+    unknown_default_open_api("unknown_default_open_api");
 
     /**
      * Override [toString()] to avoid using the enum variable name as the value, and instead use
@@ -66,6 +74,20 @@ enum class Region(val value: kotlin.String) {
             it == value || normalizedData == "$value".lowercase()
           }
         }
+    }
+}
+
+internal object RegionSerializer : KSerializer<Region> {
+    override val descriptor = kotlin.String.serializer().descriptor
+
+    override fun deserialize(decoder: Decoder): Region {
+        val value = decoder.decodeSerializableValue(kotlin.String.serializer())
+        return Region.entries.firstOrNull { it.value == value }
+            ?: Region.unknown_default_open_api
+    }
+
+    override fun serialize(encoder: Encoder, value: Region) {
+        encoder.encodeSerializableValue(kotlin.String.serializer(), value.value)
     }
 }
 
