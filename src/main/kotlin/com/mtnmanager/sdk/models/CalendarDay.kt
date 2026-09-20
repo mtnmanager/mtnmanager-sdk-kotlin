@@ -35,6 +35,7 @@ import kotlinx.serialization.Serializer
 import kotlinx.serialization.builtins.serializer
 import kotlinx.serialization.encoding.Decoder
 import kotlinx.serialization.encoding.Encoder
+import com.mtnmanager.sdk.infrastructure.containsUnknownDefaultOpenApiCase
 
 /**
  * Operating hours for a specific calendar date.   Represents the calculated open/close times for a single day, combining  information from recurring schedules and any single-day overrides.
@@ -84,8 +85,20 @@ data class CalendarDay (
     @SerialName(value = "amenities")
     val amenities: kotlin.collections.List<AmenityCalendarEntry>? = null
 
-) {
+) : com.mtnmanager.sdk.infrastructure.UnknownCaseCheckable {
 
+
+    /**
+     * True when any enum property (or enum item of an array property) of this model
+     * holds the synthetic unknown default case that unknown enum values are mapped
+     * to during deserialization.
+     */
+    override val containsUnknownDefaultOpenApiCase: kotlin.Boolean
+        get() {
+            if (dayOfWeek.containsUnknownDefaultOpenApiCase()) return true
+            if (closureReason.containsUnknownDefaultOpenApiCase()) return true
+            return false
+        }
 
 }
 

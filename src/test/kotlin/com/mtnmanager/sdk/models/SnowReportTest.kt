@@ -41,12 +41,6 @@ class SnowReportTest : ShouldSpec() {
             //modelInstance.uuid shouldBe ("TODO")
         }
 
-        // to test the property `conditionNotes` - Additional notes about current snow conditions, e.g. groomer's notes
-        should("test conditionNotes") {
-            // uncomment below to test the property
-            //modelInstance.conditionNotes shouldBe ("TODO")
-        }
-
         // to test the property `snowfallCm` - Snowfall accumulation metrics in centimeters.
         should("test snowfallCm") {
             // uncomment below to test the property

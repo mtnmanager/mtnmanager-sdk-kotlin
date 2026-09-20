@@ -39,7 +39,7 @@ import kotlinx.serialization.encoding.Encoder
  * Values: restaurant,coffee,bar,tubing,ski_school,rental_shop,daycare,ticketing,lodge,hotel,lockers,retail,other,unknown_default_open_api
  */
 @Serializable(with = AmenityCategorySerializer::class)
-enum class AmenityCategory(val value: kotlin.String) {
+enum class AmenityCategory(val value: kotlin.String) : com.mtnmanager.sdk.infrastructure.UnknownCaseCheckable {
 
     @SerialName(value = "restaurant")
     restaurant("restaurant"),
@@ -91,6 +91,13 @@ enum class AmenityCategory(val value: kotlin.String) {
      * the client sends the correct enum values to the server always.
      */
     override fun toString(): kotlin.String = value
+
+    /**
+     * True when this value is the synthetic unknown default case that unknown
+     * enum values are mapped to during deserialization.
+     */
+    override val containsUnknownDefaultOpenApiCase: kotlin.Boolean
+        get() = this == unknown_default_open_api
 
     companion object {
         /**

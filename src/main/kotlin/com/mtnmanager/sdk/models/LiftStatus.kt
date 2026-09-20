@@ -39,7 +39,7 @@ import kotlinx.serialization.encoding.Encoder
  * Values: `open`,closed,on_hold,unknown,unknown_default_open_api
  */
 @Serializable(with = LiftStatusSerializer::class)
-enum class LiftStatus(val value: kotlin.String) {
+enum class LiftStatus(val value: kotlin.String) : com.mtnmanager.sdk.infrastructure.UnknownCaseCheckable {
 
     @SerialName(value = "open")
     `open`("open"),
@@ -64,6 +64,13 @@ enum class LiftStatus(val value: kotlin.String) {
      * the client sends the correct enum values to the server always.
      */
     override fun toString(): kotlin.String = value
+
+    /**
+     * True when this value is the synthetic unknown default case that unknown
+     * enum values are mapped to during deserialization.
+     */
+    override val containsUnknownDefaultOpenApiCase: kotlin.Boolean
+        get() = this == unknown_default_open_api
 
     companion object {
         /**

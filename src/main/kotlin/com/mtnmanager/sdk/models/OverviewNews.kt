@@ -34,27 +34,42 @@ import kotlinx.serialization.encoding.Decoder
 import kotlinx.serialization.encoding.Encoder
 
 /**
- * Written news — daily update, announcements, etc.
+ * Written news — daily update, announcements, etc.   A resort can publish its news in several languages. The one served is the  best match for the request's `Accept-Language` header among them, falling  back to the resort's primary language when nothing matches or the match has  no news.
  *
- * @param raw Raw Markdown source.
- * @param html Rendered HTML (from Markdown).
+ * @param uuid Stable identifier of this news feed.
+ * @param isPrimary Whether this is the resort's primary news feed. Exactly one news is.
+ * @param raw Markdown source. Images the resort uploaded point at their public URLs,  so any Markdown renderer can display them.
+ * @param html Rendered HTML (from Markdown)
  * @param updatedAt When the news was last updated.
+ * @param name The name the resort gave this news feed, for telling several apart.  May be `null` on the primary news feed.
  */
 @Serializable
 
 data class OverviewNews (
 
-    /* Raw Markdown source. */
+    /* Stable identifier of this news feed. */
+    @SerialName(value = "uuid")
+    val uuid: kotlin.String,
+
+    /* Whether this is the resort's primary news feed. Exactly one news is. */
+    @SerialName(value = "is_primary")
+    val isPrimary: kotlin.Boolean,
+
+    /* Markdown source. Images the resort uploaded point at their public URLs,  so any Markdown renderer can display them. */
     @SerialName(value = "raw")
     val raw: kotlin.String,
 
-    /* Rendered HTML (from Markdown). */
+    /* Rendered HTML (from Markdown) */
     @SerialName(value = "html")
     val html: kotlin.String,
 
     /* When the news was last updated. */
     @Contextual @SerialName(value = "updated_at")
-    val updatedAt: java.time.OffsetDateTime
+    val updatedAt: java.time.OffsetDateTime,
+
+    /* The name the resort gave this news feed, for telling several apart.  May be `null` on the primary news feed. */
+    @SerialName(value = "name")
+    val name: kotlin.String? = null
 
 ) {
 

@@ -39,13 +39,14 @@ import kotlinx.serialization.Serializer
 import kotlinx.serialization.builtins.serializer
 import kotlinx.serialization.encoding.Decoder
 import kotlinx.serialization.encoding.Encoder
+import com.mtnmanager.sdk.infrastructure.containsUnknownDefaultOpenApiCase
 
 /**
  * Provides a snapshot of the resort's current operational state including  today's scheduled hours (calculated from operating hour rules), run/lift  overview counts, the current season, and written news.
  *
  * @param status Current operational status of the resort (open or closed).  This is calculated based on the current time relative to today's scheduled hours.
  * @param season Current operating season (winter, summer, or closed/off-season).
- * @param news Written news — daily update, announcements, etc.
+ * @param news Written news — daily update, announcements, etc. The resort's primary  news comes first, followed by any others it publishes, in the order they  were added. News with nothing written is still listed, with empty  `raw` and `html`.
  * @param runs Run statistics: counts, acres, and last-updated timestamp.
  * @param lifts Lift statistics: counts and last-updated timestamp.
  * @param summerTrails Summer trail statistics: counts and last-updated timestamp.
@@ -65,9 +66,9 @@ data class Overview (
     @Contextual @SerialName(value = "season")
     val season: SeasonType,
 
-    /* Written news — daily update, announcements, etc. */
+    /* Written news — daily update, announcements, etc. The resort's primary  news comes first, followed by any others it publishes, in the order they  were added. News with nothing written is still listed, with empty  `raw` and `html`. */
     @SerialName(value = "news")
-    val news: OverviewNews,
+    val news: kotlin.collections.List<OverviewNews>,
 
     /* Run statistics: counts, acres, and last-updated timestamp. */
     @SerialName(value = "runs")
@@ -93,8 +94,20 @@ data class Overview (
     @SerialName(value = "closes_at")
     val closesAt: kotlin.String? = null
 
-) {
+) : com.mtnmanager.sdk.infrastructure.UnknownCaseCheckable {
 
+
+    /**
+     * True when any enum property (or enum item of an array property) of this model
+     * holds the synthetic unknown default case that unknown enum values are mapped
+     * to during deserialization.
+     */
+    override val containsUnknownDefaultOpenApiCase: kotlin.Boolean
+        get() {
+            if (status.containsUnknownDefaultOpenApiCase()) return true
+            if (season.containsUnknownDefaultOpenApiCase()) return true
+            return false
+        }
 
 }
 

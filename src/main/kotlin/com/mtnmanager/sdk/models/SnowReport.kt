@@ -34,12 +34,12 @@ import kotlinx.serialization.Serializer
 import kotlinx.serialization.builtins.serializer
 import kotlinx.serialization.encoding.Decoder
 import kotlinx.serialization.encoding.Encoder
+import com.mtnmanager.sdk.infrastructure.containsUnknownDefaultOpenApiCase
 
 /**
  * Provides current snow conditions for a specific area or the entire resort,  including base depth, surface conditions, and snowfall totals in both  metric and imperial units.
  *
  * @param uuid Unique identifier for this snow report.
- * @param conditionNotes Additional notes about current snow conditions, e.g. groomer's notes
  * @param snowfallCm Snowfall accumulation metrics in centimeters.
  * @param snowfallIn Snowfall accumulation metrics in inches.
  * @param reportedAt When this snow report was last updated.
@@ -58,10 +58,6 @@ data class SnowReport (
     /* Unique identifier for this snow report. */
     @SerialName(value = "uuid")
     val uuid: kotlin.String,
-
-    /* Additional notes about current snow conditions, e.g. groomer's notes */
-    @SerialName(value = "condition_notes")
-    val conditionNotes: kotlin.String,
 
     /* Snowfall accumulation metrics in centimeters. */
     @SerialName(value = "snowfall_cm")
@@ -103,8 +99,20 @@ data class SnowReport (
     @Contextual @SerialName(value = "secondary_surface_condition")
     val secondarySurfaceCondition: SurfaceCondition? = null
 
-) {
+) : com.mtnmanager.sdk.infrastructure.UnknownCaseCheckable {
 
+
+    /**
+     * True when any enum property (or enum item of an array property) of this model
+     * holds the synthetic unknown default case that unknown enum values are mapped
+     * to during deserialization.
+     */
+    override val containsUnknownDefaultOpenApiCase: kotlin.Boolean
+        get() {
+            if (surfaceCondition.containsUnknownDefaultOpenApiCase()) return true
+            if (secondarySurfaceCondition.containsUnknownDefaultOpenApiCase()) return true
+            return false
+        }
 
 }
 

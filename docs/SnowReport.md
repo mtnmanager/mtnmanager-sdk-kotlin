@@ -5,7 +5,6 @@
 | Name | Type | Description | Notes |
 | ------------ | ------------- | ------------- | ------------- |
 | **uuid** | **kotlin.String** | Unique identifier for this snow report. |  |
-| **conditionNotes** | **kotlin.String** | Additional notes about current snow conditions, e.g. groomer&#39;s notes |  |
 | **snowfallCm** | [**SnowMetrics**](SnowMetrics.md) | Snowfall accumulation metrics in centimeters. |  |
 | **snowfallIn** | [**SnowMetrics**](SnowMetrics.md) | Snowfall accumulation metrics in inches. |  |
 | **reportedAt** | [**java.time.OffsetDateTime**](java.time.OffsetDateTime.md) | When this snow report was last updated. |  |

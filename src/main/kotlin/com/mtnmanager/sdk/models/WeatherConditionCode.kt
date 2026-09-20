@@ -39,7 +39,7 @@ import kotlinx.serialization.encoding.Encoder
  * Values: Clear,Cloudy,Foggy,Haze,MostlyClear,MostlyCloudy,PartlyCloudy,Smoky,BlowingDust,Breezy,Windy,Drizzle,HeavyRain,IsolatedThunderstorms,Rain,SunShowers,ScatteredThunderstorms,StrongStorms,Thunderstorms,Frigid,Hail,Hot,Flurries,Sleet,Snow,SunFlurries,WintryMix,Blizzard,BlowingSnow,FreezingDrizzle,FreezingRain,HeavySnow,Hurricane,TropicalStorm,Unknown,unknown_default_open_api
  */
 @Serializable(with = WeatherConditionCodeSerializer::class)
-enum class WeatherConditionCode(val value: kotlin.String) {
+enum class WeatherConditionCode(val value: kotlin.String) : com.mtnmanager.sdk.infrastructure.UnknownCaseCheckable {
 
     @SerialName(value = "Clear")
     Clear("Clear"),
@@ -157,6 +157,13 @@ enum class WeatherConditionCode(val value: kotlin.String) {
      * the client sends the correct enum values to the server always.
      */
     override fun toString(): kotlin.String = value
+
+    /**
+     * True when this value is the synthetic unknown default case that unknown
+     * enum values are mapped to during deserialization.
+     */
+    override val containsUnknownDefaultOpenApiCase: kotlin.Boolean
+        get() = this == unknown_default_open_api
 
     companion object {
         /**

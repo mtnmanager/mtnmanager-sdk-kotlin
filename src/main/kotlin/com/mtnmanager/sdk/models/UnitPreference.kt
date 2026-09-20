@@ -39,7 +39,7 @@ import kotlinx.serialization.encoding.Encoder
  * Values: metric,imperial,unknown_default_open_api
  */
 @Serializable(with = UnitPreferenceSerializer::class)
-enum class UnitPreference(val value: kotlin.String) {
+enum class UnitPreference(val value: kotlin.String) : com.mtnmanager.sdk.infrastructure.UnknownCaseCheckable {
 
     @SerialName(value = "metric")
     metric("metric"),
@@ -58,6 +58,13 @@ enum class UnitPreference(val value: kotlin.String) {
      * the client sends the correct enum values to the server always.
      */
     override fun toString(): kotlin.String = value
+
+    /**
+     * True when this value is the synthetic unknown default case that unknown
+     * enum values are mapped to during deserialization.
+     */
+    override val containsUnknownDefaultOpenApiCase: kotlin.Boolean
+        get() = this == unknown_default_open_api
 
     companion object {
         /**

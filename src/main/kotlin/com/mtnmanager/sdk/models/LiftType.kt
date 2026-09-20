@@ -39,7 +39,7 @@ import kotlinx.serialization.encoding.Encoder
  * Values: gondola,tram,eight_pack,six_pack,quad,triple,double,magic_carpet,t_bar,platter,rope_tow,funicular,other,unknown_default_open_api
  */
 @Serializable(with = LiftTypeSerializer::class)
-enum class LiftType(val value: kotlin.String) {
+enum class LiftType(val value: kotlin.String) : com.mtnmanager.sdk.infrastructure.UnknownCaseCheckable {
 
     @SerialName(value = "gondola")
     gondola("gondola"),
@@ -91,6 +91,13 @@ enum class LiftType(val value: kotlin.String) {
      * the client sends the correct enum values to the server always.
      */
     override fun toString(): kotlin.String = value
+
+    /**
+     * True when this value is the synthetic unknown default case that unknown
+     * enum values are mapped to during deserialization.
+     */
+    override val containsUnknownDefaultOpenApiCase: kotlin.Boolean
+        get() = this == unknown_default_open_api
 
     companion object {
         /**

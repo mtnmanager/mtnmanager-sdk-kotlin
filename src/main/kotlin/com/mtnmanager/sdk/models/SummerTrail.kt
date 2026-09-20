@@ -36,6 +36,7 @@ import kotlinx.serialization.Serializer
 import kotlinx.serialization.builtins.serializer
 import kotlinx.serialization.encoding.Decoder
 import kotlinx.serialization.encoding.Encoder
+import com.mtnmanager.sdk.infrastructure.containsUnknownDefaultOpenApiCase
 
 /**
  * Represents a single summer trail at the resort with its current status,  type (e.g. hiking, mountain biking), and optional difficulty rating.
@@ -110,8 +111,21 @@ data class SummerTrail (
     @SerialName(value = "images")
     val images: kotlin.collections.List<EntityImage>? = null
 
-) {
+) : com.mtnmanager.sdk.infrastructure.UnknownCaseCheckable {
 
+
+    /**
+     * True when any enum property (or enum item of an array property) of this model
+     * holds the synthetic unknown default case that unknown enum values are mapped
+     * to during deserialization.
+     */
+    override val containsUnknownDefaultOpenApiCase: kotlin.Boolean
+        get() {
+            if (trailType.containsUnknownDefaultOpenApiCase()) return true
+            if (status.containsUnknownDefaultOpenApiCase()) return true
+            if (difficulty.containsUnknownDefaultOpenApiCase()) return true
+            return false
+        }
 
 }
 

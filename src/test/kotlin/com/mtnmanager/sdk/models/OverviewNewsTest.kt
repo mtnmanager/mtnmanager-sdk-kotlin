@@ -33,13 +33,25 @@ class OverviewNewsTest : ShouldSpec() {
         // uncomment below to create an instance of OverviewNews
         //val modelInstance = OverviewNews()
 
-        // to test the property `raw` - Raw Markdown source.
+        // to test the property `uuid` - Stable identifier of this news feed.
+        should("test uuid") {
+            // uncomment below to test the property
+            //modelInstance.uuid shouldBe ("TODO")
+        }
+
+        // to test the property `isPrimary` - Whether this is the resort's primary news feed. Exactly one news is.
+        should("test isPrimary") {
+            // uncomment below to test the property
+            //modelInstance.isPrimary shouldBe ("TODO")
+        }
+
+        // to test the property `raw` - Markdown source. Images the resort uploaded point at their public URLs,  so any Markdown renderer can display them.
         should("test raw") {
             // uncomment below to test the property
             //modelInstance.raw shouldBe ("TODO")
         }
 
-        // to test the property `html` - Rendered HTML (from Markdown).
+        // to test the property `html` - Rendered HTML (from Markdown)
         should("test html") {
             // uncomment below to test the property
             //modelInstance.html shouldBe ("TODO")
@@ -49,6 +61,12 @@ class OverviewNewsTest : ShouldSpec() {
         should("test updatedAt") {
             // uncomment below to test the property
             //modelInstance.updatedAt shouldBe ("TODO")
+        }
+
+        // to test the property `name` - The name the resort gave this news feed, for telling several apart.  May be `null` on the primary news feed.
+        should("test name") {
+            // uncomment below to test the property
+            //modelInstance.name shouldBe ("TODO")
         }
 
     }

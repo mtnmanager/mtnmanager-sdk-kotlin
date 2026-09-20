@@ -34,6 +34,7 @@ import kotlinx.serialization.Serializer
 import kotlinx.serialization.builtins.serializer
 import kotlinx.serialization.encoding.Decoder
 import kotlinx.serialization.encoding.Encoder
+import com.mtnmanager.sdk.infrastructure.containsUnknownDefaultOpenApiCase
 
 /**
  * Represents a parking lot at the resort with its current status and amenities.
@@ -93,8 +94,19 @@ data class ParkingLot (
     @SerialName(value = "images")
     val images: kotlin.collections.List<EntityImage>? = null
 
-) {
+) : com.mtnmanager.sdk.infrastructure.UnknownCaseCheckable {
 
+
+    /**
+     * True when any enum property (or enum item of an array property) of this model
+     * holds the synthetic unknown default case that unknown enum values are mapped
+     * to during deserialization.
+     */
+    override val containsUnknownDefaultOpenApiCase: kotlin.Boolean
+        get() {
+            if (status.containsUnknownDefaultOpenApiCase()) return true
+            return false
+        }
 
 }
 

@@ -33,6 +33,7 @@ import kotlinx.serialization.Serializer
 import kotlinx.serialization.builtins.serializer
 import kotlinx.serialization.encoding.Decoder
 import kotlinx.serialization.encoding.Encoder
+import com.mtnmanager.sdk.infrastructure.containsUnknownDefaultOpenApiCase
 
 /**
  * Amenity entry within a CalendarDay, showing per-amenity hours for a specific date.
@@ -67,8 +68,19 @@ data class AmenityCalendarEntry (
     @SerialName(value = "closes_at")
     val closesAt: kotlin.String? = null
 
-) {
+) : com.mtnmanager.sdk.infrastructure.UnknownCaseCheckable {
 
+
+    /**
+     * True when any enum property (or enum item of an array property) of this model
+     * holds the synthetic unknown default case that unknown enum values are mapped
+     * to during deserialization.
+     */
+    override val containsUnknownDefaultOpenApiCase: kotlin.Boolean
+        get() {
+            if (category.containsUnknownDefaultOpenApiCase()) return true
+            return false
+        }
 
 }
 

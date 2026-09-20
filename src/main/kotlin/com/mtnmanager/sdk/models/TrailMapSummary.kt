@@ -34,6 +34,7 @@ import kotlinx.serialization.Serializer
 import kotlinx.serialization.builtins.serializer
 import kotlinx.serialization.encoding.Decoder
 import kotlinx.serialization.encoding.Encoder
+import com.mtnmanager.sdk.infrastructure.containsUnknownDefaultOpenApiCase
 
 /**
  * Summary metadata for a trail map.
@@ -78,8 +79,19 @@ data class TrailMapSummary (
     @SerialName(value = "geo_bounds")
     val geoBounds: GeoBounds? = null
 
-) {
+) : com.mtnmanager.sdk.infrastructure.UnknownCaseCheckable {
 
+
+    /**
+     * True when any enum property (or enum item of an array property) of this model
+     * holds the synthetic unknown default case that unknown enum values are mapped
+     * to during deserialization.
+     */
+    override val containsUnknownDefaultOpenApiCase: kotlin.Boolean
+        get() {
+            if (season.containsUnknownDefaultOpenApiCase()) return true
+            return false
+        }
 
 }
 

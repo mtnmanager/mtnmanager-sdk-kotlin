@@ -39,7 +39,7 @@ import kotlinx.serialization.encoding.Encoder
  * Values: winter,summer,closed,unknown_default_open_api
  */
 @Serializable(with = SeasonTypeSerializer::class)
-enum class SeasonType(val value: kotlin.String) {
+enum class SeasonType(val value: kotlin.String) : com.mtnmanager.sdk.infrastructure.UnknownCaseCheckable {
 
     @SerialName(value = "winter")
     winter("winter"),
@@ -61,6 +61,13 @@ enum class SeasonType(val value: kotlin.String) {
      * the client sends the correct enum values to the server always.
      */
     override fun toString(): kotlin.String = value
+
+    /**
+     * True when this value is the synthetic unknown default case that unknown
+     * enum values are mapped to during deserialization.
+     */
+    override val containsUnknownDefaultOpenApiCase: kotlin.Boolean
+        get() = this == unknown_default_open_api
 
     companion object {
         /**

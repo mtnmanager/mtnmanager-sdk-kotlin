@@ -52,7 +52,7 @@ class OverviewTest : ShouldSpec() {
             //modelInstance.season shouldBe ("TODO")
         }
 
-        // to test the property `news` - Written news — daily update, announcements, etc.
+        // to test the property `news` - Written news — daily update, announcements, etc. The resort's primary  news comes first, followed by any others it publishes, in the order they  were added. News with nothing written is still listed, with empty  `raw` and `html`.
         should("test news") {
             // uncomment below to test the property
             //modelInstance.news shouldBe ("TODO")

@@ -53,6 +53,7 @@ import kotlinx.serialization.json.JsonPrimitive
 import kotlinx.serialization.json.JsonArray
 import kotlinx.serialization.json.decodeFromJsonElement
 import kotlinx.serialization.json.encodeToJsonElement
+import com.mtnmanager.sdk.infrastructure.containsUnknownDefaultOpenApiCase
 
 /**
  * A positioned trail-map element carrying only static geometry plus a UUID  reference to the entity it represents. Deliberately holds no entity object,  so nothing here changes unless the map's `version` bumps. Clients resolve the  referenced entity (and its live status) from the report by UUID.
@@ -84,6 +85,9 @@ sealed interface TrailMapStaticElement {
     @JvmInline
     value class TrailMapElementOneOf7Value(val value: TrailMapElementOneOf7) : TrailMapStaticElement
 
+    @JvmInline
+    value class UnknownDefaultOpenApi(val value: JsonElement) : TrailMapStaticElement
+
 }
 
 object TrailMapStaticElementSerializer : KSerializer<TrailMapStaticElement> {
@@ -101,6 +105,7 @@ object TrailMapStaticElementSerializer : KSerializer<TrailMapStaticElement> {
             is TrailMapStaticElement.TrailMapStaticElementOneOf5Value -> jsonEncoder.encodeSerializableValue(TrailMapStaticElementOneOf5.serializer(), value.value)
             is TrailMapStaticElement.TrailMapStaticElementOneOf6Value -> jsonEncoder.encodeSerializableValue(TrailMapStaticElementOneOf6.serializer(), value.value)
             is TrailMapStaticElement.TrailMapElementOneOf7Value -> jsonEncoder.encodeSerializableValue(TrailMapElementOneOf7.serializer(), value.value)
+            is TrailMapStaticElement.UnknownDefaultOpenApi -> jsonEncoder.encodeJsonElement(value.value)
         }
     }
 
@@ -113,6 +118,7 @@ object TrailMapStaticElementSerializer : KSerializer<TrailMapStaticElement> {
         if (jsonElement !is JsonPrimitive) {
             try {
                 val instance = jsonDecoder.json.decodeFromJsonElement<TrailMapStaticElementOneOf>(jsonElement)
+                require(!instance.containsUnknownDefaultOpenApiCase()) { "value contains unknown default enum case" }
                 return TrailMapStaticElement.TrailMapStaticElementOneOfValue(instance)
             } catch (e: Exception) {
                 errorMessages.add("Failed to deserialize as TrailMapStaticElementOneOf: ${e.message}")
@@ -121,6 +127,7 @@ object TrailMapStaticElementSerializer : KSerializer<TrailMapStaticElement> {
         if (jsonElement !is JsonPrimitive) {
             try {
                 val instance = jsonDecoder.json.decodeFromJsonElement<TrailMapStaticElementOneOf1>(jsonElement)
+                require(!instance.containsUnknownDefaultOpenApiCase()) { "value contains unknown default enum case" }
                 return TrailMapStaticElement.TrailMapStaticElementOneOf1Value(instance)
             } catch (e: Exception) {
                 errorMessages.add("Failed to deserialize as TrailMapStaticElementOneOf1: ${e.message}")
@@ -129,6 +136,7 @@ object TrailMapStaticElementSerializer : KSerializer<TrailMapStaticElement> {
         if (jsonElement !is JsonPrimitive) {
             try {
                 val instance = jsonDecoder.json.decodeFromJsonElement<TrailMapStaticElementOneOf2>(jsonElement)
+                require(!instance.containsUnknownDefaultOpenApiCase()) { "value contains unknown default enum case" }
                 return TrailMapStaticElement.TrailMapStaticElementOneOf2Value(instance)
             } catch (e: Exception) {
                 errorMessages.add("Failed to deserialize as TrailMapStaticElementOneOf2: ${e.message}")
@@ -137,6 +145,7 @@ object TrailMapStaticElementSerializer : KSerializer<TrailMapStaticElement> {
         if (jsonElement !is JsonPrimitive) {
             try {
                 val instance = jsonDecoder.json.decodeFromJsonElement<TrailMapStaticElementOneOf3>(jsonElement)
+                require(!instance.containsUnknownDefaultOpenApiCase()) { "value contains unknown default enum case" }
                 return TrailMapStaticElement.TrailMapStaticElementOneOf3Value(instance)
             } catch (e: Exception) {
                 errorMessages.add("Failed to deserialize as TrailMapStaticElementOneOf3: ${e.message}")
@@ -145,6 +154,7 @@ object TrailMapStaticElementSerializer : KSerializer<TrailMapStaticElement> {
         if (jsonElement !is JsonPrimitive) {
             try {
                 val instance = jsonDecoder.json.decodeFromJsonElement<TrailMapStaticElementOneOf4>(jsonElement)
+                require(!instance.containsUnknownDefaultOpenApiCase()) { "value contains unknown default enum case" }
                 return TrailMapStaticElement.TrailMapStaticElementOneOf4Value(instance)
             } catch (e: Exception) {
                 errorMessages.add("Failed to deserialize as TrailMapStaticElementOneOf4: ${e.message}")
@@ -153,6 +163,7 @@ object TrailMapStaticElementSerializer : KSerializer<TrailMapStaticElement> {
         if (jsonElement !is JsonPrimitive) {
             try {
                 val instance = jsonDecoder.json.decodeFromJsonElement<TrailMapStaticElementOneOf5>(jsonElement)
+                require(!instance.containsUnknownDefaultOpenApiCase()) { "value contains unknown default enum case" }
                 return TrailMapStaticElement.TrailMapStaticElementOneOf5Value(instance)
             } catch (e: Exception) {
                 errorMessages.add("Failed to deserialize as TrailMapStaticElementOneOf5: ${e.message}")
@@ -161,6 +172,7 @@ object TrailMapStaticElementSerializer : KSerializer<TrailMapStaticElement> {
         if (jsonElement !is JsonPrimitive) {
             try {
                 val instance = jsonDecoder.json.decodeFromJsonElement<TrailMapStaticElementOneOf6>(jsonElement)
+                require(!instance.containsUnknownDefaultOpenApiCase()) { "value contains unknown default enum case" }
                 return TrailMapStaticElement.TrailMapStaticElementOneOf6Value(instance)
             } catch (e: Exception) {
                 errorMessages.add("Failed to deserialize as TrailMapStaticElementOneOf6: ${e.message}")
@@ -169,13 +181,14 @@ object TrailMapStaticElementSerializer : KSerializer<TrailMapStaticElement> {
         if (jsonElement !is JsonPrimitive) {
             try {
                 val instance = jsonDecoder.json.decodeFromJsonElement<TrailMapElementOneOf7>(jsonElement)
+                require(!instance.containsUnknownDefaultOpenApiCase()) { "value contains unknown default enum case" }
                 return TrailMapStaticElement.TrailMapElementOneOf7Value(instance)
             } catch (e: Exception) {
                 errorMessages.add("Failed to deserialize as TrailMapElementOneOf7: ${e.message}")
             }
         }
 
-        throw SerializationException("Cannot deserialize TrailMapStaticElement. Tried: ${errorMessages.joinToString(", ")}")
+        return TrailMapStaticElement.UnknownDefaultOpenApi(jsonElement)
     }
 }
 

@@ -33,6 +33,7 @@ import kotlinx.serialization.Serializer
 import kotlinx.serialization.builtins.serializer
 import kotlinx.serialization.encoding.Decoder
 import kotlinx.serialization.encoding.Encoder
+import com.mtnmanager.sdk.infrastructure.containsUnknownDefaultOpenApiCase
 
 /**
  * 
@@ -74,7 +75,7 @@ data class TrailMapStaticElementOneOf5 (
     @SerialName(value = "group_label")
     val groupLabel: kotlin.String? = null
 
-) {
+) : com.mtnmanager.sdk.infrastructure.UnknownCaseCheckable {
 
     /**
      * 
@@ -82,9 +83,16 @@ data class TrailMapStaticElementOneOf5 (
      * Values: parking_lot_marker,unknown_default_open_api
      */
     @Serializable(with = TypeSerializer::class)
-    enum class Type(val value: kotlin.String) {
+    enum class Type(val value: kotlin.String) : com.mtnmanager.sdk.infrastructure.UnknownCaseCheckable {
         @SerialName(value = "parking_lot_marker") parking_lot_marker("parking_lot_marker"),
         @SerialName(value = "unknown_default_open_api") unknown_default_open_api("unknown_default_open_api");
+
+        /**
+         * True when this value is the synthetic unknown default case that unknown
+         * enum values are mapped to during deserialization.
+         */
+        override val containsUnknownDefaultOpenApiCase: kotlin.Boolean
+            get() = this == unknown_default_open_api
     }
 
     internal object TypeSerializer : KSerializer<Type> {
@@ -100,6 +108,18 @@ data class TrailMapStaticElementOneOf5 (
             encoder.encodeSerializableValue(kotlin.String.serializer(), value.value)
         }
     }
+
+    /**
+     * True when any enum property (or enum item of an array property) of this model
+     * holds the synthetic unknown default case that unknown enum values are mapped
+     * to during deserialization.
+     */
+    override val containsUnknownDefaultOpenApiCase: kotlin.Boolean
+        get() {
+            if (type.containsUnknownDefaultOpenApiCase()) return true
+            if (icon.containsUnknownDefaultOpenApiCase()) return true
+            return false
+        }
 
 }
 
