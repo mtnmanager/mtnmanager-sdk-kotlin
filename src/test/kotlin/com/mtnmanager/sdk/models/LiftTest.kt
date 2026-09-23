@@ -96,6 +96,12 @@ class LiftTest : ShouldSpec() {
             //modelInstance.number shouldBe ("TODO")
         }
 
+        // to test the property `capacity` - Riders per chair or cabin, if available.
+        should("test capacity") {
+            // uncomment below to test the property
+            //modelInstance.capacity shouldBe ("TODO")
+        }
+
         // to test the property `travelTime` - Estimated travel time in minutes.
         should("test travelTime") {
             // uncomment below to test the property

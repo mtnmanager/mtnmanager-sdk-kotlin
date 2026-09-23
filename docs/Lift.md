@@ -14,6 +14,7 @@
 | **status** | [**LiftStatus**](LiftStatus.md) | Current operational status (open, closed, on_hold, or unknown). |  |
 | **updatedAt** | [**java.time.OffsetDateTime**](java.time.OffsetDateTime.md) | When this lift&#39;s information was last updated. |  |
 | **number** | **kotlin.Int** | Optional lift number. |  [optional] |
+| **capacity** | **kotlin.Int** | Riders per chair or cabin, if available. |  [optional] |
 | **travelTime** | **kotlin.Double** | Estimated travel time in minutes. |  [optional] |
 | **lengthFt** | **kotlin.Int** | Length of the lift in feet. |  [optional] |
 | **lengthM** | **kotlin.Int** | Length of the lift in meters. |  [optional] |

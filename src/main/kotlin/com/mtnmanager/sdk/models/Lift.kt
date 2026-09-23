@@ -50,6 +50,7 @@ import com.mtnmanager.sdk.infrastructure.containsUnknownDefaultOpenApiCase
  * @param status Current operational status (open, closed, on_hold, or unknown).
  * @param updatedAt When this lift's information was last updated.
  * @param number Optional lift number.
+ * @param capacity Riders per chair or cabin, if available.
  * @param travelTime Estimated travel time in minutes.
  * @param lengthFt Length of the lift in feet.
  * @param lengthM Length of the lift in meters.
@@ -106,6 +107,10 @@ data class Lift (
     /* Optional lift number. */
     @SerialName(value = "number")
     val number: kotlin.Int? = null,
+
+    /* Riders per chair or cabin, if available. */
+    @SerialName(value = "capacity")
+    val capacity: kotlin.Int? = null,
 
     /* Estimated travel time in minutes. */
     @SerialName(value = "travel_time")

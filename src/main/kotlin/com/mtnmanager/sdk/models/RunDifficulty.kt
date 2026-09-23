@@ -34,7 +34,7 @@ import kotlinx.serialization.encoding.Encoder
 
 
 /**
- * Difficulty rating for a ski run.
+ * Difficulty rating for a ski run. Stored as TEXT in `runs.difficulty`.
  *
  * Values: beginner,intermediate,advanced,expert,terrain_park,unknown_default_open_api
  */

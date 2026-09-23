@@ -34,7 +34,7 @@ import kotlinx.serialization.encoding.Encoder
 
 
 /**
- * Current operational status of the resort.
+ * Whether the resort is open right now, from today's scheduled hours.
  *
  * Values: `open`,closed,unknown_default_open_api
  */
