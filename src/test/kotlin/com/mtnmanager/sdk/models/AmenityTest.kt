@@ -54,6 +54,12 @@ class AmenityTest : ShouldSpec() {
             //modelInstance.name shouldBe ("TODO")
         }
 
+        // to test the property `slug` - URL-friendly name of the amenity.
+        should("test slug") {
+            // uncomment below to test the property
+            //modelInstance.slug shouldBe ("TODO")
+        }
+
         // to test the property `category` - Category classification (e.g. restaurant, lodge, ski_school).
         should("test category") {
             // uncomment below to test the property

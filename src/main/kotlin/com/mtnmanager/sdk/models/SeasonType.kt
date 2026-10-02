@@ -34,7 +34,7 @@ import kotlinx.serialization.encoding.Encoder
 
 
 /**
- * Current operating season of the resort.
+ * A resort's season: winter or summer as its weekly operating hours say  (`OperatingHoursDb::season_type`), or closed outside every season (see  `utils::hours::season_on`).
  *
  * Values: winter,summer,closed,unknown_default_open_api
  */

@@ -7,6 +7,7 @@
 | **description** | **kotlin.String** | Description of the amenity. |  |
 | **uuid** | **kotlin.String** | Unique identifier for the amenity. |  |
 | **name** | **kotlin.String** | Display name of the amenity. |  |
+| **slug** | **kotlin.String** | URL-friendly name of the amenity. |  |
 | **category** | [**AmenityCategory**](AmenityCategory.md) | Category classification (e.g. restaurant, lodge, ski_school). |  |
 | **website** | **kotlin.String** | Website URL for the amenity, if available. |  |
 | **hasOperatingHours** | **kotlin.Boolean** | Whether this amenity reports operating hours. When false, clients should  not expect &#x60;opens_at&#x60;, &#x60;closes_at&#x60;, or &#x60;schedules&#x60; to ever be populated. |  |

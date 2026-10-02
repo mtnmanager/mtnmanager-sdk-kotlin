@@ -34,7 +34,7 @@ import kotlinx.serialization.encoding.Encoder
 
 
 /**
- * Operational status of a ski run. Stored as TEXT in `runs.status`.
+ * Operational status of a ski run.
  *
  * Values: `open`,closed,unknown,unknown_default_open_api
  */

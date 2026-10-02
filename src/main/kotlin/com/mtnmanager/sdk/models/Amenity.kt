@@ -43,6 +43,7 @@ import com.mtnmanager.sdk.infrastructure.containsUnknownDefaultOpenApiCase
  * @param description Description of the amenity.
  * @param uuid Unique identifier for the amenity.
  * @param name Display name of the amenity.
+ * @param slug URL-friendly name of the amenity.
  * @param category Category classification (e.g. restaurant, lodge, ski_school).
  * @param website Website URL for the amenity, if available.
  * @param hasOperatingHours Whether this amenity reports operating hours. When false, clients should  not expect `opens_at`, `closes_at`, or `schedules` to ever be populated.
@@ -66,6 +67,10 @@ data class Amenity (
     /* Display name of the amenity. */
     @SerialName(value = "name")
     val name: kotlin.String,
+
+    /* URL-friendly name of the amenity. */
+    @SerialName(value = "slug")
+    val slug: kotlin.String,
 
     /* Category classification (e.g. restaurant, lodge, ski_school). */
     @Contextual @SerialName(value = "category")

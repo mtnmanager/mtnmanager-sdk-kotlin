@@ -60,6 +60,12 @@ class TerrainParkTest : ShouldSpec() {
             //modelInstance.status shouldBe ("TODO")
         }
 
+        // to test the property `groomedToday` - Whether the terrain park was groomed within the last 24 hours.
+        should("test groomedToday") {
+            // uncomment below to test the property
+            //modelInstance.groomedToday shouldBe ("TODO")
+        }
+
         // to test the property `conditionNotes` - Notes about current conditions in this terrain park.
         should("test conditionNotes") {
             // uncomment below to test the property
@@ -82,6 +88,12 @@ class TerrainParkTest : ShouldSpec() {
         should("test number") {
             // uncomment below to test the property
             //modelInstance.number shouldBe ("TODO")
+        }
+
+        // to test the property `lastGroomed` - When the terrain park was last groomed.  `null` if never groomed, or if the terrain park grooming feature is disabled.
+        should("test lastGroomed") {
+            // uncomment below to test the property
+            //modelInstance.lastGroomed shouldBe ("TODO")
         }
 
         // to test the property `areaUuid` - UUID of the area this terrain park belongs to, if assigned.

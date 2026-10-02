@@ -34,9 +34,9 @@ import kotlinx.serialization.encoding.Encoder
 
 
 /**
- * Difficulty rating for a ski run. Stored as TEXT in `runs.difficulty`.
+ * Difficulty rating for a ski run.
  *
- * Values: beginner,intermediate,advanced,expert,terrain_park,unknown_default_open_api
+ * Values: beginner,intermediate,advanced,expert,unknown_default_open_api
  */
 @Serializable(with = RunDifficultySerializer::class)
 enum class RunDifficulty(val value: kotlin.String) : com.mtnmanager.sdk.infrastructure.UnknownCaseCheckable {
@@ -52,9 +52,6 @@ enum class RunDifficulty(val value: kotlin.String) : com.mtnmanager.sdk.infrastr
 
     @SerialName(value = "expert")
     expert("expert"),
-
-    @SerialName(value = "terrain_park")
-    terrain_park("terrain_park"),
 
     @SerialName(value = "unknown_default_open_api")
     unknown_default_open_api("unknown_default_open_api");
