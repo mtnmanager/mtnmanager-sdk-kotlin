@@ -28,7 +28,9 @@ import com.mtnmanager.sdk.models.OverviewNews
 import com.mtnmanager.sdk.models.OverviewRuns
 import com.mtnmanager.sdk.models.OverviewSummerTrails
 import com.mtnmanager.sdk.models.OverviewTerrainParks
+import com.mtnmanager.sdk.models.PowderAlerts
 import com.mtnmanager.sdk.models.ResortStatus
+import com.mtnmanager.sdk.models.SeasonPeriod
 import com.mtnmanager.sdk.models.SeasonType
 
 import kotlinx.serialization.Serializable
@@ -51,8 +53,11 @@ import com.mtnmanager.sdk.infrastructure.containsUnknownDefaultOpenApiCase
  * @param lifts Lift statistics: counts and last-updated timestamp.
  * @param summerTrails Summer trail statistics: counts and last-updated timestamp.
  * @param terrainParks Terrain park statistics: counts and last-updated timestamp.
+ * @param powderAlerts Guest powder alerts the resort offers, by channel.
  * @param opensAt Today's scheduled opening time in 24-hour format (HH:MM).  `null` if the resort is not scheduled to open today.
  * @param closesAt Today's scheduled closing time in 24-hour format (HH:MM).  `null` if the resort is not scheduled to open today.
+ * @param previousSeason The last season to end before today, from the resort's operating  hours of the past year. `null` if there was none. While `season` is  `closed`, this and `next_season` tell an off-season that just ended a  winter from one leading up to a summer.
+ * @param nextSeason The next season to start after today, from the resort's scheduled  operating hours. `null` if none is scheduled yet.
  */
 @Serializable
 
@@ -86,13 +91,25 @@ data class Overview (
     @SerialName(value = "terrain_parks")
     val terrainParks: OverviewTerrainParks,
 
+    /* Guest powder alerts the resort offers, by channel. */
+    @SerialName(value = "powder_alerts")
+    val powderAlerts: PowderAlerts,
+
     /* Today's scheduled opening time in 24-hour format (HH:MM).  `null` if the resort is not scheduled to open today. */
     @SerialName(value = "opens_at")
     val opensAt: kotlin.String? = null,
 
     /* Today's scheduled closing time in 24-hour format (HH:MM).  `null` if the resort is not scheduled to open today. */
     @SerialName(value = "closes_at")
-    val closesAt: kotlin.String? = null
+    val closesAt: kotlin.String? = null,
+
+    /* The last season to end before today, from the resort's operating  hours of the past year. `null` if there was none. While `season` is  `closed`, this and `next_season` tell an off-season that just ended a  winter from one leading up to a summer. */
+    @SerialName(value = "previous_season")
+    val previousSeason: SeasonPeriod? = null,
+
+    /* The next season to start after today, from the resort's scheduled  operating hours. `null` if none is scheduled yet. */
+    @SerialName(value = "next_season")
+    val nextSeason: SeasonPeriod? = null
 
 ) : com.mtnmanager.sdk.infrastructure.UnknownCaseCheckable {
 

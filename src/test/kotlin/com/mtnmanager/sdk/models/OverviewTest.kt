@@ -32,7 +32,9 @@ import com.mtnmanager.sdk.models.OverviewNews
 import com.mtnmanager.sdk.models.OverviewRuns
 import com.mtnmanager.sdk.models.OverviewSummerTrails
 import com.mtnmanager.sdk.models.OverviewTerrainParks
+import com.mtnmanager.sdk.models.PowderAlerts
 import com.mtnmanager.sdk.models.ResortStatus
+import com.mtnmanager.sdk.models.SeasonPeriod
 import com.mtnmanager.sdk.models.SeasonType
 
 class OverviewTest : ShouldSpec() {
@@ -82,6 +84,12 @@ class OverviewTest : ShouldSpec() {
             //modelInstance.terrainParks shouldBe ("TODO")
         }
 
+        // to test the property `powderAlerts` - Guest powder alerts the resort offers, by channel.
+        should("test powderAlerts") {
+            // uncomment below to test the property
+            //modelInstance.powderAlerts shouldBe ("TODO")
+        }
+
         // to test the property `opensAt` - Today's scheduled opening time in 24-hour format (HH:MM).  `null` if the resort is not scheduled to open today.
         should("test opensAt") {
             // uncomment below to test the property
@@ -92,6 +100,18 @@ class OverviewTest : ShouldSpec() {
         should("test closesAt") {
             // uncomment below to test the property
             //modelInstance.closesAt shouldBe ("TODO")
+        }
+
+        // to test the property `previousSeason` - The last season to end before today, from the resort's operating  hours of the past year. `null` if there was none. While `season` is  `closed`, this and `next_season` tell an off-season that just ended a  winter from one leading up to a summer.
+        should("test previousSeason") {
+            // uncomment below to test the property
+            //modelInstance.previousSeason shouldBe ("TODO")
+        }
+
+        // to test the property `nextSeason` - The next season to start after today, from the resort's scheduled  operating hours. `null` if none is scheduled yet.
+        should("test nextSeason") {
+            // uncomment below to test the property
+            //modelInstance.nextSeason shouldBe ("TODO")
         }
 
     }

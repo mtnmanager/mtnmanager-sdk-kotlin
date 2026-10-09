@@ -11,8 +11,11 @@
 | **lifts** | [**OverviewLifts**](OverviewLifts.md) | Lift statistics: counts and last-updated timestamp. |  |
 | **summerTrails** | [**OverviewSummerTrails**](OverviewSummerTrails.md) | Summer trail statistics: counts and last-updated timestamp. |  |
 | **terrainParks** | [**OverviewTerrainParks**](OverviewTerrainParks.md) | Terrain park statistics: counts and last-updated timestamp. |  |
+| **powderAlerts** | [**PowderAlerts**](PowderAlerts.md) | Guest powder alerts the resort offers, by channel. |  |
 | **opensAt** | **kotlin.String** | Today&#39;s scheduled opening time in 24-hour format (HH:MM).  &#x60;null&#x60; if the resort is not scheduled to open today. |  [optional] |
 | **closesAt** | **kotlin.String** | Today&#39;s scheduled closing time in 24-hour format (HH:MM).  &#x60;null&#x60; if the resort is not scheduled to open today. |  [optional] |
+| **previousSeason** | [**SeasonPeriod**](SeasonPeriod.md) | The last season to end before today, from the resort&#39;s operating  hours of the past year. &#x60;null&#x60; if there was none. While &#x60;season&#x60; is  &#x60;closed&#x60;, this and &#x60;next_season&#x60; tell an off-season that just ended a  winter from one leading up to a summer. |  [optional] |
+| **nextSeason** | [**SeasonPeriod**](SeasonPeriod.md) | The next season to start after today, from the resort&#39;s scheduled  operating hours. &#x60;null&#x60; if none is scheduled yet. |  [optional] |
 
 
 
