@@ -66,7 +66,7 @@ class RunTest : ShouldSpec() {
             //modelInstance.status shouldBe ("TODO")
         }
 
-        // to test the property `groomedToday` - Whether the run was groomed within the last 24 hours.
+        // to test the property `groomedToday` - Whether the run has been groomed since the resort last closed (or,  for a resort with no operating hours set, within the last 24 hours).
         should("test groomedToday") {
             // uncomment below to test the property
             //modelInstance.groomedToday shouldBe ("TODO")
@@ -102,10 +102,22 @@ class RunTest : ShouldSpec() {
             //modelInstance.number shouldBe ("TODO")
         }
 
-        // to test the property `lastGroomed` - When the run was last groomed.  `null` if never groomed, or if the runs grooming feature is disabled.
+        // to test the property `lastGroomed` - When the run was last groomed.  `null` if not groomed this season (since the snow year began: Aug 1, or  Jan 1 in the southern hemisphere), or if the runs grooming feature is disabled.
         should("test lastGroomed") {
             // uncomment below to test the property
             //modelInstance.lastGroomed shouldBe ("TODO")
+        }
+
+        // to test the property `snowSinceGroomedCm` - New snow (cm) reported since `last_groomed` (\"groomed with fresh\").  Absent unless the run was groomed within the last 24 hours and the  resort keeps a snow report.
+        should("test snowSinceGroomedCm") {
+            // uncomment below to test the property
+            //modelInstance.snowSinceGroomedCm shouldBe ("TODO")
+        }
+
+        // to test the property `snowSinceGroomedIn` - New snow (inches) reported since `last_groomed`; see  `snow_since_groomed_cm`.
+        should("test snowSinceGroomedIn") {
+            // uncomment below to test the property
+            //modelInstance.snowSinceGroomedIn shouldBe ("TODO")
         }
 
         // to test the property `areaUuid` - UUID of the area this run belongs to, if assigned.

@@ -44,12 +44,14 @@ import com.mtnmanager.sdk.infrastructure.containsUnknownDefaultOpenApiCase
  * @param name Display name of the terrain park.
  * @param slug URL-friendly name of the terrain park.
  * @param status Current operational status (open, closed, or unknown).
- * @param groomedToday Whether the terrain park was groomed within the last 24 hours.
+ * @param groomedToday Whether the terrain park has been groomed since the resort last closed  (or, for a resort with no operating hours set, within the last 24 hours).
  * @param conditionNotes Notes about current conditions in this terrain park.
  * @param features Features within this terrain park (jumps, boxes, rails, etc.).
  * @param updatedAt When this terrain park or any of its features was last updated.
  * @param number Optional terrain park number.
- * @param lastGroomed When the terrain park was last groomed.  `null` if never groomed, or if the terrain park grooming feature is disabled.
+ * @param lastGroomed When the terrain park was last groomed.  `null` if not groomed this season (since the snow year began: Aug 1, or  Jan 1 in the southern hemisphere), or if the terrain park grooming feature  is disabled.
+ * @param snowSinceGroomedCm New snow (cm) reported since `last_groomed`. Absent unless the park  was groomed within the last 24 hours and the resort keeps a snow report.
+ * @param snowSinceGroomedIn New snow (inches) reported since `last_groomed`; see  `snow_since_groomed_cm`.
  * @param areaUuid UUID of the area this terrain park belongs to, if assigned.
  * @param areaName Name of the area this terrain park belongs to, if assigned.
  * @param areaDisplayOrder Display order of the area this terrain park belongs to, if assigned, for sorting purposes.
@@ -75,7 +77,7 @@ data class TerrainPark (
     @Contextual @SerialName(value = "status")
     val status: TerrainParkStatus,
 
-    /* Whether the terrain park was groomed within the last 24 hours. */
+    /* Whether the terrain park has been groomed since the resort last closed  (or, for a resort with no operating hours set, within the last 24 hours). */
     @SerialName(value = "groomed_today")
     val groomedToday: kotlin.Boolean,
 
@@ -95,9 +97,17 @@ data class TerrainPark (
     @SerialName(value = "number")
     val number: kotlin.Int? = null,
 
-    /* When the terrain park was last groomed.  `null` if never groomed, or if the terrain park grooming feature is disabled. */
+    /* When the terrain park was last groomed.  `null` if not groomed this season (since the snow year began: Aug 1, or  Jan 1 in the southern hemisphere), or if the terrain park grooming feature  is disabled. */
     @Contextual @SerialName(value = "last_groomed")
     val lastGroomed: java.time.OffsetDateTime? = null,
+
+    /* New snow (cm) reported since `last_groomed`. Absent unless the park  was groomed within the last 24 hours and the resort keeps a snow report. */
+    @SerialName(value = "snow_since_groomed_cm")
+    val snowSinceGroomedCm: kotlin.Int? = null,
+
+    /* New snow (inches) reported since `last_groomed`; see  `snow_since_groomed_cm`. */
+    @SerialName(value = "snow_since_groomed_in")
+    val snowSinceGroomedIn: kotlin.Int? = null,
 
     /* UUID of the area this terrain park belongs to, if assigned. */
     @SerialName(value = "area_uuid")

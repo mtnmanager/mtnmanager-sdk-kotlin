@@ -45,7 +45,7 @@ import com.mtnmanager.sdk.infrastructure.containsUnknownDefaultOpenApiCase
  * @param name Display name of the feature.
  * @param slug URL-friendly name of the run.
  * @param featureType Type of feature (jump, box, rail, other).
- * @param status Current operational status (open, closed, or unknown).  `unknown` unless the terrain park feature status is enabled.
+ * @param status Current operational status (open, closed, or unknown).  `unknown` unless the terrain park feature status is enabled; `closed`  whenever its terrain park is closed.
  * @param number Optional feature number.
  * @param propertySize Optional size rating of the feature (S, M, L, XL).
  * @param images Images attached to this feature, ordered for display. Each includes a  ThumbHash for rendering a blurred placeholder while the image loads.
@@ -70,7 +70,7 @@ data class TerrainParkFeature (
     @Contextual @SerialName(value = "feature_type")
     val featureType: FeatureType,
 
-    /* Current operational status (open, closed, or unknown).  `unknown` unless the terrain park feature status is enabled. */
+    /* Current operational status (open, closed, or unknown).  `unknown` unless the terrain park feature status is enabled; `closed`  whenever its terrain park is closed. */
     @Contextual @SerialName(value = "status")
     val status: TerrainParkFeatureStatus,
 

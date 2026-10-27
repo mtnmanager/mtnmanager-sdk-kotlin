@@ -56,7 +56,7 @@ import com.mtnmanager.sdk.infrastructure.containsUnknownDefaultOpenApiCase
  * @param lengthM Length of the lift in meters.
  * @param verticalRiseFt Vertical rise of the lift in feet.
  * @param verticalRiseM Vertical rise of the lift in meters.
- * @param waitTimeMinutes Current estimated wait time in minutes, if available.
+ * @param waitTimeMinutes Current estimated wait time in minutes, if available.  Always `null` when the lift is closed.
  * @param opensAt Today's scheduled opening time in 24-hour format (HH:MM), in resort's local timezone.  `null` if the lift has no scheduled hours for today.
  * @param closesAt Today's scheduled closing time in 24-hour format (HH:MM), in resort's local timezone.  `null` if the lift has no scheduled hours for today.
  * @param areaUuid UUID of the area this lift belongs to, if assigned.
@@ -132,7 +132,7 @@ data class Lift (
     @SerialName(value = "vertical_rise_m")
     val verticalRiseM: kotlin.Int? = null,
 
-    /* Current estimated wait time in minutes, if available. */
+    /* Current estimated wait time in minutes, if available.  Always `null` when the lift is closed. */
     @SerialName(value = "wait_time_minutes")
     val waitTimeMinutes: kotlin.Long? = null,
 

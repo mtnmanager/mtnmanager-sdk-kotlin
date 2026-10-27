@@ -20,7 +20,7 @@
 | **lengthM** | **kotlin.Int** | Length of the lift in meters. |  [optional] |
 | **verticalRiseFt** | **kotlin.Int** | Vertical rise of the lift in feet. |  [optional] |
 | **verticalRiseM** | **kotlin.Int** | Vertical rise of the lift in meters. |  [optional] |
-| **waitTimeMinutes** | **kotlin.Long** | Current estimated wait time in minutes, if available. |  [optional] |
+| **waitTimeMinutes** | **kotlin.Long** | Current estimated wait time in minutes, if available.  Always &#x60;null&#x60; when the lift is closed. |  [optional] |
 | **opensAt** | **kotlin.String** | Today&#39;s scheduled opening time in 24-hour format (HH:MM), in resort&#39;s local timezone.  &#x60;null&#x60; if the lift has no scheduled hours for today. |  [optional] |
 | **closesAt** | **kotlin.String** | Today&#39;s scheduled closing time in 24-hour format (HH:MM), in resort&#39;s local timezone.  &#x60;null&#x60; if the lift has no scheduled hours for today. |  [optional] |
 | **areaUuid** | **kotlin.String** | UUID of the area this lift belongs to, if assigned. |  [optional] |

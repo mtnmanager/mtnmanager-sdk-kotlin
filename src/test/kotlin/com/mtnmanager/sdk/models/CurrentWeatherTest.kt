@@ -48,7 +48,7 @@ class CurrentWeatherTest : ShouldSpec() {
             //modelInstance.metric shouldBe ("TODO")
         }
 
-        // to test the property `condition` - Human-readable weather condition
+        // to test the property `condition` - Human-readable weather condition, in the `Accept-Language` language
         should("test condition") {
             // uncomment below to test the property
             //modelInstance.condition shouldBe ("TODO")

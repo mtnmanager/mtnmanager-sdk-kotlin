@@ -7,7 +7,7 @@
 | **date** | [**java.time.LocalDate**](java.time.LocalDate.md) | Date of forecast (YYYY-MM-DD format) |  |
 | **imperial** | [**DailyForecastImperial**](DailyForecastImperial.md) | Measurements in imperial units |  |
 | **metric** | [**DailyForecastMetric**](DailyForecastMetric.md) | Measurements in metric units |  |
-| **condition** | **kotlin.String** | Human-readable condition |  |
+| **condition** | **kotlin.String** | Human-readable condition, in the &#x60;Accept-Language&#x60; language |  |
 | **conditionCode** | [**WeatherConditionCode**](WeatherConditionCode.md) | Condition code |  |
 | **sunrise** | [**java.time.OffsetDateTime**](java.time.OffsetDateTime.md) | Sunrise time |  |
 | **sunset** | [**java.time.OffsetDateTime**](java.time.OffsetDateTime.md) | Sunset time |  |

@@ -45,13 +45,15 @@ import com.mtnmanager.sdk.infrastructure.containsUnknownDefaultOpenApiCase
  * @param slug URL-friendly name of the run.
  * @param difficulty Difficulty rating of the run.
  * @param status Current operational status (open, closed, or unknown).
- * @param groomedToday Whether the run was groomed within the last 24 hours.
+ * @param groomedToday Whether the run has been groomed since the resort last closed (or,  for a resort with no operating hours set, within the last 24 hours).
  * @param snowmaking Whether the run has snowmaking capabilities.
  * @param nightSkiing Whether the run is available for night skiing.
  * @param conditionNotes Notes about current conditions on this run.
  * @param updatedAt When this run's information was last updated.
  * @param number Optional run number.
- * @param lastGroomed When the run was last groomed.  `null` if never groomed, or if the runs grooming feature is disabled.
+ * @param lastGroomed When the run was last groomed.  `null` if not groomed this season (since the snow year began: Aug 1, or  Jan 1 in the southern hemisphere), or if the runs grooming feature is disabled.
+ * @param snowSinceGroomedCm New snow (cm) reported since `last_groomed` (\"groomed with fresh\").  Absent unless the run was groomed within the last 24 hours and the  resort keeps a snow report.
+ * @param snowSinceGroomedIn New snow (inches) reported since `last_groomed`; see  `snow_since_groomed_cm`.
  * @param areaUuid UUID of the area this run belongs to, if assigned.
  * @param areaName Name of the area this run belongs to, if assigned.
  * @param areaDisplayOrder Display order of the area this run belongs to, if assigned, for sorting purposes.
@@ -81,7 +83,7 @@ data class Run (
     @Contextual @SerialName(value = "status")
     val status: RunStatus,
 
-    /* Whether the run was groomed within the last 24 hours. */
+    /* Whether the run has been groomed since the resort last closed (or,  for a resort with no operating hours set, within the last 24 hours). */
     @SerialName(value = "groomed_today")
     val groomedToday: kotlin.Boolean,
 
@@ -105,9 +107,17 @@ data class Run (
     @SerialName(value = "number")
     val number: kotlin.Int? = null,
 
-    /* When the run was last groomed.  `null` if never groomed, or if the runs grooming feature is disabled. */
+    /* When the run was last groomed.  `null` if not groomed this season (since the snow year began: Aug 1, or  Jan 1 in the southern hemisphere), or if the runs grooming feature is disabled. */
     @Contextual @SerialName(value = "last_groomed")
     val lastGroomed: java.time.OffsetDateTime? = null,
+
+    /* New snow (cm) reported since `last_groomed` (\"groomed with fresh\").  Absent unless the run was groomed within the last 24 hours and the  resort keeps a snow report. */
+    @SerialName(value = "snow_since_groomed_cm")
+    val snowSinceGroomedCm: kotlin.Int? = null,
+
+    /* New snow (inches) reported since `last_groomed`; see  `snow_since_groomed_cm`. */
+    @SerialName(value = "snow_since_groomed_in")
+    val snowSinceGroomedIn: kotlin.Int? = null,
 
     /* UUID of the area this run belongs to, if assigned. */
     @SerialName(value = "area_uuid")

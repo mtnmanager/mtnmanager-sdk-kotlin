@@ -43,7 +43,7 @@ import com.mtnmanager.sdk.infrastructure.containsUnknownDefaultOpenApiCase
  * @param date Date of forecast (YYYY-MM-DD format)
  * @param imperial Measurements in imperial units
  * @param metric Measurements in metric units
- * @param condition Human-readable condition
+ * @param condition Human-readable condition, in the `Accept-Language` language
  * @param conditionCode Condition code
  * @param sunrise Sunrise time
  * @param sunset Sunset time
@@ -65,7 +65,7 @@ data class DailyForecast (
     @SerialName(value = "metric")
     val metric: DailyForecastMetric,
 
-    /* Human-readable condition */
+    /* Human-readable condition, in the `Accept-Language` language */
     @SerialName(value = "condition")
     val condition: kotlin.String,
 

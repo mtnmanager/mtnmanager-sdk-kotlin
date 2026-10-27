@@ -28,9 +28,10 @@ import io.kotlintest.specs.ShouldSpec
 
 import com.mtnmanager.sdk.models.SummerTrail
 import com.mtnmanager.sdk.models.EntityImage
+import com.mtnmanager.sdk.models.SummerTrailActivity
 import com.mtnmanager.sdk.models.SummerTrailDifficulty
+import com.mtnmanager.sdk.models.SummerTrailDifficultyType
 import com.mtnmanager.sdk.models.SummerTrailStatus
-import com.mtnmanager.sdk.models.SummerTrailType
 
 class SummerTrailTest : ShouldSpec() {
     init {
@@ -55,10 +56,10 @@ class SummerTrailTest : ShouldSpec() {
             //modelInstance.slug shouldBe ("TODO")
         }
 
-        // to test the property `trailType` - Type of trail activity (e.g. hiking, mountain_biking). Can have multiple.
-        should("test trailType") {
+        // to test the property `activities` - Activities the trail is open to (e.g. hiking, mountain_biking,  on_leash_dogs). Can have multiple.
+        should("test activities") {
             // uncomment below to test the property
-            //modelInstance.trailType shouldBe ("TODO")
+            //modelInstance.activities shouldBe ("TODO")
         }
 
         // to test the property `status` - Current operational status (open, closed, or unknown).
@@ -89,6 +90,12 @@ class SummerTrailTest : ShouldSpec() {
         should("test difficulty") {
             // uncomment below to test the property
             //modelInstance.difficulty shouldBe ("TODO")
+        }
+
+        // to test the property `difficultyType` - The rating system the difficulty is shown in, which picks its icon:  `null` for the standard one, or a mountain-bike freeride / technical one.
+        should("test difficultyType") {
+            // uncomment below to test the property
+            //modelInstance.difficultyType shouldBe ("TODO")
         }
 
         // to test the property `areaUuid` - UUID of the area this trail belongs to, if assigned.

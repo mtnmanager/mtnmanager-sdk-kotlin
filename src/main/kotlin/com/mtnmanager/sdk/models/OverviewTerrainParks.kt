@@ -39,7 +39,7 @@ import kotlinx.serialization.encoding.Encoder
  * @param total Total number of terrain parks at the resort.
  * @param updatedAt When the most recent update to terrain park status was made.
  * @param `open` Number of terrain parks currently open.  Not included if the terrain parks status feature is disabled.
- * @param groomed Number of terrain parks groomed within the last 24 hours.  Not included if the terrain park grooming feature is disabled.
+ * @param groomed Number of terrain parks groomed since the resort last closed (see  `groomed_today`).  Not included if the terrain park grooming feature is disabled.
  */
 @Serializable
 
@@ -57,7 +57,7 @@ data class OverviewTerrainParks (
     @SerialName(value = "open")
     val `open`: kotlin.Long? = null,
 
-    /* Number of terrain parks groomed within the last 24 hours.  Not included if the terrain park grooming feature is disabled. */
+    /* Number of terrain parks groomed since the resort last closed (see  `groomed_today`).  Not included if the terrain park grooming feature is disabled. */
     @SerialName(value = "groomed")
     val groomed: kotlin.Long? = null
 

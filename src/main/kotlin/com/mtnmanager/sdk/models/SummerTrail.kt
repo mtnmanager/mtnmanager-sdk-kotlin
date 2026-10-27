@@ -24,9 +24,10 @@
 package com.mtnmanager.sdk.models
 
 import com.mtnmanager.sdk.models.EntityImage
+import com.mtnmanager.sdk.models.SummerTrailActivity
 import com.mtnmanager.sdk.models.SummerTrailDifficulty
+import com.mtnmanager.sdk.models.SummerTrailDifficultyType
 import com.mtnmanager.sdk.models.SummerTrailStatus
-import com.mtnmanager.sdk.models.SummerTrailType
 
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.SerialName
@@ -39,17 +40,18 @@ import kotlinx.serialization.encoding.Encoder
 import com.mtnmanager.sdk.infrastructure.containsUnknownDefaultOpenApiCase
 
 /**
- * Represents a single summer trail at the resort with its current status,  type (e.g. hiking, mountain biking), and optional difficulty rating.
+ * Represents a single summer trail at the resort with its current status,  activities (e.g. hiking, mountain biking, dogs), and optional difficulty rating.
  *
  * @param uuid Unique identifier for the trail.
  * @param name Display name of the trail.
  * @param slug URL-friendly name of the trail.
- * @param trailType Type of trail activity (e.g. hiking, mountain_biking). Can have multiple.
+ * @param activities Activities the trail is open to (e.g. hiking, mountain_biking,  on_leash_dogs). Can have multiple.
  * @param status Current operational status (open, closed, or unknown).
  * @param conditionNotes Notes about current conditions on this trail.
  * @param updatedAt When this trail's information was last updated.
  * @param number Optional trail number.
  * @param difficulty Difficulty rating of the trail (optional for summer trails).
+ * @param difficultyType The rating system the difficulty is shown in, which picks its icon:  `null` for the standard one, or a mountain-bike freeride / technical one.
  * @param areaUuid UUID of the area this trail belongs to, if assigned.
  * @param areaName Name of the area this trail belongs to, if assigned.
  * @param areaDisplayOrder Display order of the area this trail belongs to, if assigned, for sorting purposes.
@@ -71,9 +73,9 @@ data class SummerTrail (
     @SerialName(value = "slug")
     val slug: kotlin.String,
 
-    /* Type of trail activity (e.g. hiking, mountain_biking). Can have multiple. */
-    @SerialName(value = "trail_type")
-    val trailType: kotlin.collections.List<@Contextual SummerTrailType>,
+    /* Activities the trail is open to (e.g. hiking, mountain_biking,  on_leash_dogs). Can have multiple. */
+    @SerialName(value = "activities")
+    val activities: kotlin.collections.List<@Contextual SummerTrailActivity>,
 
     /* Current operational status (open, closed, or unknown). */
     @Contextual @SerialName(value = "status")
@@ -94,6 +96,10 @@ data class SummerTrail (
     /* Difficulty rating of the trail (optional for summer trails). */
     @Contextual @SerialName(value = "difficulty")
     val difficulty: SummerTrailDifficulty? = null,
+
+    /* The rating system the difficulty is shown in, which picks its icon:  `null` for the standard one, or a mountain-bike freeride / technical one. */
+    @Contextual @SerialName(value = "difficulty_type")
+    val difficultyType: SummerTrailDifficultyType? = null,
 
     /* UUID of the area this trail belongs to, if assigned. */
     @SerialName(value = "area_uuid")
@@ -121,9 +127,10 @@ data class SummerTrail (
      */
     override val containsUnknownDefaultOpenApiCase: kotlin.Boolean
         get() {
-            if (trailType.containsUnknownDefaultOpenApiCase()) return true
+            if (activities.containsUnknownDefaultOpenApiCase()) return true
             if (status.containsUnknownDefaultOpenApiCase()) return true
             if (difficulty.containsUnknownDefaultOpenApiCase()) return true
+            if (difficultyType.containsUnknownDefaultOpenApiCase()) return true
             return false
         }
 

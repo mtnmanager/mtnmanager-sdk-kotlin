@@ -8,12 +8,14 @@
 | **name** | **kotlin.String** | Display name of the terrain park. |  |
 | **slug** | **kotlin.String** | URL-friendly name of the terrain park. |  |
 | **status** | [**TerrainParkStatus**](TerrainParkStatus.md) | Current operational status (open, closed, or unknown). |  |
-| **groomedToday** | **kotlin.Boolean** | Whether the terrain park was groomed within the last 24 hours. |  |
+| **groomedToday** | **kotlin.Boolean** | Whether the terrain park has been groomed since the resort last closed  (or, for a resort with no operating hours set, within the last 24 hours). |  |
 | **conditionNotes** | **kotlin.String** | Notes about current conditions in this terrain park. |  |
 | **features** | [**kotlin.collections.List&lt;TerrainParkFeature&gt;**](TerrainParkFeature.md) | Features within this terrain park (jumps, boxes, rails, etc.). |  |
 | **updatedAt** | [**java.time.OffsetDateTime**](java.time.OffsetDateTime.md) | When this terrain park or any of its features was last updated. |  |
 | **number** | **kotlin.Int** | Optional terrain park number. |  [optional] |
-| **lastGroomed** | [**java.time.OffsetDateTime**](java.time.OffsetDateTime.md) | When the terrain park was last groomed.  &#x60;null&#x60; if never groomed, or if the terrain park grooming feature is disabled. |  [optional] |
+| **lastGroomed** | [**java.time.OffsetDateTime**](java.time.OffsetDateTime.md) | When the terrain park was last groomed.  &#x60;null&#x60; if not groomed this season (since the snow year began: Aug 1, or  Jan 1 in the southern hemisphere), or if the terrain park grooming feature  is disabled. |  [optional] |
+| **snowSinceGroomedCm** | **kotlin.Int** | New snow (cm) reported since &#x60;last_groomed&#x60;. Absent unless the park  was groomed within the last 24 hours and the resort keeps a snow report. |  [optional] |
+| **snowSinceGroomedIn** | **kotlin.Int** | New snow (inches) reported since &#x60;last_groomed&#x60;; see  &#x60;snow_since_groomed_cm&#x60;. |  [optional] |
 | **areaUuid** | **kotlin.String** | UUID of the area this terrain park belongs to, if assigned. |  [optional] |
 | **areaName** | **kotlin.String** | Name of the area this terrain park belongs to, if assigned. |  [optional] |
 | **areaDisplayOrder** | **kotlin.Int** | Display order of the area this terrain park belongs to, if assigned, for sorting purposes. |  [optional] |

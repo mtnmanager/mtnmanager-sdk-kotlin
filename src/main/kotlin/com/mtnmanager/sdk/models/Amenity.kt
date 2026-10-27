@@ -24,6 +24,7 @@
 package com.mtnmanager.sdk.models
 
 import com.mtnmanager.sdk.models.AmenityCategory
+import com.mtnmanager.sdk.models.AmenityStatus
 import com.mtnmanager.sdk.models.EntityImage
 import com.mtnmanager.sdk.models.Schedule
 
@@ -46,6 +47,7 @@ import com.mtnmanager.sdk.infrastructure.containsUnknownDefaultOpenApiCase
  * @param slug URL-friendly name of the amenity.
  * @param category Category classification (e.g. restaurant, lodge, ski_school).
  * @param website Website URL for the amenity, if available.
+ * @param status Current operational status (open, closed, or unknown). Always `unknown`  when the resort doesn't track amenity status.
  * @param hasOperatingHours Whether this amenity reports operating hours. When false, clients should  not expect `opens_at`, `closes_at`, or `schedules` to ever be populated.
  * @param schedules Recurring operating schedules for this amenity (e.g. \"Saturday & Sunday,  9:00 a.m. to 4:00 p.m.\"), with both human-readable and structured fields.
  * @param opensAt Today's scheduled opening time in 24-hour format (HH:MM), in resort's local timezone.
@@ -80,6 +82,10 @@ data class Amenity (
     @SerialName(value = "website")
     val website: kotlin.String,
 
+    /* Current operational status (open, closed, or unknown). Always `unknown`  when the resort doesn't track amenity status. */
+    @Contextual @SerialName(value = "status")
+    val status: AmenityStatus,
+
     /* Whether this amenity reports operating hours. When false, clients should  not expect `opens_at`, `closes_at`, or `schedules` to ever be populated. */
     @SerialName(value = "has_operating_hours")
     val hasOperatingHours: kotlin.Boolean,
@@ -111,6 +117,7 @@ data class Amenity (
     override val containsUnknownDefaultOpenApiCase: kotlin.Boolean
         get() {
             if (category.containsUnknownDefaultOpenApiCase()) return true
+            if (status.containsUnknownDefaultOpenApiCase()) return true
             return false
         }
 

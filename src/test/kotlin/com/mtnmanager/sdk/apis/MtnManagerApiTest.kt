@@ -53,7 +53,7 @@ class MtnManagerApiTest : ShouldSpec() {
         // to test getAmenities
         should("test getAmenities") {
             // uncomment below to test getAmenities
-            //val acceptLanguage : kotlin.String = fr-CA // kotlin.String | Preferred language and optional region for human-readable strings in the response (e.g. operating hours summaries). Supports `en`, `fr`, `de`, `it`, and `es`, with optional region tags such as `fr-CA` or `de-CH`. Defaults to English when omitted or unsupported.
+            //val acceptLanguage : kotlin.String = fr-CA // kotlin.String | Preferred language and optional region for human-readable strings in the response (e.g. operating hours summaries, weather conditions). Supports `en`, `fr`, `de`, `it`, and `es`, with optional region tags such as `fr-CA` or `de-CH`. Defaults to English when omitted or unsupported.
             //val result : kotlin.collections.List<Amenity> = apiInstance.getAmenities(acceptLanguage)
             //result shouldBe ("TODO")
         }
@@ -61,7 +61,7 @@ class MtnManagerApiTest : ShouldSpec() {
         // to test getAppReport
         should("test getAppReport") {
             // uncomment below to test getAppReport
-            //val acceptLanguage : kotlin.String = fr-CA // kotlin.String | Preferred language and optional region for human-readable strings in the response (e.g. operating hours summaries). Supports `en`, `fr`, `de`, `it`, and `es`, with optional region tags such as `fr-CA` or `de-CH`. Defaults to English when omitted or unsupported.
+            //val acceptLanguage : kotlin.String = fr-CA // kotlin.String | Preferred language and optional region for human-readable strings in the response (e.g. operating hours summaries, weather conditions). Supports `en`, `fr`, `de`, `it`, and `es`, with optional region tags such as `fr-CA` or `de-CH`. Defaults to English when omitted or unsupported.
             //val result : AppReport = apiInstance.getAppReport(acceptLanguage)
             //result shouldBe ("TODO")
         }
@@ -69,7 +69,7 @@ class MtnManagerApiTest : ShouldSpec() {
         // to test getFullReport
         should("test getFullReport") {
             // uncomment below to test getFullReport
-            //val acceptLanguage : kotlin.String = fr-CA // kotlin.String | Preferred language and optional region for human-readable strings in the response (e.g. operating hours summaries). Supports `en`, `fr`, `de`, `it`, and `es`, with optional region tags such as `fr-CA` or `de-CH`. Defaults to English when omitted or unsupported.
+            //val acceptLanguage : kotlin.String = fr-CA // kotlin.String | Preferred language and optional region for human-readable strings in the response (e.g. operating hours summaries, weather conditions). Supports `en`, `fr`, `de`, `it`, and `es`, with optional region tags such as `fr-CA` or `de-CH`. Defaults to English when omitted or unsupported.
             //val result : FullReport = apiInstance.getFullReport(acceptLanguage)
             //result shouldBe ("TODO")
         }
@@ -77,7 +77,7 @@ class MtnManagerApiTest : ShouldSpec() {
         // to test getHours
         should("test getHours") {
             // uncomment below to test getHours
-            //val acceptLanguage : kotlin.String = fr-CA // kotlin.String | Preferred language and optional region for human-readable strings in the response (e.g. operating hours summaries). Supports `en`, `fr`, `de`, `it`, and `es`, with optional region tags such as `fr-CA` or `de-CH`. Defaults to English when omitted or unsupported.
+            //val acceptLanguage : kotlin.String = fr-CA // kotlin.String | Preferred language and optional region for human-readable strings in the response (e.g. operating hours summaries, weather conditions). Supports `en`, `fr`, `de`, `it`, and `es`, with optional region tags such as `fr-CA` or `de-CH`. Defaults to English when omitted or unsupported.
             //val result : OperatingHours = apiInstance.getHours(acceptLanguage)
             //result shouldBe ("TODO")
         }
@@ -85,7 +85,7 @@ class MtnManagerApiTest : ShouldSpec() {
         // to test getLifts
         should("test getLifts") {
             // uncomment below to test getLifts
-            //val acceptLanguage : kotlin.String = fr-CA // kotlin.String | Preferred language and optional region for human-readable strings in the response (e.g. operating hours summaries). Supports `en`, `fr`, `de`, `it`, and `es`, with optional region tags such as `fr-CA` or `de-CH`. Defaults to English when omitted or unsupported.
+            //val acceptLanguage : kotlin.String = fr-CA // kotlin.String | Preferred language and optional region for human-readable strings in the response (e.g. operating hours summaries, weather conditions). Supports `en`, `fr`, `de`, `it`, and `es`, with optional region tags such as `fr-CA` or `de-CH`. Defaults to English when omitted or unsupported.
             //val result : kotlin.collections.List<Lift> = apiInstance.getLifts(acceptLanguage)
             //result shouldBe ("TODO")
         }
@@ -93,7 +93,7 @@ class MtnManagerApiTest : ShouldSpec() {
         // to test getOverview
         should("test getOverview") {
             // uncomment below to test getOverview
-            //val acceptLanguage : kotlin.String = fr-CA // kotlin.String | Preferred language and optional region for human-readable strings in the response (e.g. operating hours summaries). Supports `en`, `fr`, `de`, `it`, and `es`, with optional region tags such as `fr-CA` or `de-CH`. Defaults to English when omitted or unsupported.
+            //val acceptLanguage : kotlin.String = fr-CA // kotlin.String | Preferred language and optional region for human-readable strings in the response (e.g. operating hours summaries, weather conditions). Supports `en`, `fr`, `de`, `it`, and `es`, with optional region tags such as `fr-CA` or `de-CH`. Defaults to English when omitted or unsupported.
             //val result : Overview = apiInstance.getOverview(acceptLanguage)
             //result shouldBe ("TODO")
         }
@@ -101,7 +101,7 @@ class MtnManagerApiTest : ShouldSpec() {
         // to test getParkingLots
         should("test getParkingLots") {
             // uncomment below to test getParkingLots
-            //val acceptLanguage : kotlin.String = fr-CA // kotlin.String | Preferred language and optional region for human-readable strings in the response (e.g. operating hours summaries). Supports `en`, `fr`, `de`, `it`, and `es`, with optional region tags such as `fr-CA` or `de-CH`. Defaults to English when omitted or unsupported.
+            //val acceptLanguage : kotlin.String = fr-CA // kotlin.String | Preferred language and optional region for human-readable strings in the response (e.g. operating hours summaries, weather conditions). Supports `en`, `fr`, `de`, `it`, and `es`, with optional region tags such as `fr-CA` or `de-CH`. Defaults to English when omitted or unsupported.
             //val result : kotlin.collections.List<ParkingLot> = apiInstance.getParkingLots(acceptLanguage)
             //result shouldBe ("TODO")
         }
@@ -109,7 +109,7 @@ class MtnManagerApiTest : ShouldSpec() {
         // to test getRuns
         should("test getRuns") {
             // uncomment below to test getRuns
-            //val acceptLanguage : kotlin.String = fr-CA // kotlin.String | Preferred language and optional region for human-readable strings in the response (e.g. operating hours summaries). Supports `en`, `fr`, `de`, `it`, and `es`, with optional region tags such as `fr-CA` or `de-CH`. Defaults to English when omitted or unsupported.
+            //val acceptLanguage : kotlin.String = fr-CA // kotlin.String | Preferred language and optional region for human-readable strings in the response (e.g. operating hours summaries, weather conditions). Supports `en`, `fr`, `de`, `it`, and `es`, with optional region tags such as `fr-CA` or `de-CH`. Defaults to English when omitted or unsupported.
             //val result : kotlin.collections.List<Run> = apiInstance.getRuns(acceptLanguage)
             //result shouldBe ("TODO")
         }
@@ -117,7 +117,7 @@ class MtnManagerApiTest : ShouldSpec() {
         // to test getSnow
         should("test getSnow") {
             // uncomment below to test getSnow
-            //val acceptLanguage : kotlin.String = fr-CA // kotlin.String | Preferred language and optional region for human-readable strings in the response (e.g. operating hours summaries). Supports `en`, `fr`, `de`, `it`, and `es`, with optional region tags such as `fr-CA` or `de-CH`. Defaults to English when omitted or unsupported.
+            //val acceptLanguage : kotlin.String = fr-CA // kotlin.String | Preferred language and optional region for human-readable strings in the response (e.g. operating hours summaries, weather conditions). Supports `en`, `fr`, `de`, `it`, and `es`, with optional region tags such as `fr-CA` or `de-CH`. Defaults to English when omitted or unsupported.
             //val result : kotlin.collections.List<SnowReport> = apiInstance.getSnow(acceptLanguage)
             //result shouldBe ("TODO")
         }
@@ -125,7 +125,7 @@ class MtnManagerApiTest : ShouldSpec() {
         // to test getSummerTrails
         should("test getSummerTrails") {
             // uncomment below to test getSummerTrails
-            //val acceptLanguage : kotlin.String = fr-CA // kotlin.String | Preferred language and optional region for human-readable strings in the response (e.g. operating hours summaries). Supports `en`, `fr`, `de`, `it`, and `es`, with optional region tags such as `fr-CA` or `de-CH`. Defaults to English when omitted or unsupported.
+            //val acceptLanguage : kotlin.String = fr-CA // kotlin.String | Preferred language and optional region for human-readable strings in the response (e.g. operating hours summaries, weather conditions). Supports `en`, `fr`, `de`, `it`, and `es`, with optional region tags such as `fr-CA` or `de-CH`. Defaults to English when omitted or unsupported.
             //val result : kotlin.collections.List<SummerTrail> = apiInstance.getSummerTrails(acceptLanguage)
             //result shouldBe ("TODO")
         }
@@ -133,7 +133,7 @@ class MtnManagerApiTest : ShouldSpec() {
         // to test getTerrainParks
         should("test getTerrainParks") {
             // uncomment below to test getTerrainParks
-            //val acceptLanguage : kotlin.String = fr-CA // kotlin.String | Preferred language and optional region for human-readable strings in the response (e.g. operating hours summaries). Supports `en`, `fr`, `de`, `it`, and `es`, with optional region tags such as `fr-CA` or `de-CH`. Defaults to English when omitted or unsupported.
+            //val acceptLanguage : kotlin.String = fr-CA // kotlin.String | Preferred language and optional region for human-readable strings in the response (e.g. operating hours summaries, weather conditions). Supports `en`, `fr`, `de`, `it`, and `es`, with optional region tags such as `fr-CA` or `de-CH`. Defaults to English when omitted or unsupported.
             //val result : kotlin.collections.List<TerrainPark> = apiInstance.getTerrainParks(acceptLanguage)
             //result shouldBe ("TODO")
         }
@@ -142,7 +142,7 @@ class MtnManagerApiTest : ShouldSpec() {
         should("test getTrailMap") {
             // uncomment below to test getTrailMap
             //val uuid : kotlin.String = uuid_example // kotlin.String | Resource UUID
-            //val acceptLanguage : kotlin.String = fr-CA // kotlin.String | Preferred language and optional region for human-readable strings in the response (e.g. operating hours summaries). Supports `en`, `fr`, `de`, `it`, and `es`, with optional region tags such as `fr-CA` or `de-CH`. Defaults to English when omitted or unsupported.
+            //val acceptLanguage : kotlin.String = fr-CA // kotlin.String | Preferred language and optional region for human-readable strings in the response (e.g. operating hours summaries, weather conditions). Supports `en`, `fr`, `de`, `it`, and `es`, with optional region tags such as `fr-CA` or `de-CH`. Defaults to English when omitted or unsupported.
             //val result : TrailMap = apiInstance.getTrailMap(uuid, acceptLanguage)
             //result shouldBe ("TODO")
         }
@@ -152,7 +152,7 @@ class MtnManagerApiTest : ShouldSpec() {
             // uncomment below to test getTrailMapStatic
             //val uuid : kotlin.String = uuid_example // kotlin.String | Trail map UUID
             //val version : kotlin.Long = 789 // kotlin.Long | The map version being requested (from `TrailMapSummary.version`)
-            //val acceptLanguage : kotlin.String = fr-CA // kotlin.String | Preferred language and optional region for human-readable strings in the response (e.g. operating hours summaries). Supports `en`, `fr`, `de`, `it`, and `es`, with optional region tags such as `fr-CA` or `de-CH`. Defaults to English when omitted or unsupported.
+            //val acceptLanguage : kotlin.String = fr-CA // kotlin.String | Preferred language and optional region for human-readable strings in the response (e.g. operating hours summaries, weather conditions). Supports `en`, `fr`, `de`, `it`, and `es`, with optional region tags such as `fr-CA` or `de-CH`. Defaults to English when omitted or unsupported.
             //val result : TrailMapStatic = apiInstance.getTrailMapStatic(uuid, version, acceptLanguage)
             //result shouldBe ("TODO")
         }
@@ -160,7 +160,7 @@ class MtnManagerApiTest : ShouldSpec() {
         // to test getTrailMaps
         should("test getTrailMaps") {
             // uncomment below to test getTrailMaps
-            //val acceptLanguage : kotlin.String = fr-CA // kotlin.String | Preferred language and optional region for human-readable strings in the response (e.g. operating hours summaries). Supports `en`, `fr`, `de`, `it`, and `es`, with optional region tags such as `fr-CA` or `de-CH`. Defaults to English when omitted or unsupported.
+            //val acceptLanguage : kotlin.String = fr-CA // kotlin.String | Preferred language and optional region for human-readable strings in the response (e.g. operating hours summaries, weather conditions). Supports `en`, `fr`, `de`, `it`, and `es`, with optional region tags such as `fr-CA` or `de-CH`. Defaults to English when omitted or unsupported.
             //val result : kotlin.collections.List<TrailMapSummary> = apiInstance.getTrailMaps(acceptLanguage)
             //result shouldBe ("TODO")
         }
@@ -168,7 +168,7 @@ class MtnManagerApiTest : ShouldSpec() {
         // to test getWeather
         should("test getWeather") {
             // uncomment below to test getWeather
-            //val acceptLanguage : kotlin.String = fr-CA // kotlin.String | Preferred language and optional region for human-readable strings in the response (e.g. operating hours summaries). Supports `en`, `fr`, `de`, `it`, and `es`, with optional region tags such as `fr-CA` or `de-CH`. Defaults to English when omitted or unsupported.
+            //val acceptLanguage : kotlin.String = fr-CA // kotlin.String | Preferred language and optional region for human-readable strings in the response (e.g. operating hours summaries, weather conditions). Supports `en`, `fr`, `de`, `it`, and `es`, with optional region tags such as `fr-CA` or `de-CH`. Defaults to English when omitted or unsupported.
             //val result : kotlin.collections.List<Weather> = apiInstance.getWeather(acceptLanguage)
             //result shouldBe ("TODO")
         }
@@ -179,7 +179,7 @@ class MtnManagerApiTest : ShouldSpec() {
             //val uuid : kotlin.String = uuid_example // kotlin.String | Resource UUID
             //val from : kotlin.String = from_example // kotlin.String | Inclusive lower bound on `captured_at` (RFC 3339).
             //val to : kotlin.String = to_example // kotlin.String | Inclusive upper bound on `captured_at` (RFC 3339).
-            //val acceptLanguage : kotlin.String = fr-CA // kotlin.String | Preferred language and optional region for human-readable strings in the response (e.g. operating hours summaries). Supports `en`, `fr`, `de`, `it`, and `es`, with optional region tags such as `fr-CA` or `de-CH`. Defaults to English when omitted or unsupported.
+            //val acceptLanguage : kotlin.String = fr-CA // kotlin.String | Preferred language and optional region for human-readable strings in the response (e.g. operating hours summaries, weather conditions). Supports `en`, `fr`, `de`, `it`, and `es`, with optional region tags such as `fr-CA` or `de-CH`. Defaults to English when omitted or unsupported.
             //val result : WebcamHistoryResponse = apiInstance.getWebcamHistory(uuid, from, to, acceptLanguage)
             //result shouldBe ("TODO")
         }
@@ -187,7 +187,7 @@ class MtnManagerApiTest : ShouldSpec() {
         // to test getWebcams
         should("test getWebcams") {
             // uncomment below to test getWebcams
-            //val acceptLanguage : kotlin.String = fr-CA // kotlin.String | Preferred language and optional region for human-readable strings in the response (e.g. operating hours summaries). Supports `en`, `fr`, `de`, `it`, and `es`, with optional region tags such as `fr-CA` or `de-CH`. Defaults to English when omitted or unsupported.
+            //val acceptLanguage : kotlin.String = fr-CA // kotlin.String | Preferred language and optional region for human-readable strings in the response (e.g. operating hours summaries, weather conditions). Supports `en`, `fr`, `de`, `it`, and `es`, with optional region tags such as `fr-CA` or `de-CH`. Defaults to English when omitted or unsupported.
             //val result : kotlin.collections.List<Webcam> = apiInstance.getWebcams(acceptLanguage)
             //result shouldBe ("TODO")
         }

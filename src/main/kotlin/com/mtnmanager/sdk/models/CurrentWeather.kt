@@ -42,7 +42,7 @@ import com.mtnmanager.sdk.infrastructure.containsUnknownDefaultOpenApiCase
  *
  * @param imperial Measurements in imperial units
  * @param metric Measurements in metric units
- * @param condition Human-readable weather condition
+ * @param condition Human-readable weather condition, in the `Accept-Language` language
  * @param conditionCode Weather condition code
  * @param timestamp Timestamp of observation
  * @param windDirection Wind direction in degrees (0-360)
@@ -60,7 +60,7 @@ data class CurrentWeather (
     @SerialName(value = "metric")
     val metric: CurrentWeatherMetric,
 
-    /* Human-readable weather condition */
+    /* Human-readable weather condition, in the `Accept-Language` language */
     @SerialName(value = "condition")
     val condition: kotlin.String,
 

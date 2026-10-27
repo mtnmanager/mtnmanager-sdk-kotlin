@@ -132,7 +132,7 @@ class LiftTest : ShouldSpec() {
             //modelInstance.verticalRiseM shouldBe ("TODO")
         }
 
-        // to test the property `waitTimeMinutes` - Current estimated wait time in minutes, if available.
+        // to test the property `waitTimeMinutes` - Current estimated wait time in minutes, if available.  Always `null` when the lift is closed.
         should("test waitTimeMinutes") {
             // uncomment below to test the property
             //modelInstance.waitTimeMinutes shouldBe ("TODO")

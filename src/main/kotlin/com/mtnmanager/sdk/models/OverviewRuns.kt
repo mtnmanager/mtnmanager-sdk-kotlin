@@ -39,7 +39,7 @@ import kotlinx.serialization.encoding.Encoder
  * @param total Total number of runs at the resort.
  * @param updatedAt When the most recent update to run status was made.
  * @param `open` Number of runs currently open.  Not included if the runs status feature is disabled.
- * @param groomed Number of runs groomed within the last 24 hours.  Not included if the runs grooming feature is disabled.
+ * @param groomed Number of runs groomed since the resort last closed (see `groomed_today`).  Not included if the runs grooming feature is disabled.
  * @param openAcres Total acres of open runs.  Not included if acres are not tracked or the runs status feature is disabled.
  * @param totalAcres Total acres of all runs.  Not included if acres are not tracked.
  */
@@ -59,7 +59,7 @@ data class OverviewRuns (
     @SerialName(value = "open")
     val `open`: kotlin.Long? = null,
 
-    /* Number of runs groomed within the last 24 hours.  Not included if the runs grooming feature is disabled. */
+    /* Number of runs groomed since the resort last closed (see `groomed_today`).  Not included if the runs grooming feature is disabled. */
     @SerialName(value = "groomed")
     val groomed: kotlin.Long? = null,
 

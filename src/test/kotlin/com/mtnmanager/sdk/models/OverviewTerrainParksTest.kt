@@ -51,7 +51,7 @@ class OverviewTerrainParksTest : ShouldSpec() {
             //modelInstance.`open` shouldBe ("TODO")
         }
 
-        // to test the property `groomed` - Number of terrain parks groomed within the last 24 hours.  Not included if the terrain park grooming feature is disabled.
+        // to test the property `groomed` - Number of terrain parks groomed since the resort last closed (see  `groomed_today`).  Not included if the terrain park grooming feature is disabled.
         should("test groomed") {
             // uncomment below to test the property
             //modelInstance.groomed shouldBe ("TODO")

@@ -34,18 +34,21 @@ import kotlinx.serialization.encoding.Encoder
 
 
 /**
- * 
+ * Operational status of an amenity.
  *
- * Values: hiking,mountain_biking,unknown_default_open_api
+ * Values: `open`,closed,unknown,unknown_default_open_api
  */
-@Serializable(with = SummerTrailTypeSerializer::class)
-enum class SummerTrailType(val value: kotlin.String) : com.mtnmanager.sdk.infrastructure.UnknownCaseCheckable {
+@Serializable(with = AmenityStatusSerializer::class)
+enum class AmenityStatus(val value: kotlin.String) : com.mtnmanager.sdk.infrastructure.UnknownCaseCheckable {
 
-    @SerialName(value = "hiking")
-    hiking("hiking"),
+    @SerialName(value = "open")
+    `open`("open"),
 
-    @SerialName(value = "mountain_biking")
-    mountain_biking("mountain_biking"),
+    @SerialName(value = "closed")
+    closed("closed"),
+
+    @SerialName(value = "unknown")
+    unknown("unknown"),
 
     @SerialName(value = "unknown_default_open_api")
     unknown_default_open_api("unknown_default_open_api");
@@ -70,12 +73,12 @@ enum class SummerTrailType(val value: kotlin.String) : com.mtnmanager.sdk.infras
         /**
          * Converts the provided [data] to a [String] on success, null otherwise.
          */
-        fun encode(data: kotlin.Any?): kotlin.String? = if (data is SummerTrailType) "$data" else null
+        fun encode(data: kotlin.Any?): kotlin.String? = if (data is AmenityStatus) "$data" else null
 
         /**
-         * Returns a valid [SummerTrailType] for [data], null otherwise.
+         * Returns a valid [AmenityStatus] for [data], null otherwise.
          */
-        fun decode(data: kotlin.Any?): SummerTrailType? = data?.let {
+        fun decode(data: kotlin.Any?): AmenityStatus? = data?.let {
           val normalizedData = "$it".lowercase()
           entries.firstOrNull { value ->
             it == value || normalizedData == "$value".lowercase()
@@ -84,16 +87,16 @@ enum class SummerTrailType(val value: kotlin.String) : com.mtnmanager.sdk.infras
     }
 }
 
-internal object SummerTrailTypeSerializer : KSerializer<SummerTrailType> {
+internal object AmenityStatusSerializer : KSerializer<AmenityStatus> {
     override val descriptor = kotlin.String.serializer().descriptor
 
-    override fun deserialize(decoder: Decoder): SummerTrailType {
+    override fun deserialize(decoder: Decoder): AmenityStatus {
         val value = decoder.decodeSerializableValue(kotlin.String.serializer())
-        return SummerTrailType.entries.firstOrNull { it.value == value }
-            ?: SummerTrailType.unknown_default_open_api
+        return AmenityStatus.entries.firstOrNull { it.value == value }
+            ?: AmenityStatus.unknown_default_open_api
     }
 
-    override fun serialize(encoder: Encoder, value: SummerTrailType) {
+    override fun serialize(encoder: Encoder, value: AmenityStatus) {
         encoder.encodeSerializableValue(kotlin.String.serializer(), value.value)
     }
 }

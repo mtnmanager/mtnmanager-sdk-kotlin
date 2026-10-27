@@ -43,7 +43,7 @@ import com.mtnmanager.sdk.infrastructure.containsUnknownDefaultOpenApiCase
  * @param timestamp Forecast timestamp
  * @param imperial Measurements in imperial units
  * @param metric Measurements in metric units
- * @param condition Human-readable condition
+ * @param condition Human-readable condition, in the `Accept-Language` language
  * @param conditionCode Weather condition code
  * @param precipitationProbability Probability of precipitation (0-100%)
  */
@@ -63,7 +63,7 @@ data class HourlyForecast (
     @SerialName(value = "metric")
     val metric: HourlyForecastMetric,
 
-    /* Human-readable condition */
+    /* Human-readable condition, in the `Accept-Language` language */
     @SerialName(value = "condition")
     val condition: kotlin.String,
 

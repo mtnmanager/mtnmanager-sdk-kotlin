@@ -26,12 +26,12 @@ package com.mtnmanager.sdk.models
 import io.kotlintest.shouldBe
 import io.kotlintest.specs.ShouldSpec
 
-import com.mtnmanager.sdk.models.SummerTrailType
+import com.mtnmanager.sdk.models.SummerTrailActivity
 
-class SummerTrailTypeTest : ShouldSpec() {
+class SummerTrailActivityTest : ShouldSpec() {
     init {
-        // uncomment below to create an instance of SummerTrailType
-        //val modelInstance = SummerTrailType()
+        // uncomment below to create an instance of SummerTrailActivity
+        //val modelInstance = SummerTrailActivity()
 
     }
 }

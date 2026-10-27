@@ -28,6 +28,7 @@ import io.kotlintest.specs.ShouldSpec
 
 import com.mtnmanager.sdk.models.Amenity
 import com.mtnmanager.sdk.models.AmenityCategory
+import com.mtnmanager.sdk.models.AmenityStatus
 import com.mtnmanager.sdk.models.EntityImage
 import com.mtnmanager.sdk.models.Schedule
 
@@ -70,6 +71,12 @@ class AmenityTest : ShouldSpec() {
         should("test website") {
             // uncomment below to test the property
             //modelInstance.website shouldBe ("TODO")
+        }
+
+        // to test the property `status` - Current operational status (open, closed, or unknown). Always `unknown`  when the resort doesn't track amenity status.
+        should("test status") {
+            // uncomment below to test the property
+            //modelInstance.status shouldBe ("TODO")
         }
 
         // to test the property `hasOperatingHours` - Whether this amenity reports operating hours. When false, clients should  not expect `opens_at`, `closes_at`, or `schedules` to ever be populated.

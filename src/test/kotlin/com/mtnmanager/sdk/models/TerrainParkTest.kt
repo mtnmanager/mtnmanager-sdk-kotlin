@@ -60,7 +60,7 @@ class TerrainParkTest : ShouldSpec() {
             //modelInstance.status shouldBe ("TODO")
         }
 
-        // to test the property `groomedToday` - Whether the terrain park was groomed within the last 24 hours.
+        // to test the property `groomedToday` - Whether the terrain park has been groomed since the resort last closed  (or, for a resort with no operating hours set, within the last 24 hours).
         should("test groomedToday") {
             // uncomment below to test the property
             //modelInstance.groomedToday shouldBe ("TODO")
@@ -90,10 +90,22 @@ class TerrainParkTest : ShouldSpec() {
             //modelInstance.number shouldBe ("TODO")
         }
 
-        // to test the property `lastGroomed` - When the terrain park was last groomed.  `null` if never groomed, or if the terrain park grooming feature is disabled.
+        // to test the property `lastGroomed` - When the terrain park was last groomed.  `null` if not groomed this season (since the snow year began: Aug 1, or  Jan 1 in the southern hemisphere), or if the terrain park grooming feature  is disabled.
         should("test lastGroomed") {
             // uncomment below to test the property
             //modelInstance.lastGroomed shouldBe ("TODO")
+        }
+
+        // to test the property `snowSinceGroomedCm` - New snow (cm) reported since `last_groomed`. Absent unless the park  was groomed within the last 24 hours and the resort keeps a snow report.
+        should("test snowSinceGroomedCm") {
+            // uncomment below to test the property
+            //modelInstance.snowSinceGroomedCm shouldBe ("TODO")
+        }
+
+        // to test the property `snowSinceGroomedIn` - New snow (inches) reported since `last_groomed`; see  `snow_since_groomed_cm`.
+        should("test snowSinceGroomedIn") {
+            // uncomment below to test the property
+            //modelInstance.snowSinceGroomedIn shouldBe ("TODO")
         }
 
         // to test the property `areaUuid` - UUID of the area this terrain park belongs to, if assigned.

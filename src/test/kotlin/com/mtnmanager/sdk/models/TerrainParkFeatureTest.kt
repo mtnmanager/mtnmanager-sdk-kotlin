@@ -61,7 +61,7 @@ class TerrainParkFeatureTest : ShouldSpec() {
             //modelInstance.featureType shouldBe ("TODO")
         }
 
-        // to test the property `status` - Current operational status (open, closed, or unknown).  `unknown` unless the terrain park feature status is enabled.
+        // to test the property `status` - Current operational status (open, closed, or unknown).  `unknown` unless the terrain park feature status is enabled; `closed`  whenever its terrain park is closed.
         should("test status") {
             // uncomment below to test the property
             //modelInstance.status shouldBe ("TODO")
