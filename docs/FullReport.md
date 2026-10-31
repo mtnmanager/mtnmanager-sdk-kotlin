@@ -13,8 +13,6 @@
 | **parkingLots** | [**kotlin.collections.List&lt;ParkingLot&gt;**](ParkingLot.md) | List of all parking lots at the resort with their current status and amenities. |  |
 | **summerTrails** | [**kotlin.collections.List&lt;SummerTrail&gt;**](SummerTrail.md) | List of all summer trails at the resort with their current status,  type (e.g. hiking, mountain biking), and optional difficulty rating. |  |
 | **hours** | [**OperatingHours**](OperatingHours.md) |  |  |
-| **weather** | [**kotlin.collections.List&lt;Weather&gt;**](Weather.md) | Weather entries: the resort-wide entry first (current + forecast), then  any per-area current-conditions entries. Empty when weather is disabled  or unavailable. |  [optional] |
-| **webcams** | [**kotlin.collections.List&lt;Webcam&gt;**](Webcam.md) | Enabled webcams with the URLs of their current and last-daylight frames  plus thumbnails. Empty when the resort does not have webcams. |  [optional] |
 
 
 

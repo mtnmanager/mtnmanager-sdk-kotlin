@@ -32,8 +32,6 @@ import com.mtnmanager.sdk.models.Run
 import com.mtnmanager.sdk.models.SnowReport
 import com.mtnmanager.sdk.models.SummerTrail
 import com.mtnmanager.sdk.models.TerrainPark
-import com.mtnmanager.sdk.models.Weather
-import com.mtnmanager.sdk.models.Webcam
 
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.SerialName
@@ -45,7 +43,7 @@ import kotlinx.serialization.encoding.Decoder
 import kotlinx.serialization.encoding.Encoder
 
 /**
- * The all-in-one endpoint containing the full report — resort information, current status,  runs, lifts, snow, terrain parks, summer trails, hours, and weather.
+ * The all-in-one endpoint containing the full report — resort information, current status,  runs, lifts, snow, terrain parks, summer trails, and hours. Weather and webcams  have their own endpoints.
  *
  * @param resort 
  * @param status 
@@ -56,8 +54,6 @@ import kotlinx.serialization.encoding.Encoder
  * @param parkingLots List of all parking lots at the resort with their current status and amenities.
  * @param summerTrails List of all summer trails at the resort with their current status,  type (e.g. hiking, mountain biking), and optional difficulty rating.
  * @param hours 
- * @param weather Weather entries: the resort-wide entry first (current + forecast), then  any per-area current-conditions entries. Empty when weather is disabled  or unavailable.
- * @param webcams Enabled webcams with the URLs of their current and last-daylight frames  plus thumbnails. Empty when the resort does not have webcams.
  */
 @Serializable
 
@@ -94,15 +90,7 @@ data class FullReport (
     val summerTrails: kotlin.collections.List<SummerTrail>,
 
     @SerialName(value = "hours")
-    val hours: OperatingHours,
-
-    /* Weather entries: the resort-wide entry first (current + forecast), then  any per-area current-conditions entries. Empty when weather is disabled  or unavailable. */
-    @SerialName(value = "weather")
-    val weather: kotlin.collections.List<Weather>? = null,
-
-    /* Enabled webcams with the URLs of their current and last-daylight frames  plus thumbnails. Empty when the resort does not have webcams. */
-    @SerialName(value = "webcams")
-    val webcams: kotlin.collections.List<Webcam>? = null
+    val hours: OperatingHours
 
 ) {
 

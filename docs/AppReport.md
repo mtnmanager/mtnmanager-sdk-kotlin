@@ -16,8 +16,6 @@
 | **hours** | [**OperatingHours**](OperatingHours.md) |  |  |
 | **amenities** | [**kotlin.collections.List&lt;Amenity&gt;**](Amenity.md) | All amenities at the resort — identical to &#x60;GET /api/v1/report/amenities&#x60;. |  |
 | **appBanners** | [**kotlin.collections.List&lt;MobileAppBanner&gt;**](MobileAppBanner.md) | Mobile-app banners, in display order. |  |
-| **weather** | [**kotlin.collections.List&lt;Weather&gt;**](Weather.md) | Weather entries: the resort-wide entry first (current + forecast), then  any per-area current-conditions entries. Empty when weather is disabled  or unavailable. |  [optional] |
-| **webcams** | [**kotlin.collections.List&lt;Webcam&gt;**](Webcam.md) | Enabled webcams with the URLs of their current and last-daylight frames  plus thumbnails. Empty when the resort does not have webcams. |  [optional] |
 | **trailMaps** | [**kotlin.collections.List&lt;TrailMapSummary&gt;**](TrailMapSummary.md) | Trail-map summaries — identical to &#x60;GET /api/v1/report/trail-maps&#x60;.  Empty when the &#x60;trail_maps&#x60; feature is not enabled for the resort. |  [optional] |
 
 

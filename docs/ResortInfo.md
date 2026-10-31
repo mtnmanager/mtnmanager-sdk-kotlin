@@ -10,6 +10,7 @@
 | **timezone** | **kotlin.String** | IANA timezone identifier for the resort&#39;s local time. |  |
 | **region** | [**Region**](Region.md) | Region, affects difficulty icon style. |  |
 | **unitPreference** | [**UnitPreference**](UnitPreference.md) | Preferred unit system for measurements (metric or imperial). |  |
+| **defaultLanguage** | [**Language**](Language.md) | The language human-readable strings are served in when the request&#39;s  &#x60;Accept-Language&#x60; names no supported language. |  |
 | **logoUrl** | **kotlin.String** | Full public URL to the resort&#39;s logo image. &#x60;null&#x60; if no logo is set. |  [optional] |
 
 

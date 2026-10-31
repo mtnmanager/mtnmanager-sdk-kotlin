@@ -177,10 +177,8 @@ class MtnManagerApiTest : ShouldSpec() {
         should("test getWebcamHistory") {
             // uncomment below to test getWebcamHistory
             //val uuid : kotlin.String = uuid_example // kotlin.String | Resource UUID
-            //val from : kotlin.String = from_example // kotlin.String | Inclusive lower bound on `captured_at` (RFC 3339).
-            //val to : kotlin.String = to_example // kotlin.String | Inclusive upper bound on `captured_at` (RFC 3339).
             //val acceptLanguage : kotlin.String = fr-CA // kotlin.String | Preferred language and optional region for human-readable strings in the response (e.g. operating hours summaries, weather conditions). Supports `en`, `fr`, `de`, `it`, and `es`, with optional region tags such as `fr-CA` or `de-CH`. Defaults to English when omitted or unsupported.
-            //val result : WebcamHistoryResponse = apiInstance.getWebcamHistory(uuid, from, to, acceptLanguage)
+            //val result : WebcamHistoryResponse = apiInstance.getWebcamHistory(uuid, acceptLanguage)
             //result shouldBe ("TODO")
         }
 

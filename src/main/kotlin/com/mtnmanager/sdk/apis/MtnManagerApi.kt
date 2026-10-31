@@ -1195,8 +1195,6 @@ open class MtnManagerApi(basePath: kotlin.String = defaultBasePath, client: Call
      * Get webcam history
      * 
      * @param uuid Resource UUID
-     * @param from Inclusive lower bound on &#x60;captured_at&#x60; (RFC 3339). (optional, default to "null")
-     * @param to Inclusive upper bound on &#x60;captured_at&#x60; (RFC 3339). (optional, default to "null")
      * @param acceptLanguage Preferred language and optional region for human-readable strings in the response (e.g. operating hours summaries, weather conditions). Supports &#x60;en&#x60;, &#x60;fr&#x60;, &#x60;de&#x60;, &#x60;it&#x60;, and &#x60;es&#x60;, with optional region tags such as &#x60;fr-CA&#x60; or &#x60;de-CH&#x60;. Defaults to English when omitted or unsupported. (optional)
      * @return WebcamHistoryResponse
      * @throws IllegalStateException If the request is not correctly configured
@@ -1207,8 +1205,8 @@ open class MtnManagerApi(basePath: kotlin.String = defaultBasePath, client: Call
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun getWebcamHistory(uuid: kotlin.String, from: kotlin.String? = "null", to: kotlin.String? = "null", acceptLanguage: kotlin.String? = null) : WebcamHistoryResponse {
-        val localVarResponse = getWebcamHistoryWithHttpInfo(uuid = uuid, from = from, to = to, acceptLanguage = acceptLanguage)
+    fun getWebcamHistory(uuid: kotlin.String, acceptLanguage: kotlin.String? = null) : WebcamHistoryResponse {
+        val localVarResponse = getWebcamHistoryWithHttpInfo(uuid = uuid, acceptLanguage = acceptLanguage)
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> (localVarResponse as Success<*>).data as WebcamHistoryResponse
@@ -1230,8 +1228,6 @@ open class MtnManagerApi(basePath: kotlin.String = defaultBasePath, client: Call
      * Get webcam history
      * 
      * @param uuid Resource UUID
-     * @param from Inclusive lower bound on &#x60;captured_at&#x60; (RFC 3339). (optional, default to "null")
-     * @param to Inclusive upper bound on &#x60;captured_at&#x60; (RFC 3339). (optional, default to "null")
      * @param acceptLanguage Preferred language and optional region for human-readable strings in the response (e.g. operating hours summaries, weather conditions). Supports &#x60;en&#x60;, &#x60;fr&#x60;, &#x60;de&#x60;, &#x60;it&#x60;, and &#x60;es&#x60;, with optional region tags such as &#x60;fr-CA&#x60; or &#x60;de-CH&#x60;. Defaults to English when omitted or unsupported. (optional)
      * @return ApiResponse<WebcamHistoryResponse?>
      * @throws IllegalStateException If the request is not correctly configured
@@ -1239,8 +1235,8 @@ open class MtnManagerApi(basePath: kotlin.String = defaultBasePath, client: Call
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    fun getWebcamHistoryWithHttpInfo(uuid: kotlin.String, from: kotlin.String?, to: kotlin.String?, acceptLanguage: kotlin.String?) : ApiResponse<WebcamHistoryResponse?> {
-        val localVariableConfig = getWebcamHistoryRequestConfig(uuid = uuid, from = from, to = to, acceptLanguage = acceptLanguage)
+    fun getWebcamHistoryWithHttpInfo(uuid: kotlin.String, acceptLanguage: kotlin.String?) : ApiResponse<WebcamHistoryResponse?> {
+        val localVariableConfig = getWebcamHistoryRequestConfig(uuid = uuid, acceptLanguage = acceptLanguage)
 
         return request<Unit, WebcamHistoryResponse>(
             localVariableConfig
@@ -1251,22 +1247,12 @@ open class MtnManagerApi(basePath: kotlin.String = defaultBasePath, client: Call
      * To obtain the request config of the operation getWebcamHistory
      *
      * @param uuid Resource UUID
-     * @param from Inclusive lower bound on &#x60;captured_at&#x60; (RFC 3339). (optional, default to "null")
-     * @param to Inclusive upper bound on &#x60;captured_at&#x60; (RFC 3339). (optional, default to "null")
      * @param acceptLanguage Preferred language and optional region for human-readable strings in the response (e.g. operating hours summaries, weather conditions). Supports &#x60;en&#x60;, &#x60;fr&#x60;, &#x60;de&#x60;, &#x60;it&#x60;, and &#x60;es&#x60;, with optional region tags such as &#x60;fr-CA&#x60; or &#x60;de-CH&#x60;. Defaults to English when omitted or unsupported. (optional)
      * @return RequestConfig
      */
-    fun getWebcamHistoryRequestConfig(uuid: kotlin.String, from: kotlin.String?, to: kotlin.String?, acceptLanguage: kotlin.String?) : RequestConfig<Unit> {
+    fun getWebcamHistoryRequestConfig(uuid: kotlin.String, acceptLanguage: kotlin.String?) : RequestConfig<Unit> {
         val localVariableBody = null
-        val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
-            .apply {
-                if (from != null) {
-                    put("from", listOf(from.toString()))
-                }
-                if (to != null) {
-                    put("to", listOf(to.toString()))
-                }
-            }
+        val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
         acceptLanguage?.apply { localVariableHeaders["Accept-Language"] = this.toString() }
         localVariableHeaders["Accept"] = "application/json"

@@ -691,7 +691,7 @@ No authorization required
 
 <a id="getWebcamHistory"></a>
 # **getWebcamHistory**
-> WebcamHistoryResponse getWebcamHistory(uuid, from, to, acceptLanguage)
+> WebcamHistoryResponse getWebcamHistory(uuid, acceptLanguage)
 
 Get webcam history
 
@@ -703,11 +703,9 @@ Get webcam history
 
 val apiInstance = MtnManagerApi()
 val uuid : kotlin.String = uuid_example // kotlin.String | Resource UUID
-val from : kotlin.String = from_example // kotlin.String | Inclusive lower bound on `captured_at` (RFC 3339).
-val to : kotlin.String = to_example // kotlin.String | Inclusive upper bound on `captured_at` (RFC 3339).
 val acceptLanguage : kotlin.String = fr-CA // kotlin.String | Preferred language and optional region for human-readable strings in the response (e.g. operating hours summaries, weather conditions). Supports `en`, `fr`, `de`, `it`, and `es`, with optional region tags such as `fr-CA` or `de-CH`. Defaults to English when omitted or unsupported.
 try {
-    val result : WebcamHistoryResponse = apiInstance.getWebcamHistory(uuid, from, to, acceptLanguage)
+    val result : WebcamHistoryResponse = apiInstance.getWebcamHistory(uuid, acceptLanguage)
     println(result)
 } catch (e: ClientException) {
     println("4xx response calling MtnManagerApi#getWebcamHistory")
@@ -720,8 +718,6 @@ try {
 
 ### Parameters
 | **uuid** | **kotlin.String**| Resource UUID | |
-| **from** | **kotlin.String**| Inclusive lower bound on &#x60;captured_at&#x60; (RFC 3339). | [optional] [default to &quot;null&quot;] |
-| **to** | **kotlin.String**| Inclusive upper bound on &#x60;captured_at&#x60; (RFC 3339). | [optional] [default to &quot;null&quot;] |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **acceptLanguage** | **kotlin.String**| Preferred language and optional region for human-readable strings in the response (e.g. operating hours summaries, weather conditions). Supports &#x60;en&#x60;, &#x60;fr&#x60;, &#x60;de&#x60;, &#x60;it&#x60;, and &#x60;es&#x60;, with optional region tags such as &#x60;fr-CA&#x60; or &#x60;de-CH&#x60;. Defaults to English when omitted or unsupported. | [optional] |

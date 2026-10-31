@@ -27,6 +27,7 @@ import io.kotlintest.shouldBe
 import io.kotlintest.specs.ShouldSpec
 
 import com.mtnmanager.sdk.models.ResortInfo
+import com.mtnmanager.sdk.models.Language
 import com.mtnmanager.sdk.models.Region
 import com.mtnmanager.sdk.models.UnitPreference
 
@@ -69,6 +70,12 @@ class ResortInfoTest : ShouldSpec() {
         should("test unitPreference") {
             // uncomment below to test the property
             //modelInstance.unitPreference shouldBe ("TODO")
+        }
+
+        // to test the property `defaultLanguage` - The language human-readable strings are served in when the request's  `Accept-Language` names no supported language.
+        should("test defaultLanguage") {
+            // uncomment below to test the property
+            //modelInstance.defaultLanguage shouldBe ("TODO")
         }
 
         // to test the property `logoUrl` - Full public URL to the resort's logo image. `null` if no logo is set.

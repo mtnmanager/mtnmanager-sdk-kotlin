@@ -36,8 +36,6 @@ import com.mtnmanager.sdk.models.Run
 import com.mtnmanager.sdk.models.SnowReport
 import com.mtnmanager.sdk.models.SummerTrail
 import com.mtnmanager.sdk.models.TerrainPark
-import com.mtnmanager.sdk.models.Weather
-import com.mtnmanager.sdk.models.Webcam
 
 class FullReportTest : ShouldSpec() {
     init {
@@ -96,18 +94,6 @@ class FullReportTest : ShouldSpec() {
         should("test hours") {
             // uncomment below to test the property
             //modelInstance.hours shouldBe ("TODO")
-        }
-
-        // to test the property `weather` - Weather entries: the resort-wide entry first (current + forecast), then  any per-area current-conditions entries. Empty when weather is disabled  or unavailable.
-        should("test weather") {
-            // uncomment below to test the property
-            //modelInstance.weather shouldBe ("TODO")
-        }
-
-        // to test the property `webcams` - Enabled webcams with the URLs of their current and last-daylight frames  plus thumbnails. Empty when the resort does not have webcams.
-        should("test webcams") {
-            // uncomment below to test the property
-            //modelInstance.webcams shouldBe ("TODO")
         }
 
     }

@@ -23,6 +23,7 @@
 
 package com.mtnmanager.sdk.models
 
+import com.mtnmanager.sdk.models.Language
 import com.mtnmanager.sdk.models.Region
 import com.mtnmanager.sdk.models.UnitPreference
 
@@ -45,6 +46,7 @@ import com.mtnmanager.sdk.infrastructure.containsUnknownDefaultOpenApiCase
  * @param timezone IANA timezone identifier for the resort's local time.
  * @param region Region, affects difficulty icon style.
  * @param unitPreference Preferred unit system for measurements (metric or imperial).
+ * @param defaultLanguage The language human-readable strings are served in when the request's  `Accept-Language` names no supported language.
  * @param logoUrl Full public URL to the resort's logo image. `null` if no logo is set.
  */
 @Serializable
@@ -75,6 +77,10 @@ data class ResortInfo (
     @Contextual @SerialName(value = "unit_preference")
     val unitPreference: UnitPreference,
 
+    /* The language human-readable strings are served in when the request's  `Accept-Language` names no supported language. */
+    @Contextual @SerialName(value = "default_language")
+    val defaultLanguage: Language,
+
     /* Full public URL to the resort's logo image. `null` if no logo is set. */
     @SerialName(value = "logo_url")
     val logoUrl: kotlin.String? = null
@@ -91,6 +97,7 @@ data class ResortInfo (
         get() {
             if (region.containsUnknownDefaultOpenApiCase()) return true
             if (unitPreference.containsUnknownDefaultOpenApiCase()) return true
+            if (defaultLanguage.containsUnknownDefaultOpenApiCase()) return true
             return false
         }
 

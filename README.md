@@ -96,6 +96,7 @@ All URIs are relative to *https://your-resort.mtnmanager.com*
  - [com.mtnmanager.sdk.models.HourlyForecastImperial](docs/HourlyForecastImperial.md)
  - [com.mtnmanager.sdk.models.HourlyForecastMetric](docs/HourlyForecastMetric.md)
  - [com.mtnmanager.sdk.models.LabelOffset](docs/LabelOffset.md)
+ - [com.mtnmanager.sdk.models.Language](docs/Language.md)
  - [com.mtnmanager.sdk.models.Lift](docs/Lift.md)
  - [com.mtnmanager.sdk.models.LiftStatus](docs/LiftStatus.md)
  - [com.mtnmanager.sdk.models.LiftType](docs/LiftType.md)
@@ -159,7 +160,6 @@ All URIs are relative to *https://your-resort.mtnmanager.com*
  - [com.mtnmanager.sdk.models.WeatherConditionCode](docs/WeatherConditionCode.md)
  - [com.mtnmanager.sdk.models.Webcam](docs/Webcam.md)
  - [com.mtnmanager.sdk.models.WebcamHistoryFrame](docs/WebcamHistoryFrame.md)
- - [com.mtnmanager.sdk.models.WebcamHistoryQuery](docs/WebcamHistoryQuery.md)
  - [com.mtnmanager.sdk.models.WebcamHistoryResponse](docs/WebcamHistoryResponse.md)
 
 
