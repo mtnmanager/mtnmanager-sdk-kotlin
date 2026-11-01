@@ -45,5 +45,11 @@ class PowderAlertsTest : ShouldSpec() {
             //modelInstance.push shouldBe ("TODO")
         }
 
+        // to test the property `privacyPolicyUrl` - Privacy policy to show guests when they sign up for powder alerts.  Present whenever at least one channel is offered.
+        should("test privacyPolicyUrl") {
+            // uncomment below to test the property
+            //modelInstance.privacyPolicyUrl shouldBe ("TODO")
+        }
+
     }
 }

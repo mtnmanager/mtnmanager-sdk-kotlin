@@ -34,10 +34,11 @@ import kotlinx.serialization.encoding.Decoder
 import kotlinx.serialization.encoding.Encoder
 
 /**
- * Guest powder alerts the resort offers. Both are `false` when the resort  doesn't offer powder alerts.
+ * Guest powder alerts the resort offers. Both channels are `false` (and  `privacy_policy_url` is `null`) when the resort doesn't offer powder alerts.
  *
  * @param text Guests can sign up for text alerts via  `POST /api/notifications/v1/text/powder/signup` on the resort's host.
  * @param push Guests can subscribe to push alerts in the resort's mobile app.
+ * @param privacyPolicyUrl Privacy policy to show guests when they sign up for powder alerts.  Present whenever at least one channel is offered.
  */
 @Serializable
 
@@ -49,7 +50,11 @@ data class PowderAlerts (
 
     /* Guests can subscribe to push alerts in the resort's mobile app. */
     @SerialName(value = "push")
-    val push: kotlin.Boolean
+    val push: kotlin.Boolean,
+
+    /* Privacy policy to show guests when they sign up for powder alerts.  Present whenever at least one channel is offered. */
+    @SerialName(value = "privacy_policy_url")
+    val privacyPolicyUrl: kotlin.String? = null
 
 ) {
 
