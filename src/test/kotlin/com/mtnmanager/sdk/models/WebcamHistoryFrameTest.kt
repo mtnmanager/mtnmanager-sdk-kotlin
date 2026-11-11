@@ -51,7 +51,7 @@ class WebcamHistoryFrameTest : ShouldSpec() {
             //modelInstance.thumbUrl shouldBe ("TODO")
         }
 
-        // to test the property `thumbhash` - ThumbHash of the frame (standard base64), recovered from the thumb object's  key. Empty string for legacy frames archived without one.
+        // to test the property `thumbhash` - ThumbHash of the frame (standard base64).
         should("test thumbhash") {
             // uncomment below to test the property
             //modelInstance.thumbhash shouldBe ("TODO")

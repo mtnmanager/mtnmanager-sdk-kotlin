@@ -39,7 +39,7 @@ import kotlinx.serialization.encoding.Encoder
  * @param capturedAt 
  * @param imageUrl 
  * @param thumbUrl 
- * @param thumbhash ThumbHash of the frame (standard base64), recovered from the thumb object's  key. Empty string for legacy frames archived without one.
+ * @param thumbhash ThumbHash of the frame (standard base64).
  */
 @Serializable
 
@@ -54,7 +54,7 @@ data class WebcamHistoryFrame (
     @SerialName(value = "thumb_url")
     val thumbUrl: kotlin.String,
 
-    /* ThumbHash of the frame (standard base64), recovered from the thumb object's  key. Empty string for legacy frames archived without one. */
+    /* ThumbHash of the frame (standard base64). */
     @SerialName(value = "thumbhash")
     val thumbhash: kotlin.String
 

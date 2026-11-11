@@ -87,6 +87,12 @@ class WebcamTest : ShouldSpec() {
             //modelInstance.hasHistory shouldBe ("TODO")
         }
 
+        // to test the property `isDaylight` - Whether it is currently daylight at the resort, counting civil twilight  (the sun within 6° below the horizon) as daylight. Always `true` when the  resort has no location configured.
+        should("test isDaylight") {
+            // uncomment below to test the property
+            //modelInstance.isDaylight shouldBe ("TODO")
+        }
+
         // to test the property `areaUuid`
         should("test areaUuid") {
             // uncomment below to test the property

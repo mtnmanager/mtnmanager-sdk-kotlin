@@ -13,6 +13,7 @@
 | **latestThumbhash** | **kotlin.String** | ThumbHash of the &#x60;latest&#x60; frame (standard base64) — a compact blur  placeholder to render while the image loads. Empty string until the first  frame (or on cameras predating the feature). |  |
 | **latestDaylightThumbhash** | **kotlin.String** | ThumbHash of the &#x60;latest-daylight&#x60; frame (standard base64). Empty string  until the first daylight frame. |  |
 | **hasHistory** | **kotlin.Boolean** | Whether this camera archives frames — i.e. whether its history endpoint  returns anything. When &#x60;false&#x60;, don&#39;t call the history API for it. |  |
+| **isDaylight** | **kotlin.Boolean** | Whether it is currently daylight at the resort, counting civil twilight  (the sun within 6° below the horizon) as daylight. Always &#x60;true&#x60; when the  resort has no location configured. |  |
 | **areaUuid** | **kotlin.String** |  |  [optional] |
 | **areaName** | **kotlin.String** |  |  [optional] |
 | **areaDisplayOrder** | **kotlin.Int** |  |  [optional] |

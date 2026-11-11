@@ -45,6 +45,7 @@ import kotlinx.serialization.encoding.Encoder
  * @param latestThumbhash ThumbHash of the `latest` frame (standard base64) — a compact blur  placeholder to render while the image loads. Empty string until the first  frame (or on cameras predating the feature).
  * @param latestDaylightThumbhash ThumbHash of the `latest-daylight` frame (standard base64). Empty string  until the first daylight frame.
  * @param hasHistory Whether this camera archives frames — i.e. whether its history endpoint  returns anything. When `false`, don't call the history API for it.
+ * @param isDaylight Whether it is currently daylight at the resort, counting civil twilight  (the sun within 6° below the horizon) as daylight. Always `true` when the  resort has no location configured.
  * @param areaUuid 
  * @param areaName 
  * @param areaDisplayOrder 
@@ -87,6 +88,10 @@ data class Webcam (
     /* Whether this camera archives frames — i.e. whether its history endpoint  returns anything. When `false`, don't call the history API for it. */
     @SerialName(value = "has_history")
     val hasHistory: kotlin.Boolean,
+
+    /* Whether it is currently daylight at the resort, counting civil twilight  (the sun within 6° below the horizon) as daylight. Always `true` when the  resort has no location configured. */
+    @SerialName(value = "is_daylight")
+    val isDaylight: kotlin.Boolean,
 
     @SerialName(value = "area_uuid")
     val areaUuid: kotlin.String? = null,
