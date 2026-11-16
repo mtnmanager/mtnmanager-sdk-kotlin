@@ -36,7 +36,7 @@ import kotlinx.serialization.encoding.Encoder
 /**
  * Operational status of a summer trail.
  *
- * Values: `open`,closed,unknown,unknown_default_open_api
+ * Values: `open`,closed,on_hold,unknown,unknown_default_open_api
  */
 @Serializable(with = SummerTrailStatusSerializer::class)
 enum class SummerTrailStatus(val value: kotlin.String) : com.mtnmanager.sdk.infrastructure.UnknownCaseCheckable {
@@ -46,6 +46,9 @@ enum class SummerTrailStatus(val value: kotlin.String) : com.mtnmanager.sdk.infr
 
     @SerialName(value = "closed")
     closed("closed"),
+
+    @SerialName(value = "on_hold")
+    on_hold("on_hold"),
 
     @SerialName(value = "unknown")
     unknown("unknown"),

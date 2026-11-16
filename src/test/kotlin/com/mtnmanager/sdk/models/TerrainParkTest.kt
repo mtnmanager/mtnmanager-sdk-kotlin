@@ -28,6 +28,7 @@ import io.kotlintest.specs.ShouldSpec
 
 import com.mtnmanager.sdk.models.TerrainPark
 import com.mtnmanager.sdk.models.EntityImage
+import com.mtnmanager.sdk.models.LinkedLift
 import com.mtnmanager.sdk.models.TerrainParkFeature
 import com.mtnmanager.sdk.models.TerrainParkStatus
 
@@ -54,7 +55,7 @@ class TerrainParkTest : ShouldSpec() {
             //modelInstance.slug shouldBe ("TODO")
         }
 
-        // to test the property `status` - Current operational status (open, closed, or unknown).
+        // to test the property `status` - Current operational status (open, closed, on_hold, or unknown).
         should("test status") {
             // uncomment below to test the property
             //modelInstance.status shouldBe ("TODO")
@@ -124,6 +125,12 @@ class TerrainParkTest : ShouldSpec() {
         should("test areaDisplayOrder") {
             // uncomment below to test the property
             //modelInstance.areaDisplayOrder shouldBe ("TODO")
+        }
+
+        // to test the property `lifts` - The lifts that give access to this terrain park, in lift display order.  Empty when none are set.
+        should("test lifts") {
+            // uncomment below to test the property
+            //modelInstance.lifts shouldBe ("TODO")
         }
 
         // to test the property `images` - Images attached to this terrain park, ordered for display. Each includes  a ThumbHash for rendering a blurred placeholder while the image loads.

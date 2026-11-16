@@ -28,6 +28,7 @@ import io.kotlintest.specs.ShouldSpec
 
 import com.mtnmanager.sdk.models.Run
 import com.mtnmanager.sdk.models.EntityImage
+import com.mtnmanager.sdk.models.LinkedLift
 import com.mtnmanager.sdk.models.RunDifficulty
 import com.mtnmanager.sdk.models.RunStatus
 
@@ -60,7 +61,7 @@ class RunTest : ShouldSpec() {
             //modelInstance.difficulty shouldBe ("TODO")
         }
 
-        // to test the property `status` - Current operational status (open, closed, or unknown).
+        // to test the property `status` - Current operational status (open, closed, on_hold, or unknown).
         should("test status") {
             // uncomment below to test the property
             //modelInstance.status shouldBe ("TODO")
@@ -136,6 +137,12 @@ class RunTest : ShouldSpec() {
         should("test areaDisplayOrder") {
             // uncomment below to test the property
             //modelInstance.areaDisplayOrder shouldBe ("TODO")
+        }
+
+        // to test the property `lifts` - The lifts that give access to this run, in lift display order.  Empty when none are set.
+        should("test lifts") {
+            // uncomment below to test the property
+            //modelInstance.lifts shouldBe ("TODO")
         }
 
         // to test the property `images` - Images attached to this run, ordered for display. Each includes a  ThumbHash for rendering a blurred placeholder while the image loads.

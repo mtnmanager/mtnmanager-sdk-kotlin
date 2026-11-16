@@ -100,6 +100,7 @@ All URIs are relative to *https://your-resort.mtnmanager.com*
  - [com.mtnmanager.sdk.models.Lift](docs/Lift.md)
  - [com.mtnmanager.sdk.models.LiftStatus](docs/LiftStatus.md)
  - [com.mtnmanager.sdk.models.LiftType](docs/LiftType.md)
+ - [com.mtnmanager.sdk.models.LinkedLift](docs/LinkedLift.md)
  - [com.mtnmanager.sdk.models.MarkerIcon](docs/MarkerIcon.md)
  - [com.mtnmanager.sdk.models.MobileAppBanner](docs/MobileAppBanner.md)
  - [com.mtnmanager.sdk.models.OperatingHours](docs/OperatingHours.md)

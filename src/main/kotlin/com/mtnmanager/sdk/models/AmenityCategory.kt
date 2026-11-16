@@ -36,7 +36,7 @@ import kotlinx.serialization.encoding.Encoder
 /**
  * Category classification for amenities
  *
- * Values: restaurant,coffee,bar,tubing,ski_school,rental_shop,daycare,ticketing,lodge,hotel,lockers,retail,other,unknown_default_open_api
+ * Values: restaurant,coffee,bar,tubing,skating,ski_school,rental_shop,daycare,ticketing,lodge,hotel,lockers,retail,other,unknown_default_open_api
  */
 @Serializable(with = AmenityCategorySerializer::class)
 enum class AmenityCategory(val value: kotlin.String) : com.mtnmanager.sdk.infrastructure.UnknownCaseCheckable {
@@ -52,6 +52,9 @@ enum class AmenityCategory(val value: kotlin.String) : com.mtnmanager.sdk.infras
 
     @SerialName(value = "tubing")
     tubing("tubing"),
+
+    @SerialName(value = "skating")
+    skating("skating"),
 
     @SerialName(value = "ski_school")
     ski_school("ski_school"),

@@ -24,6 +24,7 @@
 package com.mtnmanager.sdk.models
 
 import com.mtnmanager.sdk.models.EntityImage
+import com.mtnmanager.sdk.models.LinkedLift
 import com.mtnmanager.sdk.models.TerrainParkFeature
 import com.mtnmanager.sdk.models.TerrainParkStatus
 
@@ -43,7 +44,7 @@ import com.mtnmanager.sdk.infrastructure.containsUnknownDefaultOpenApiCase
  * @param uuid Unique identifier for the terrain park.
  * @param name Display name of the terrain park.
  * @param slug URL-friendly name of the terrain park.
- * @param status Current operational status (open, closed, or unknown).
+ * @param status Current operational status (open, closed, on_hold, or unknown).
  * @param groomedToday Whether the terrain park has been groomed since the resort last closed  (or, for a resort with no operating hours set, within the last 24 hours).
  * @param conditionNotes Notes about current conditions in this terrain park.
  * @param features Features within this terrain park (jumps, boxes, rails, etc.).
@@ -55,6 +56,7 @@ import com.mtnmanager.sdk.infrastructure.containsUnknownDefaultOpenApiCase
  * @param areaUuid UUID of the area this terrain park belongs to, if assigned.
  * @param areaName Name of the area this terrain park belongs to, if assigned.
  * @param areaDisplayOrder Display order of the area this terrain park belongs to, if assigned, for sorting purposes.
+ * @param lifts The lifts that give access to this terrain park, in lift display order.  Empty when none are set.
  * @param images Images attached to this terrain park, ordered for display. Each includes  a ThumbHash for rendering a blurred placeholder while the image loads.
  */
 @Serializable
@@ -73,7 +75,7 @@ data class TerrainPark (
     @SerialName(value = "slug")
     val slug: kotlin.String,
 
-    /* Current operational status (open, closed, or unknown). */
+    /* Current operational status (open, closed, on_hold, or unknown). */
     @Contextual @SerialName(value = "status")
     val status: TerrainParkStatus,
 
@@ -120,6 +122,10 @@ data class TerrainPark (
     /* Display order of the area this terrain park belongs to, if assigned, for sorting purposes. */
     @SerialName(value = "area_display_order")
     val areaDisplayOrder: kotlin.Int? = null,
+
+    /* The lifts that give access to this terrain park, in lift display order.  Empty when none are set. */
+    @SerialName(value = "lifts")
+    val lifts: kotlin.collections.List<LinkedLift>? = null,
 
     /* Images attached to this terrain park, ordered for display. Each includes  a ThumbHash for rendering a blurred placeholder while the image loads. */
     @SerialName(value = "images")

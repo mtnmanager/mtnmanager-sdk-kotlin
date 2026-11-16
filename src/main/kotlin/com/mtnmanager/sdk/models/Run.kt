@@ -24,6 +24,7 @@
 package com.mtnmanager.sdk.models
 
 import com.mtnmanager.sdk.models.EntityImage
+import com.mtnmanager.sdk.models.LinkedLift
 import com.mtnmanager.sdk.models.RunDifficulty
 import com.mtnmanager.sdk.models.RunStatus
 
@@ -44,7 +45,7 @@ import com.mtnmanager.sdk.infrastructure.containsUnknownDefaultOpenApiCase
  * @param name Display name of the run.
  * @param slug URL-friendly name of the run.
  * @param difficulty Difficulty rating of the run.
- * @param status Current operational status (open, closed, or unknown).
+ * @param status Current operational status (open, closed, on_hold, or unknown).
  * @param groomedToday Whether the run has been groomed since the resort last closed (or,  for a resort with no operating hours set, within the last 24 hours).
  * @param snowmaking Whether the run has snowmaking capabilities.
  * @param nightSkiing Whether the run is available for night skiing.
@@ -57,6 +58,7 @@ import com.mtnmanager.sdk.infrastructure.containsUnknownDefaultOpenApiCase
  * @param areaUuid UUID of the area this run belongs to, if assigned.
  * @param areaName Name of the area this run belongs to, if assigned.
  * @param areaDisplayOrder Display order of the area this run belongs to, if assigned, for sorting purposes.
+ * @param lifts The lifts that give access to this run, in lift display order.  Empty when none are set.
  * @param images Images attached to this run, ordered for display. Each includes a  ThumbHash for rendering a blurred placeholder while the image loads.
  */
 @Serializable
@@ -79,7 +81,7 @@ data class Run (
     @Contextual @SerialName(value = "difficulty")
     val difficulty: RunDifficulty,
 
-    /* Current operational status (open, closed, or unknown). */
+    /* Current operational status (open, closed, on_hold, or unknown). */
     @Contextual @SerialName(value = "status")
     val status: RunStatus,
 
@@ -130,6 +132,10 @@ data class Run (
     /* Display order of the area this run belongs to, if assigned, for sorting purposes. */
     @SerialName(value = "area_display_order")
     val areaDisplayOrder: kotlin.Int? = null,
+
+    /* The lifts that give access to this run, in lift display order.  Empty when none are set. */
+    @SerialName(value = "lifts")
+    val lifts: kotlin.collections.List<LinkedLift>? = null,
 
     /* Images attached to this run, ordered for display. Each includes a  ThumbHash for rendering a blurred placeholder while the image loads. */
     @SerialName(value = "images")

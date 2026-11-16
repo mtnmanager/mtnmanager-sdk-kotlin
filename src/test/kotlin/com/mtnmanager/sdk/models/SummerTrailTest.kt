@@ -28,6 +28,7 @@ import io.kotlintest.specs.ShouldSpec
 
 import com.mtnmanager.sdk.models.SummerTrail
 import com.mtnmanager.sdk.models.EntityImage
+import com.mtnmanager.sdk.models.LinkedLift
 import com.mtnmanager.sdk.models.SummerTrailActivity
 import com.mtnmanager.sdk.models.SummerTrailDifficulty
 import com.mtnmanager.sdk.models.SummerTrailDifficultyType
@@ -62,7 +63,7 @@ class SummerTrailTest : ShouldSpec() {
             //modelInstance.activities shouldBe ("TODO")
         }
 
-        // to test the property `status` - Current operational status (open, closed, or unknown).
+        // to test the property `status` - Current operational status (open, closed, on_hold, or unknown).
         should("test status") {
             // uncomment below to test the property
             //modelInstance.status shouldBe ("TODO")
@@ -114,6 +115,12 @@ class SummerTrailTest : ShouldSpec() {
         should("test areaDisplayOrder") {
             // uncomment below to test the property
             //modelInstance.areaDisplayOrder shouldBe ("TODO")
+        }
+
+        // to test the property `lifts` - The lifts that give access to this trail, in lift display order.  Empty when none are set.
+        should("test lifts") {
+            // uncomment below to test the property
+            //modelInstance.lifts shouldBe ("TODO")
         }
 
         // to test the property `images` - Images attached to this trail, ordered for display. Each includes a  ThumbHash for rendering a blurred placeholder while the image loads.

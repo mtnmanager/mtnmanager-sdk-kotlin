@@ -24,6 +24,7 @@
 package com.mtnmanager.sdk.models
 
 import com.mtnmanager.sdk.models.EntityImage
+import com.mtnmanager.sdk.models.LinkedLift
 import com.mtnmanager.sdk.models.SummerTrailActivity
 import com.mtnmanager.sdk.models.SummerTrailDifficulty
 import com.mtnmanager.sdk.models.SummerTrailDifficultyType
@@ -46,7 +47,7 @@ import com.mtnmanager.sdk.infrastructure.containsUnknownDefaultOpenApiCase
  * @param name Display name of the trail.
  * @param slug URL-friendly name of the trail.
  * @param activities Activities the trail is open to (e.g. hiking, mountain_biking,  on_leash_dogs). Can have multiple.
- * @param status Current operational status (open, closed, or unknown).
+ * @param status Current operational status (open, closed, on_hold, or unknown).
  * @param conditionNotes Notes about current conditions on this trail.
  * @param updatedAt When this trail's information was last updated.
  * @param number Optional trail number.
@@ -55,6 +56,7 @@ import com.mtnmanager.sdk.infrastructure.containsUnknownDefaultOpenApiCase
  * @param areaUuid UUID of the area this trail belongs to, if assigned.
  * @param areaName Name of the area this trail belongs to, if assigned.
  * @param areaDisplayOrder Display order of the area this trail belongs to, if assigned, for sorting purposes.
+ * @param lifts The lifts that give access to this trail, in lift display order.  Empty when none are set.
  * @param images Images attached to this trail, ordered for display. Each includes a  ThumbHash for rendering a blurred placeholder while the image loads.
  */
 @Serializable
@@ -77,7 +79,7 @@ data class SummerTrail (
     @SerialName(value = "activities")
     val activities: kotlin.collections.List<@Contextual SummerTrailActivity>,
 
-    /* Current operational status (open, closed, or unknown). */
+    /* Current operational status (open, closed, on_hold, or unknown). */
     @Contextual @SerialName(value = "status")
     val status: SummerTrailStatus,
 
@@ -112,6 +114,10 @@ data class SummerTrail (
     /* Display order of the area this trail belongs to, if assigned, for sorting purposes. */
     @SerialName(value = "area_display_order")
     val areaDisplayOrder: kotlin.Int? = null,
+
+    /* The lifts that give access to this trail, in lift display order.  Empty when none are set. */
+    @SerialName(value = "lifts")
+    val lifts: kotlin.collections.List<LinkedLift>? = null,
 
     /* Images attached to this trail, ordered for display. Each includes a  ThumbHash for rendering a blurred placeholder while the image loads. */
     @SerialName(value = "images")

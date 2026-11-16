@@ -12,6 +12,8 @@
 
     * `tubing` (value: `"tubing"`)
 
+    * `skating` (value: `"skating"`)
+
     * `ski_school` (value: `"ski_school"`)
 
     * `rental_shop` (value: `"rental_shop"`)

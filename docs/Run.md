@@ -8,7 +8,7 @@
 | **name** | **kotlin.String** | Display name of the run. |  |
 | **slug** | **kotlin.String** | URL-friendly name of the run. |  |
 | **difficulty** | [**RunDifficulty**](RunDifficulty.md) | Difficulty rating of the run. |  |
-| **status** | [**RunStatus**](RunStatus.md) | Current operational status (open, closed, or unknown). |  |
+| **status** | [**RunStatus**](RunStatus.md) | Current operational status (open, closed, on_hold, or unknown). |  |
 | **groomedToday** | **kotlin.Boolean** | Whether the run has been groomed since the resort last closed (or,  for a resort with no operating hours set, within the last 24 hours). |  |
 | **snowmaking** | **kotlin.Boolean** | Whether the run has snowmaking capabilities. |  |
 | **nightSkiing** | **kotlin.Boolean** | Whether the run is available for night skiing. |  |
@@ -21,6 +21,7 @@
 | **areaUuid** | **kotlin.String** | UUID of the area this run belongs to, if assigned. |  [optional] |
 | **areaName** | **kotlin.String** | Name of the area this run belongs to, if assigned. |  [optional] |
 | **areaDisplayOrder** | **kotlin.Int** | Display order of the area this run belongs to, if assigned, for sorting purposes. |  [optional] |
+| **lifts** | [**kotlin.collections.List&lt;LinkedLift&gt;**](LinkedLift.md) | The lifts that give access to this run, in lift display order.  Empty when none are set. |  [optional] |
 | **images** | [**kotlin.collections.List&lt;EntityImage&gt;**](EntityImage.md) | Images attached to this run, ordered for display. Each includes a  ThumbHash for rendering a blurred placeholder while the image loads. |  [optional] |
 
 
