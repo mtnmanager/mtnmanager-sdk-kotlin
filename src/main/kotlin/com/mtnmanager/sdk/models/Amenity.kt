@@ -49,7 +49,6 @@ import com.mtnmanager.sdk.infrastructure.containsUnknownDefaultOpenApiCase
  * @param website Website URL for the amenity, if available.
  * @param status Current operational status (open, closed, on_hold, or unknown). Always  `unknown` when the resort doesn't track amenity status, or this amenity  doesn't report one.
  * @param hasOperatingHours Whether this amenity reports operating hours. When false, clients should  not expect `opens_at`, `closes_at`, or `schedules` to ever be populated.
- * @param hasStatus Whether this amenity reports a status. When false, `status` is always  `unknown`. (It is also `unknown` while the resort doesn't track amenity  status at all.)
  * @param schedules Recurring operating schedules for this amenity (e.g. \"Saturday & Sunday,  9:00 a.m. to 4:00 p.m.\"), with both human-readable and structured fields.
  * @param opensAt Today's scheduled opening time in 24-hour format (HH:MM), in resort's local timezone.
  * @param closesAt Today's scheduled closing time in 24-hour format (HH:MM), in resort's local timezone.
@@ -90,10 +89,6 @@ data class Amenity (
     /* Whether this amenity reports operating hours. When false, clients should  not expect `opens_at`, `closes_at`, or `schedules` to ever be populated. */
     @SerialName(value = "has_operating_hours")
     val hasOperatingHours: kotlin.Boolean,
-
-    /* Whether this amenity reports a status. When false, `status` is always  `unknown`. (It is also `unknown` while the resort doesn't track amenity  status at all.) */
-    @SerialName(value = "has_status")
-    val hasStatus: kotlin.Boolean,
 
     /* Recurring operating schedules for this amenity (e.g. \"Saturday & Sunday,  9:00 a.m. to 4:00 p.m.\"), with both human-readable and structured fields. */
     @SerialName(value = "schedules")

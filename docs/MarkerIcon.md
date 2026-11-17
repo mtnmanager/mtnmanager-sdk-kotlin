@@ -18,6 +18,8 @@
 
     * `tubing` (value: `"tubing"`)
 
+    * `skating` (value: `"skating"`)
+
     * `daycare` (value: `"daycare"`)
 
     * `ticketing` (value: `"ticketing"`)

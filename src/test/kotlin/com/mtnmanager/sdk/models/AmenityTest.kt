@@ -85,12 +85,6 @@ class AmenityTest : ShouldSpec() {
             //modelInstance.hasOperatingHours shouldBe ("TODO")
         }
 
-        // to test the property `hasStatus` - Whether this amenity reports a status. When false, `status` is always  `unknown`. (It is also `unknown` while the resort doesn't track amenity  status at all.)
-        should("test hasStatus") {
-            // uncomment below to test the property
-            //modelInstance.hasStatus shouldBe ("TODO")
-        }
-
         // to test the property `schedules` - Recurring operating schedules for this amenity (e.g. \"Saturday & Sunday,  9:00 a.m. to 4:00 p.m.\"), with both human-readable and structured fields.
         should("test schedules") {
             // uncomment below to test the property

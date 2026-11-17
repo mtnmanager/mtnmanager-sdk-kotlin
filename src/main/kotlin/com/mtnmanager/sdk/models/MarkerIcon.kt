@@ -36,7 +36,7 @@ import kotlinx.serialization.encoding.Encoder
 /**
  * 
  *
- * Values: restaurant,coffee,bar,water,ski_school,rental_shop,tubing,daycare,ticketing,lodge,hotel,restroom,lockers,first_aid,parking,bus,info,help,phone,retail,atm,star,webcam,unknown_default_open_api
+ * Values: restaurant,coffee,bar,water,ski_school,rental_shop,tubing,skating,daycare,ticketing,lodge,hotel,restroom,lockers,first_aid,parking,bus,info,help,phone,retail,atm,star,webcam,unknown_default_open_api
  */
 @Serializable(with = MarkerIconSerializer::class)
 enum class MarkerIcon(val value: kotlin.String) : com.mtnmanager.sdk.infrastructure.UnknownCaseCheckable {
@@ -61,6 +61,9 @@ enum class MarkerIcon(val value: kotlin.String) : com.mtnmanager.sdk.infrastruct
 
     @SerialName(value = "tubing")
     tubing("tubing"),
+
+    @SerialName(value = "skating")
+    skating("skating"),
 
     @SerialName(value = "daycare")
     daycare("daycare"),
